@@ -3,8 +3,11 @@ export const Footer = () => {
     <footer className="border-t border-border py-16">
       <div className="container px-4">
         <div className="text-center">
-          <p className="text-xl text-foreground mb-6">
+          <p className="text-xl text-foreground mb-4">
             Made with ☕ in Riga by CoffeeData
+          </p>
+          <p className="text-lg text-muted-foreground mb-6">
+            CoffeeData is an experimental project started in Riga. Questions? → ruslan@email.com
           </p>
           <div className="flex justify-center space-x-8">
             <a 
