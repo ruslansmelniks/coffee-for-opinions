@@ -1,42 +1,27 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Search, MessageSquare, Mail } from "lucide-react";
-
-const steps = [
-  {
-    icon: Search,
-    title: "Choose a survey that interests you",
-    description: "Browse our available surveys and pick one that matches your experience or interests."
-  },
-  {
-    icon: MessageSquare,
-    title: "Answer a few questions honestly",
-    description: "Share your authentic thoughts and experiences in our quick, friendly surveys."
-  },
-  {
-    icon: Mail,
-    title: "Get your free coffee code by email",
-    description: "Receive your coffee reward code instantly and enjoy it at any of our partner cafes."
-  }
-];
-
+const steps = [{
+  icon: Search,
+  title: "Choose a survey that interests you",
+  description: "Browse our available surveys and pick one that matches your experience or interests."
+}, {
+  icon: MessageSquare,
+  title: "Answer a few questions honestly",
+  description: "Share your authentic thoughts and experiences in our quick, friendly surveys."
+}, {
+  icon: Mail,
+  title: "Get your free coffee code by email",
+  description: "Receive your coffee reward code instantly and enjoy it at any of our partner cafes."
+}];
 export const HowItWorks = () => {
-  return (
-    <section className="py-24 bg-background">
+  return <section className="py-24 bg-background">
       <div className="container px-4">
-        <div className="text-center mb-20">
-          <h2 className="text-5xl font-bold text-foreground mb-6">
-            How It Works
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Three simple steps to earn your free coffee
-          </p>
-        </div>
+        
         
         <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
           {steps.map((step, index) => {
-            const IconComponent = step.icon;
-            return (
-              <div key={index} className="text-center group">
+          const IconComponent = step.icon;
+          return <div key={index} className="text-center group">
                 <div className="mb-8">
                   <div className="w-16 h-16 bg-notion-light-gray rounded-xl flex items-center justify-center mx-auto group-hover:bg-notion-hover transition-colors">
                     <IconComponent className="h-8 w-8 text-notion-gray" />
@@ -51,11 +36,9 @@ export const HowItWorks = () => {
                     {step.description}
                   </p>
                 </div>
-              </div>
-            );
-          })}
+              </div>;
+        })}
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
