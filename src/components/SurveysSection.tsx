@@ -7,19 +7,22 @@ const surveys = [
     title: "Quick Loans in Latvia",
     description: "Tell us about your experience with fast loans.",
     category: "Finance",
-    estimatedTime: "5 min"
+    estimatedTime: "5 min",
+    url: "https://tally.so/r/nreZV5"
   },
   {
     title: "Banks in Latvia", 
     description: "Share your thoughts about banks and fintech.",
     category: "Banking",
-    estimatedTime: "7 min"
+    estimatedTime: "7 min",
+    url: "https://tally.so/r/m6glLN"
   },
   {
     title: "Daily Flow App",
     description: "Help validate a new productivity & notes app idea.",
     category: "Technology",
-    estimatedTime: "4 min"
+    estimatedTime: "4 min",
+    url: "https://tally.so/r/nreZV5"
   }
 ];
 
@@ -59,14 +62,11 @@ export const SurveysSection = () => {
                 <Button 
                   variant="notion-outline" 
                   className="w-full"
-                  disabled
+                  onClick={() => window.open(survey.url, '_blank')}
                 >
                   <ExternalLink className="h-4 w-4 mr-2" />
                   Take Survey
                 </Button>
-                <p className="text-xs text-muted-foreground mt-3 text-center">
-                  Coming soon - Survey links will be added
-                </p>
               </CardContent>
             </Card>
           ))}
