@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import caffeineLogo from "@/assets/caffeine-logo.png";
 import rocketbeanLogo from "/lovable-uploads/81dd2234-89ab-48fd-9bb1-ebb9b42301a5.png";
-import cofyzLogo from "/lovable-uploads/b32621f0-482a-4a0d-91b8-90fa5fe9a5cd.png";
+import cofyzLogo from "/lovable-uploads/57d45089-f1c4-458a-b6ff-9c992d972a75.png";
 
 const partners = [
   {
