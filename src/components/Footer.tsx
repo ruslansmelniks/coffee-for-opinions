@@ -11,7 +11,7 @@ export const Footer = () => {
           </p>
           <div className="flex justify-center space-x-8">
             <a 
-              href="#" 
+              href="/privacy-policy" 
               className="text-muted-foreground hover:text-foreground transition-colors text-lg"
             >
               Privacy Policy
