@@ -63,7 +63,7 @@ export const SurveysSection = () => {
                   {survey.description}
                 </p>
                 <Button 
-                  variant="notion-outline" 
+                  variant="black" 
                   className="w-full"
                   onClick={() => window.open(survey.url, '_blank')}
                 >

@@ -20,6 +20,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         notion: "bg-primary text-primary-foreground hover:bg-primary/90 transition-colors",
         "notion-outline": "border border-border bg-transparent text-foreground hover:bg-notion-hover transition-colors",
+        "black": "bg-black text-white hover:bg-gray-800 transition-colors",
       },
       size: {
         default: "h-10 px-4 py-2",
