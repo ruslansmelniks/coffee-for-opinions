@@ -15,7 +15,7 @@ export const HeroSection = ({
             <img 
               src="/lovable-uploads/ff8836b6-0a11-4a33-ae52-701e9c77431d.png" 
               alt="Coffee cup with latte art" 
-              className="w-80 h-80 object-contain animate-fade-in hover:scale-105 transition-transform duration-300" 
+              className="w-72 h-72 object-contain animate-fade-in hover:scale-105 transition-transform duration-300" 
             />
           </div>
           
