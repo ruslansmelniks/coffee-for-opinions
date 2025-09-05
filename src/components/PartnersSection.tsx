@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import caffeineLogo from "@/assets/caffeine-logo.png";
 import rocketbeanLogo from "/lovable-uploads/81dd2234-89ab-48fd-9bb1-ebb9b42301a5.png";
+import cofyzLogo from "/lovable-uploads/b32621f0-482a-4a0d-91b8-90fa5fe9a5cd.png";
 
 const partners = [
   {
@@ -47,6 +48,14 @@ export const PartnersSection = () => {
                     <img 
                       src={rocketbeanLogo} 
                       alt="RocketBean logo" 
+                      className="w-16 h-16 object-contain"
+                    />
+                  </div>
+                ) : partner.name === "Cofyz" ? (
+                  <div className="w-24 h-24 bg-white rounded-2xl mx-auto flex items-center justify-center group-hover:bg-gray-50 transition-colors shadow-sm">
+                    <img 
+                      src={cofyzLogo} 
+                      alt="Cofyz logo" 
                       className="w-16 h-16 object-contain"
                     />
                   </div>
