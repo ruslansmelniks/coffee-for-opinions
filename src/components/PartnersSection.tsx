@@ -1,4 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
+import caffeineLogo from "@/assets/caffeine-logo.png";
 
 const partners = [
   {
@@ -32,11 +33,21 @@ export const PartnersSection = () => {
           {partners.map((partner, index) => (
             <div key={index} className="text-center group">
               <div className="mb-6">
-                <div className="w-24 h-24 bg-notion-light-gray rounded-2xl mx-auto flex items-center justify-center group-hover:bg-notion-hover transition-colors">
-                  <span className="text-3xl font-bold text-notion-gray">
-                    {partner.name.charAt(0)}
-                  </span>
-                </div>
+                {partner.name === "Caffeine" ? (
+                  <div className="w-24 h-24 bg-white rounded-2xl mx-auto flex items-center justify-center group-hover:bg-gray-50 transition-colors shadow-sm">
+                    <img 
+                      src={caffeineLogo} 
+                      alt="Caffeine logo" 
+                      className="w-16 h-16 object-contain"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-24 h-24 bg-notion-light-gray rounded-2xl mx-auto flex items-center justify-center group-hover:bg-notion-hover transition-colors">
+                    <span className="text-3xl font-bold text-notion-gray">
+                      {partner.name.charAt(0)}
+                    </span>
+                  </div>
+                )}
               </div>
               
               <div className="space-y-2">
