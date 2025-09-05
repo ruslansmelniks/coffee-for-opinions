@@ -10,7 +10,7 @@ export const HeroSection = ({
       <div className="container px-4">
         <div className="flex flex-col md:flex-row items-center gap-8 max-w-4xl mx-auto">
           <div className="w-full md:w-1/2">
-            <img src={coffeeShopImage} alt="Cozy coffee shop interior" className="w-full h-64 object-cover rounded-2xl shadow-soft" />
+            <img src={coffeeShopImage} alt="Cozy coffee shop interior" className="w-full h-96 object-cover rounded-2xl shadow-soft" />
           </div>
           
           <div className="w-full md:w-1/2 space-y-6">
