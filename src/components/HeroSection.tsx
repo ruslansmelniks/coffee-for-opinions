@@ -17,7 +17,7 @@ export const HeroSection = ({
             <div className="space-y-4">
               
               
-              <p className="font-medium text-2xl text-slate-900">1 opinion = 1 coffee</p>
+              <p className="font-bold text-2xl text-slate-900">1 opinion = 1 coffee</p>
               
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Answer short surveys and enjoy a free coffee at local cafes in Riga. Quick, simple, rewarding.
