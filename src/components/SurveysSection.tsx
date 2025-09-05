@@ -28,20 +28,23 @@ const surveys = [
 
 export const SurveysSection = () => {
   return (
-    <section id="surveys" className="py-24 bg-gradient-subtle">
-      <div className="container px-4">
+    <section id="surveys" className="py-24 bg-gradient-subtle relative overflow-hidden">
+      {/* Subtle highlight effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent"></div>
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+      <div className="container px-4 relative z-10">
         <div className="text-center mb-20">
-          <h2 className="text-5xl font-bold text-foreground mb-6">
+          <h2 className="text-5xl font-bold text-foreground mb-6 animate-fade-in">
             Available Surveys
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in">
             Choose a survey that interests you and start earning your coffee
           </p>
         </div>
         
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {surveys.map((survey, index) => (
-            <Card key={index} className="group hover:shadow-soft transition-all duration-200 border border-border">
+            <Card key={index} className="group hover:shadow-elegant transition-all duration-300 border border-border hover:border-primary/20 animate-scale-in hover:scale-105">
               <CardHeader className="pb-4">
                 <div className="flex justify-between items-start mb-3">
                   <span className="text-sm font-medium text-notion-gray bg-notion-light-gray px-3 py-1 rounded-md">
