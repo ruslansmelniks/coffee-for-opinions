@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import coffeeShopImage from "@/assets/coffee-shop.jpg";
 
 interface HeroSectionProps {
   onStartClick: () => void;
@@ -6,29 +7,37 @@ interface HeroSectionProps {
 
 export const HeroSection = ({ onStartClick }: HeroSectionProps) => {
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-subtle">
-      <div className="container px-4 text-center max-w-4xl">
-        <div className="space-y-12">
-          <div className="space-y-6">
-            <h1 className="text-6xl md:text-8xl font-bold text-foreground leading-tight">
-              ☕ CoffeeData
-            </h1>
-            
-            <p className="text-2xl md:text-3xl text-notion-gray font-medium">
-              Your opinion, your coffee.
-            </p>
-            
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Answer short surveys and enjoy a free coffee in Riga.
-            </p>
+    <section className="py-8 bg-background border-b border-border">
+      <div className="container px-4">
+        <div className="flex flex-col md:flex-row items-center gap-8 max-w-4xl mx-auto">
+          <div className="w-full md:w-1/2">
+            <img 
+              src={coffeeShopImage} 
+              alt="Cozy coffee shop interior" 
+              className="w-full h-64 object-cover rounded-2xl shadow-soft"
+            />
           </div>
           
-          <div>
+          <div className="w-full md:w-1/2 space-y-6">
+            <div className="space-y-4">
+              <h1 className="text-4xl font-bold text-foreground">
+                ☕ CoffeeData
+              </h1>
+              
+              <p className="text-xl text-notion-gray font-medium">
+                Your opinion, your coffee.
+              </p>
+              
+              <p className="text-muted-foreground leading-relaxed">
+                Answer short surveys and enjoy a free coffee at local cafes in Riga. Quick, simple, rewarding.
+              </p>
+            </div>
+            
             <Button 
               onClick={onStartClick}
               variant="notion"
               size="lg"
-              className="text-lg px-12 py-6 rounded-lg font-medium"
+              className="font-medium"
             >
               Start Now
             </Button>
