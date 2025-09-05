@@ -7,7 +7,7 @@ export const Footer = () => {
             Made with ☕ in Riga by CoffeeData
           </p>
           <p className="text-lg text-muted-foreground mb-6">
-            CoffeeData is an experimental project started in Riga. Questions? → ruslan@email.com
+            CoffeeData is an experimental project started in Riga. Questions? → ruslans@coffeedata.lv
           </p>
           <div className="flex justify-center space-x-8">
             <a 
@@ -17,7 +17,7 @@ export const Footer = () => {
               Privacy Policy
             </a>
             <a 
-              href="#" 
+              href="mailto:ruslans@coffeedata.lv" 
               className="text-muted-foreground hover:text-foreground transition-colors text-lg"
             >
               Contact
