@@ -1,9 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Shield, Users, Coffee } from "lucide-react";
-
 export const TrustSection = () => {
-  return (
-    <section className="py-24 bg-gradient-subtle">
+  return <section className="py-24 bg-gradient-subtle">
       <div className="container px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-12">
@@ -32,22 +30,8 @@ export const TrustSection = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-12 mt-16">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-foreground mb-3">100%</div>
-              <div className="text-lg text-muted-foreground">Privacy Protected</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-foreground mb-3">1</div>
-              <div className="text-lg text-muted-foreground">Coffee Per Person</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-foreground mb-3">3</div>
-              <div className="text-lg text-muted-foreground">Partner Cafes</div>
-            </div>
-          </div>
+          
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
