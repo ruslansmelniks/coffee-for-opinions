@@ -1,7 +1,16 @@
+import { Home } from "lucide-react";
+
 const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-16 max-w-4xl">
+        <a 
+          href="/" 
+          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
+        >
+          <Home size={20} />
+          <span>Back to Home</span>
+        </a>
         <div className="prose prose-lg max-w-none">
           <h1 className="text-4xl font-bold text-foreground mb-2">Privacy Policy — CoffeeData</h1>
           <p className="text-muted-foreground mb-8">Last updated: September 2025</p>
