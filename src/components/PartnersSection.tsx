@@ -38,6 +38,11 @@ export const PartnersSection = () => {
             </div>)}
         </div>
         
+        <div className="text-center mt-16">
+          <p className="text-lg text-muted-foreground">
+            More partners like RocketBean, Cofyz, and Ezīša Kofīšops are coming next!
+          </p>
+        </div>
         
       </div>
     </section>;
