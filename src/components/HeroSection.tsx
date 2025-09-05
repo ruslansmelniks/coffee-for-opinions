@@ -1,21 +1,16 @@
 import { Button } from "@/components/ui/button";
 import coffeeShopImage from "@/assets/coffee-shop.jpg";
-
 interface HeroSectionProps {
   onStartClick: () => void;
 }
-
-export const HeroSection = ({ onStartClick }: HeroSectionProps) => {
-  return (
-    <section className="py-8 bg-background border-b border-border">
+export const HeroSection = ({
+  onStartClick
+}: HeroSectionProps) => {
+  return <section className="bg-background border-b border-border py-[80px]">
       <div className="container px-4">
         <div className="flex flex-col md:flex-row items-center gap-8 max-w-4xl mx-auto">
           <div className="w-full md:w-1/2">
-            <img 
-              src={coffeeShopImage} 
-              alt="Cozy coffee shop interior" 
-              className="w-full h-64 object-cover rounded-2xl shadow-soft"
-            />
+            <img src={coffeeShopImage} alt="Cozy coffee shop interior" className="w-full h-64 object-cover rounded-2xl shadow-soft" />
           </div>
           
           <div className="w-full md:w-1/2 space-y-6">
@@ -33,17 +28,11 @@ export const HeroSection = ({ onStartClick }: HeroSectionProps) => {
               </p>
             </div>
             
-            <Button 
-              onClick={onStartClick}
-              variant="notion"
-              size="lg"
-              className="font-medium"
-            >
+            <Button onClick={onStartClick} variant="notion" size="lg" className="font-medium">
               Start Now
             </Button>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
