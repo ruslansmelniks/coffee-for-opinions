@@ -6,7 +6,7 @@ interface HeroSectionProps {
 export const HeroSection = ({
   onStartClick
 }: HeroSectionProps) => {
-  return <section className="bg-background border-b border-border py-[80px]">
+  return <section className="bg-background border-b border-border h-[400px] flex items-center">
       <div className="container px-4">
         <div className="flex flex-col md:flex-row items-center gap-8 max-w-4xl mx-auto">
           <div className="w-full md:w-1/2">
