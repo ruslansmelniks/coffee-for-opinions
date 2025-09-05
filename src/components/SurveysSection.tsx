@@ -25,46 +25,46 @@ const surveys = [
 
 export const SurveysSection = () => {
   return (
-    <section id="surveys" className="py-20 bg-gradient-coffee">
+    <section id="surveys" className="py-24 bg-gradient-subtle">
       <div className="container px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">
+        <div className="text-center mb-20">
+          <h2 className="text-5xl font-bold text-foreground mb-6">
             Available Surveys
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Choose a survey that interests you and start earning your coffee
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {surveys.map((survey, index) => (
-            <Card key={index} className="group hover:shadow-warm transition-all duration-300 hover:-translate-y-1">
-              <CardHeader>
-                <div className="flex justify-between items-start mb-2">
-                  <span className="text-sm font-medium text-coffee-accent bg-coffee-accent/10 px-3 py-1 rounded-full">
+            <Card key={index} className="group hover:shadow-soft transition-all duration-200 border border-border">
+              <CardHeader className="pb-4">
+                <div className="flex justify-between items-start mb-3">
+                  <span className="text-sm font-medium text-notion-gray bg-notion-light-gray px-3 py-1 rounded-md">
                     {survey.category}
                   </span>
                   <span className="text-sm text-muted-foreground">
                     {survey.estimatedTime}
                   </span>
                 </div>
-                <CardTitle className="text-xl text-foreground group-hover:text-coffee-warm transition-colors">
+                <CardTitle className="text-xl font-semibold text-foreground group-hover:text-notion-text transition-colors">
                   {survey.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="pt-0">
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   {survey.description}
                 </p>
                 <Button 
-                  variant="coffee-outline" 
+                  variant="notion-outline" 
                   className="w-full"
                   disabled
                 >
                   <ExternalLink className="h-4 w-4 mr-2" />
                   Take Survey
                 </Button>
-                <p className="text-xs text-muted-foreground mt-2 text-center">
+                <p className="text-xs text-muted-foreground mt-3 text-center">
                   Coming soon - Survey links will be added
                 </p>
               </CardContent>

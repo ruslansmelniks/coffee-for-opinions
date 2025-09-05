@@ -17,41 +17,42 @@ const partners = [
 
 export const PartnersSection = () => {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-24 bg-background">
       <div className="container px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">
+        <div className="text-center mb-20">
+          <h2 className="text-5xl font-bold text-foreground mb-6">
             Coffee Partners
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             We work with local cafes to make your rewards tasty and real.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {partners.map((partner, index) => (
-            <Card key={index} className="group hover:shadow-soft transition-all duration-300">
-              <CardContent className="p-8 text-center">
-                {/* Placeholder for partner logos */}
-                <div className="w-20 h-20 bg-gradient-warm rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-primary-foreground">
+            <div key={index} className="text-center group">
+              <div className="mb-6">
+                <div className="w-24 h-24 bg-notion-light-gray rounded-2xl mx-auto flex items-center justify-center group-hover:bg-notion-hover transition-colors">
+                  <span className="text-3xl font-bold text-notion-gray">
                     {partner.name.charAt(0)}
                   </span>
                 </div>
-                
-                <h3 className="text-xl font-semibold text-foreground mb-2">
+              </div>
+              
+              <div className="space-y-2">
+                <h3 className="text-2xl font-semibold text-foreground">
                   {partner.name}
                 </h3>
-                <p className="text-muted-foreground">
+                <p className="text-lg text-muted-foreground">
                   {partner.description}
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
         
-        <div className="text-center mt-12">
-          <p className="text-sm text-muted-foreground max-w-lg mx-auto">
+        <div className="text-center mt-16">
+          <p className="text-lg text-muted-foreground max-w-lg mx-auto">
             Partner logos will be added soon. Each cafe offers unique atmospheres 
             perfect for enjoying your well-earned coffee.
           </p>

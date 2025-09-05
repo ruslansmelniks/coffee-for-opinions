@@ -21,39 +21,37 @@ const steps = [
 
 export const HowItWorks = () => {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-24 bg-background">
       <div className="container px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">
+        <div className="text-center mb-20">
+          <h2 className="text-5xl font-bold text-foreground mb-6">
             How It Works
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Three simple steps to earn your free coffee
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
           {steps.map((step, index) => {
             const IconComponent = step.icon;
             return (
-              <Card key={index} className="relative group hover:shadow-warm transition-all duration-300">
-                <CardContent className="p-8 text-center">
-                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                    <div className="w-12 h-12 bg-gradient-warm rounded-full flex items-center justify-center shadow-soft">
-                      <IconComponent className="h-6 w-6 text-primary-foreground" />
-                    </div>
+              <div key={index} className="text-center group">
+                <div className="mb-8">
+                  <div className="w-16 h-16 bg-notion-light-gray rounded-xl flex items-center justify-center mx-auto group-hover:bg-notion-hover transition-colors">
+                    <IconComponent className="h-8 w-8 text-notion-gray" />
                   </div>
-                  
-                  <div className="mt-8">
-                    <h3 className="text-xl font-semibold text-foreground mb-4">
-                      {step.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+                </div>
+                
+                <div className="space-y-4">
+                  <h3 className="text-2xl font-semibold text-foreground">
+                    {step.title}
+                  </h3>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
             );
           })}
         </div>

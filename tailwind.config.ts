@@ -52,12 +52,12 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				coffee: {
-					brown: 'hsl(var(--coffee-brown))',
-					light: 'hsl(var(--coffee-light))',
-					cream: 'hsl(var(--coffee-cream))',
-					accent: 'hsl(var(--coffee-accent))',
-					warm: 'hsl(var(--coffee-warm))'
+				notion: {
+					gray: 'hsl(var(--notion-gray))',
+					'light-gray': 'hsl(var(--notion-light-gray))',
+					blue: 'hsl(var(--notion-blue))',
+					hover: 'hsl(var(--notion-hover))',
+					text: 'hsl(var(--notion-text))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -71,14 +71,13 @@ export default {
 				}
 			},
 			backgroundImage: {
-				'gradient-warm': 'var(--gradient-warm)',
-				'gradient-coffee': 'var(--gradient-coffee)',
-				'gradient-hero': 'var(--gradient-hero)'
+				'gradient-subtle': 'var(--gradient-subtle)',
+				'gradient-clean': 'var(--gradient-clean)'
 			},
 			boxShadow: {
+				'subtle': 'var(--shadow-subtle)',
 				'soft': 'var(--shadow-soft)',
-				'warm': 'var(--shadow-warm)',
-				'glow': 'var(--shadow-glow)'
+				'clean': 'var(--shadow-clean)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
