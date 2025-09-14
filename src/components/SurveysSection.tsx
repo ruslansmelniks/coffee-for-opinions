@@ -22,7 +22,7 @@ const surveys = [
     description: "Help validate a new productivity & notes app idea.",
     category: "Technology",
     estimatedTime: "4 min",
-    url: "https://tally.so/r/nreZV5"
+    url: "https://tally.so/r/nGZDjZ"
   }
 ];
 
