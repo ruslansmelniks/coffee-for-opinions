@@ -24,6 +24,13 @@ const surveys = [
     category: "Technology",
     estimatedTime: "4 min",
     url: "https://tally.so/r/nGZDjZ"
+  },
+  {
+    title: "Wellif.ai - Social Health Sharing",
+    description: "Help validate an AI tool for social health sharing.",
+    category: "Technology",
+    estimatedTime: "5 min",
+    url: "https://tally.so/r/mKXr6A"
   }
 ];
 
