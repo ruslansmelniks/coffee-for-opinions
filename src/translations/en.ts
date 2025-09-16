@@ -47,8 +47,9 @@ export const enTranslations = {
   },
   footer: {
     privacy: "Privacy Policy",
-    copyright: "© 2024 Coffee Survey Platform. All rights reserved.",
-    description: "Quick surveys, instant coffee rewards"
+    copyright: "© 2025 Coffee Survey Platform. All rights reserved.",
+    description: "Quick surveys, instant coffee rewards",
+    contact: "For any questions, please contact ruslans@coffeedata.lv"
   },
   notFound: {
     title: "Page Not Found",
@@ -58,7 +59,7 @@ export const enTranslations = {
   privacy: {
     title: "Privacy Policy",
     backHome: "← Back to Home",
-    lastUpdated: "Last updated: December 15, 2024",
+    lastUpdated: "Last updated: December 15, 2025",
     sections: {
       intro: {
         title: "Introduction",

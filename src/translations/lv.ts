@@ -47,8 +47,9 @@ export const lvTranslations = {
   },
   footer: {
     privacy: "Privātuma politika",
-    copyright: "© 2024 Kafijas aptauju platforma. Visas tiesības aizsargātas.",
-    description: "Īsas aptaujas, tūlītējas kafijas atlīdzības"
+    copyright: "© 2025 Kafijas aptauju platforma. Visas tiesības aizsargātas.",
+    description: "Īsas aptaujas, tūlītējas kafijas atlīdzības",
+    contact: "Par jebkādiem jautājumiem, lūdzu, sazinieties ar ruslans@coffeedata.lv"
   },
   notFound: {
     title: "Lapa nav atrasta",
@@ -58,7 +59,7 @@ export const lvTranslations = {
   privacy: {
     title: "Privātuma politika",
     backHome: "← Atpakaļ uz sākumu",
-    lastUpdated: "Pēdējoreiz atjaunots: 2024. gada 15. decembris",
+    lastUpdated: "Pēdējoreiz atjaunots: 2025. gada 15. decembris",
     sections: {
       intro: {
         title: "Ievads",

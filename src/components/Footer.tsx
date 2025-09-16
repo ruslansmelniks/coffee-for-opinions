@@ -11,8 +11,11 @@ export const Footer = () => {
           <p className="text-xl text-foreground mb-4">
             Made with ☕ in Riga by CoffeeData
           </p>
-          <p className="text-lg text-muted-foreground mb-6">
+          <p className="text-lg text-muted-foreground mb-4">
             {t.footer.description}
+          </p>
+          <p className="text-lg text-muted-foreground mb-6">
+            {t.footer.contact}
           </p>
           <div className="flex justify-center space-x-8">
             <Link 
