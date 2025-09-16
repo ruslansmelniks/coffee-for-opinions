@@ -52,7 +52,7 @@ export const SurveysSection = () => {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {surveys.map((survey, index) => (
             <Card key={index} className="group hover:shadow-elegant transition-all duration-300 border border-border hover:border-primary/20 animate-scale-in hover:scale-105">
               <CardHeader className="pb-4">
