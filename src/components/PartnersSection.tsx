@@ -8,11 +8,6 @@ const partners = [
     name: "Caffeine",
     description: "Modern coffee culture",
     logo: caffeineLogo
-  },
-  {
-    name: "Cofyz",
-    description: "Premium coffee experience",
-    logo: cofyzLogo
   }
 ];
 export const PartnersSection = () => {
