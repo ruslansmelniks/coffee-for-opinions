@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface HeroSectionProps {
   onStartClick: () => void;
@@ -7,6 +8,8 @@ interface HeroSectionProps {
 export const HeroSection = ({
   onStartClick
 }: HeroSectionProps) => {
+  const { t } = useLanguage();
+
   return (
     <section className="bg-background border-b border-border h-[600px] flex items-center">
       <div className="w-full max-w-[1200px] mx-auto px-4">
@@ -25,15 +28,15 @@ export const HeroSection = ({
           
           <div className="text-center space-y-6 max-w-4xl mx-auto">
             <div className="space-y-4">
-              <h1 className="font-bold text-2xl text-slate-900">1 opinion = 1 coffee</h1>
+              <h1 className="font-bold text-2xl text-slate-900">{t.hero.title}</h1>
               
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Answer short surveys and enjoy a free coffee at local cafes in Riga. Quick, simple, rewarding.
+                {t.hero.description}
               </p>
             </div>
             
             <Button onClick={onStartClick} variant="notion" size="lg" className="font-medium">
-              Start Now
+              {t.hero.startButton}
             </Button>
           </div>
         </div>

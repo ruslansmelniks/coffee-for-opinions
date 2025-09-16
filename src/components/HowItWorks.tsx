@@ -1,27 +1,20 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Search, MessageSquare, Mail } from "lucide-react";
-const steps = [{
-  icon: Search,
-  title: "Choose a survey that interests you",
-  description: "Browse our available surveys and pick one that matches your experience or interests."
-}, {
-  icon: MessageSquare,
-  title: "Answer a few questions honestly",
-  description: "Share your authentic thoughts and experiences in our quick, friendly surveys."
-}, {
-  icon: Mail,
-  title: "Get your free coffee code by email",
-  description: "Receive your coffee reward code instantly and enjoy it at any of our partner cafes."
-}];
+import { useLanguage } from "@/contexts/LanguageContext";
+
+const icons = [Search, MessageSquare, Mail];
+
 export const HowItWorks = () => {
-  return <section className="py-24 bg-background">
+  const { t } = useLanguage();
+
+  return (
+    <section className="py-24 bg-background">
       <div className="container px-4">
-        
-        
         <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
-          {steps.map((step, index) => {
-          const IconComponent = step.icon;
-          return <div key={index} className="text-center group">
+          {t.howItWorks.steps.map((step, index) => {
+            const IconComponent = icons[index];
+            return (
+              <div key={index} className="text-center group">
                 <div className="mb-8">
                   <div className="w-16 h-16 bg-notion-light-gray rounded-xl flex items-center justify-center mx-auto group-hover:bg-notion-hover transition-colors">
                     <IconComponent className="h-8 w-8 text-notion-gray" />
@@ -36,9 +29,11 @@ export const HowItWorks = () => {
                     {step.description}
                   </p>
                 </div>
-              </div>;
-        })}
+              </div>
+            );
+          })}
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };

@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const surveys = [
   {
@@ -27,6 +28,8 @@ const surveys = [
 ];
 
 export const SurveysSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="surveys" className="py-24 bg-gradient-subtle relative overflow-hidden">
       {/* Subtle highlight effect */}
@@ -35,10 +38,10 @@ export const SurveysSection = () => {
       <div className="container px-4 relative z-10">
         <div className="text-center mb-20">
           <h2 className="text-5xl font-bold text-foreground mb-6 animate-fade-in">
-            Available Surveys
+            {t.surveys.title}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in">
-            Choose a survey that interests you and start earning your coffee
+            {t.surveys.description}
           </p>
         </div>
         
@@ -68,7 +71,7 @@ export const SurveysSection = () => {
                   onClick={() => window.open(survey.url, '_blank')}
                 >
                   <ExternalLink className="h-4 w-4 mr-2" />
-                  Take Survey
+                  {t.surveys.takeButton}
                 </Button>
               </CardContent>
             </Card>

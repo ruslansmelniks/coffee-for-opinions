@@ -1,6 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Mail, Plus } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+
 export const SurveySubmissionSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="py-24 bg-gradient-subtle">
       <div className="container px-4">
@@ -13,11 +17,11 @@ export const SurveySubmissionSection = () => {
             </div>
             
             <h2 className="text-5xl font-bold text-foreground mb-8">
-              Want to Add Your Survey?
+              {t.submission.title}
             </h2>
             
             <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-12">
-              Have a survey you'd like to feature on our platform? Reach out to us and let's discuss how we can help you gather valuable insights from our community.
+              {t.submission.description}
             </p>
             
             <Button 
@@ -27,7 +31,7 @@ export const SurveySubmissionSection = () => {
               className="font-medium"
             >
               <Mail className="mr-2 h-5 w-5" />
-              Contact Us
+              {t.submission.contactButton}
             </Button>
           </div>
         </div>

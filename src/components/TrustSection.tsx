@@ -1,7 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Shield, Users, Coffee } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+
 export const TrustSection = () => {
-  return <section className="py-24 bg-gradient-subtle">
+  const { t } = useLanguage();
+
+  return (
+    <section className="py-24 bg-gradient-subtle">
       <div className="container px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-12">
@@ -20,18 +25,15 @@ export const TrustSection = () => {
             </div>
             
             <h2 className="text-5xl font-bold text-foreground mb-8">
-              Your Privacy, Our Promise
+              {t.trust.title}
             </h2>
             
             <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              We only ask for your email to send the coffee code. We never sell or share your email. 
-              One coffee per person – so everyone gets a chance to enjoy. 
-              Your honest opinions help local businesses improve while you enjoy great coffee.
+              {t.trust.description}
             </p>
           </div>
-          
-          
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };

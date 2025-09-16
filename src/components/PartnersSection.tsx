@@ -1,8 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 import caffeineLogo from "@/assets/caffeine-logo.png";
 import rocketbeanLogo from "/lovable-uploads/81dd2234-89ab-48fd-9bb1-ebb9b42301a5.png";
-import cofyzLogo from "/lovable-uploads/57d45089-f1c4-458a-b6ff-9c992d972a75.png";
 import ezisaLogo from "/lovable-uploads/30c18b87-c532-4acb-a2c0-039db9ff2a38.png";
+
 const partners = [
   {
     name: "Caffeine",
@@ -10,15 +11,19 @@ const partners = [
     logo: caffeineLogo
   }
 ];
+
 export const PartnersSection = () => {
-  return <section className="py-24 bg-background">
+  const { t } = useLanguage();
+
+  return (
+    <section className="py-24 bg-background">
       <div className="container px-4">
         <div className="text-center mb-20">
           <h2 className="text-5xl font-bold text-foreground mb-6">
-            Coffee Partners
+            {t.partners.title}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            We work with local cafes to make your rewards tasty and real.
+            {t.partners.description}
           </p>
         </div>
         
@@ -48,7 +53,7 @@ export const PartnersSection = () => {
             More partners like RocketBean and Ezīša Kofīšops are coming next!
           </p>
         </div>
-        
       </div>
-    </section>;
+    </section>
+  );
 };

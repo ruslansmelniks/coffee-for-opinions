@@ -1,4 +1,9 @@
+import { useLanguage } from "@/contexts/LanguageContext";
+import { Link } from "react-router-dom";
+
 export const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="border-t border-border py-16">
       <div className="container px-4">
@@ -7,15 +12,15 @@ export const Footer = () => {
             Made with ☕ in Riga by CoffeeData
           </p>
           <p className="text-lg text-muted-foreground mb-6">
-            CoffeeData is an experimental project started in Riga. Questions? → ruslans@coffeedata.lv
+            {t.footer.description}
           </p>
           <div className="flex justify-center space-x-8">
-            <a 
-              href="/privacy-policy" 
+            <Link 
+              to="/privacy-policy" 
               className="text-muted-foreground hover:text-foreground transition-colors text-lg"
             >
-              Privacy Policy
-            </a>
+              {t.footer.privacy}
+            </Link>
             <a 
               href="mailto:ruslans@coffeedata.lv" 
               className="text-muted-foreground hover:text-foreground transition-colors text-lg"
@@ -23,6 +28,9 @@ export const Footer = () => {
               Contact
             </a>
           </div>
+          <p className="text-sm text-muted-foreground mt-8">
+            {t.footer.copyright}
+          </p>
         </div>
       </div>
     </footer>
