@@ -19,6 +19,20 @@ const surveys = [
     url: "https://tally.so/r/m6glLN"
   },
   {
+    title: "P2P Investments",
+    description: "Share your experience with P2P platforms like Mintos, Twino, Nectaro.eu.",
+    category: "Finance",
+    estimatedTime: "6 min",
+    url: "https://tally.so/r/wL8LzJ"
+  },
+  {
+    title: "Gambling & Betting in Latvia",
+    description: "Tell us about gambling and betting habits in Latvia.",
+    category: "Finance",
+    estimatedTime: "5 min",
+    url: "https://tally.so/r/mVrOLN"
+  },
+  {
     title: "Daily Flow App",
     description: "Help validate a new productivity & notes app idea.",
     category: "Technology",
