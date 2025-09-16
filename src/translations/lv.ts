@@ -1,22 +1,22 @@
 export const lvTranslations = {
   hero: {
     title: "1 viedoklis = 1 kafija",
-    description: "Atbildi uz īsām aptaujām un baudi bezmaksas kafiju vietējās kafejnīcās Rīgā. Ātri, vienkārši, ar atlīdzību.",
+    description: "Atbildi uz kādu no īsajām aptaujām un saņem bezmaksas kafiju Rīgas kafejnīcās. Ātri, vienkārši un atsvaidzinoši.",
     startButton: "Sākt tagad"
   },
   howItWorks: {
     steps: [
       {
-        title: "Izvēlies aptauju, kas tevi interesē",
-        description: "Pārlūko mūsu pieejamās aptaujas un izvēlies to, kas atbilst tavai pieredzei vai interesēm."
+        title: "Izvēlies aptauju, kas tev interesē",
+        description: "Pārlūko mūsu pieejamās aptaujas un atver to, kas šķiet visinteresantākā."
       },
       {
         title: "Godīgi atbildi uz dažiem jautājumiem",
-        description: "Dalies ar savām patiesi domām un pieredzi mūsu īsajās, draudzīgajās aptaujās."
+        description: "Dalies ar savu viedokli par finanšu, tehnoloģiju vai dzīvesstila tēmām. Tas aizņems tikai dažas minūtes."
       },
       {
         title: "Saņem bezmaksas kafijas kodu e-pastā",
-        description: "Uzreiz saņem savu kafijas atlīdzības kodu un nobaudi to jebkurā no mūsu partneru kafejnīcām."
+        description: "Pēc atbildēšanas mēs nosūtīsim tev unikālu kuponu, ko vari izmantot pie mūsu partneriem."
       }
     ]
   },
@@ -34,11 +34,12 @@ export const lvTranslations = {
   },
   partners: {
     title: "Mūsu kafijas partneri",
-    description: "Nobaudi bezmaksas kafiju šajās lieliskajās vietējās kafejnīcās Rīgā"
+    description: "Izbaudi bezmaksas kafiju lieliskās Rīgas kafejnīcās.",
+    moreComing: "Vairāk partneru drīzumā."
   },
   trust: {
     title: "Tava privātuma, mūsu solījums",
-    description: "Mēs lūdzam tikai tavu e-pastu, lai nosūtītu kafijas kodu. Mēs nekad nepārdodam un nedalāmies ar tavu e-pastu. Viena kafija vienai personai - lai ikviens dabūtu iespēju nobaudīt. Tavi godīgie viedokļi palīdz vietējiem uzņēmumiem uzlaboties, kamēr tu baudi lielisku kafiju."
+    description: "Mēs lūdzam tikai tavu e-pastu, lai nosūtītu kafijas kodu. Nekad nepārdosim un nedalīsimies ar tavu e-pastu. Viena kafija = viens cilvēks — lai visi varētu saņemt godīgu balvu. Tavs godīgais viedoklis palīdzēs uzņēmumiem uzlabot produktus, kamēr tu baudi kafiju."
   },
   submission: {
     title: "Vēlies pievienot savu aptauju?",

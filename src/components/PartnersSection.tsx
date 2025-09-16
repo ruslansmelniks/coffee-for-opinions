@@ -50,7 +50,7 @@ export const PartnersSection = () => {
         
         <div className="text-center mt-16">
           <p className="text-lg text-muted-foreground">
-            More partners like RocketBean and Ezīša Kofīšops are coming next!
+            {t.partners.moreComing}
           </p>
         </div>
       </div>

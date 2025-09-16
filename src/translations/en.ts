@@ -34,7 +34,8 @@ export const enTranslations = {
   },
   partners: {
     title: "Our Coffee Partners",
-    description: "Enjoy your free coffee at these amazing local cafes in Riga"
+    description: "Enjoy your free coffee at these amazing local cafes in Riga",
+    moreComing: "More partners coming soon."
   },
   trust: {
     title: "Your Privacy, Our Promise",
