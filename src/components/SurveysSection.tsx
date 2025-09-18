@@ -76,14 +76,14 @@ export const SurveysSection = () => {
                 : 'hover:shadow-elegant border-border hover:border-primary/20 hover:scale-105'
             }`}>
               {survey.disabled && (
-                <div className="absolute inset-0 bg-background/80 backdrop-blur-sm rounded-lg flex items-center justify-center z-10">
+                <div className="absolute inset-0 bg-background/95 backdrop-blur-sm rounded-lg flex items-center justify-center z-10">
                   <div className="text-center p-6">
-                    <p className="text-sm text-orange-600 mb-4 font-medium">
+                    <p className="text-sm text-amber-700 dark:text-amber-400 mb-4 font-semibold">
                       {survey.disabledMessage}
                     </p>
                     <Button 
                       variant="outline" 
-                      className="cursor-not-allowed opacity-50"
+                      className="cursor-not-allowed border-muted-foreground/30 text-muted-foreground/70"
                       disabled
                     >
                       Currently Unavailable
