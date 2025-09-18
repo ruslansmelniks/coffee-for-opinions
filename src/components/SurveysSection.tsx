@@ -69,19 +69,20 @@ export const SurveysSection = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://hook.eu2.make.com/mtpzavwca2ngap7ag0e9lxn03wy6zl7q", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        mode: "no-cors",
-        body: JSON.stringify({
-          email: email,
-          timestamp: new Date().toISOString(),
-          source: "survey_notification_signup",
-          page: window.location.href
-        }),
-      });
+      // Store email in localStorage
+      const existingEmails = JSON.parse(localStorage.getItem('survey-emails') || '[]');
+      const newSubmission = {
+        email: email,
+        timestamp: new Date().toISOString(),
+        source: "survey_notification_signup",
+        page: window.location.href
+      };
+      
+      // Add new email if not already exists
+      if (!existingEmails.some((item: any) => item.email === email)) {
+        existingEmails.push(newSubmission);
+        localStorage.setItem('survey-emails', JSON.stringify(existingEmails));
+      }
 
       setIsSubmitted(true);
       setEmail("");
@@ -100,6 +101,18 @@ export const SurveysSection = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  // Function to export emails (for admin use)
+  const exportEmails = () => {
+    const emails = JSON.parse(localStorage.getItem('survey-emails') || '[]');
+    const dataStr = JSON.stringify(emails, null, 2);
+    const dataBlob = new Blob([dataStr], {type: 'application/json'});
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'survey-emails.json';
+    link.click();
   };
 
   return (
