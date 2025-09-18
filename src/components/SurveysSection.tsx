@@ -1,7 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { ExternalLink, Mail } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useState } from "react";
 
 const surveys = [
   {
@@ -54,6 +56,18 @@ const surveys = [
 
 export const SurveysSection = () => {
   const { t } = useLanguage();
+  const [email, setEmail] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      // Here you would typically send the email to your backend
+      console.log("Email submitted:", email);
+      setIsSubmitted(true);
+      setEmail("");
+    }
+  };
 
   return (
     <section id="surveys" className="py-24 bg-gradient-subtle relative overflow-hidden">
@@ -70,57 +84,110 @@ export const SurveysSection = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {surveys.map((survey, index) => (
-            <Card key={index} className={`group transition-all duration-300 border animate-scale-in relative ${
-              survey.disabled 
-                ? 'opacity-60 cursor-not-allowed border-border' 
-                : 'hover:shadow-elegant border-border hover:border-primary/20 hover:scale-105'
-            }`}>
-              {survey.disabled && (
-                <div className="absolute bottom-0 left-0 right-0 top-[40%] bg-background/95 backdrop-blur-sm rounded-b-lg flex items-center justify-center z-10">
-                  <div className="text-center p-6">
-                    <p className="text-sm text-amber-700 dark:text-amber-400 mb-4 font-semibold">
-                      {survey.disabledMessage}
-                    </p>
-                    <Button 
-                      variant="secondary" 
-                      className="cursor-not-allowed bg-muted text-muted-foreground border border-border hover:bg-muted"
-                      disabled
-                    >
-                      Currently Unavailable
-                    </Button>
+        <div className="relative max-w-6xl mx-auto">
+          {/* Survey Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {surveys.map((survey, index) => (
+              <Card key={index} className={`group transition-all duration-300 border animate-scale-in relative ${
+                survey.disabled 
+                  ? 'opacity-60 cursor-not-allowed border-border' 
+                  : 'hover:shadow-elegant border-border hover:border-primary/20 hover:scale-105'
+              }`}>
+                {survey.disabled && (
+                  <div className="absolute bottom-0 left-0 right-0 top-[40%] bg-background/95 backdrop-blur-sm rounded-b-lg flex items-center justify-center z-10">
+                    <div className="text-center p-6">
+                      <p className="text-sm text-amber-700 dark:text-amber-400 mb-4 font-semibold">
+                        {survey.disabledMessage}
+                      </p>
+                      <Button 
+                        variant="secondary" 
+                        className="cursor-not-allowed bg-muted text-muted-foreground border border-border hover:bg-muted"
+                        disabled
+                      >
+                        Currently Unavailable
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              )}
-              <CardHeader className="pb-4">
-                <div className="flex justify-between items-start mb-3">
-                  <span className="text-sm font-medium text-notion-gray bg-notion-light-gray px-3 py-1 rounded-md">
-                    {survey.category}
-                  </span>
-                  <span className="text-sm text-muted-foreground">
-                    {survey.estimatedTime}
-                  </span>
-                </div>
-                <CardTitle className="text-xl font-semibold text-foreground group-hover:text-notion-text transition-colors">
-                  {survey.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  {survey.description}
+                )}
+                <CardHeader className="pb-4">
+                  <div className="flex justify-between items-start mb-3">
+                    <span className="text-sm font-medium text-notion-gray bg-notion-light-gray px-3 py-1 rounded-md">
+                      {survey.category}
+                    </span>
+                    <span className="text-sm text-muted-foreground">
+                      {survey.estimatedTime}
+                    </span>
+                  </div>
+                  <CardTitle className="text-xl font-semibold text-foreground group-hover:text-notion-text transition-colors">
+                    {survey.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    {survey.description}
+                  </p>
+                  <Button 
+                    variant="black" 
+                    className="w-full"
+                    onClick={() => !survey.disabled && window.open(survey.url, '_blank')}
+                  >
+                    <ExternalLink className="h-4 w-4 mr-2" />
+                    {t.surveys.takeButton}
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Big Overlay for First Batch Complete */}
+          <div className="absolute inset-0 top-16 bg-background/95 backdrop-blur-sm rounded-lg flex items-center justify-center z-20">
+            <div className="text-center p-12 max-w-2xl">
+              <div className="mb-8">
+                <h3 className="text-3xl font-bold text-foreground mb-4">
+                  🎉 First Batch Complete!
+                </h3>
+                <p className="text-lg text-muted-foreground mb-8">
+                  Thank you for your amazing participation! We're brewing fresh surveys and will restock soon with new opportunities.
                 </p>
-                <Button 
-                  variant="black" 
-                  className="w-full"
-                  onClick={() => !survey.disabled && window.open(survey.url, '_blank')}
-                >
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  {t.surveys.takeButton}
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+
+              {/* Email Signup */}
+              <div className="bg-card border border-border rounded-lg p-6">
+                <div className="flex items-center justify-center mb-4">
+                  <Mail className="h-6 w-6 text-primary mr-2" />
+                  <h4 className="text-xl font-semibold text-foreground">
+                    Get Notified
+                  </h4>
+                </div>
+                <p className="text-muted-foreground mb-6">
+                  Be the first to know when new surveys are available!
+                </p>
+                
+                {isSubmitted ? (
+                  <div className="text-center">
+                    <div className="text-primary font-semibold mb-2">✓ Thank you!</div>
+                    <p className="text-sm text-muted-foreground">
+                      We'll notify you when new surveys are available.
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3">
+                    <Input
+                      type="email"
+                      placeholder="Enter your email address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="flex-1"
+                    />
+                    <Button type="submit" variant="default">
+                      Notify Me
+                    </Button>
+                  </form>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
