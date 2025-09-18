@@ -70,11 +70,27 @@ export const SurveysSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {surveys.map((survey, index) => (
-            <Card key={index} className={`group transition-all duration-300 border animate-scale-in ${
+            <Card key={index} className={`group transition-all duration-300 border animate-scale-in relative ${
               survey.disabled 
                 ? 'opacity-60 cursor-not-allowed border-border' 
                 : 'hover:shadow-elegant border-border hover:border-primary/20 hover:scale-105'
             }`}>
+              {survey.disabled && (
+                <div className="absolute inset-0 bg-background/80 backdrop-blur-sm rounded-lg flex items-center justify-center z-10">
+                  <div className="text-center p-6">
+                    <p className="text-sm text-orange-600 mb-4 font-medium">
+                      {survey.disabledMessage}
+                    </p>
+                    <Button 
+                      variant="outline" 
+                      className="cursor-not-allowed opacity-50"
+                      disabled
+                    >
+                      Currently Unavailable
+                    </Button>
+                  </div>
+                </div>
+              )}
               <CardHeader className="pb-4">
                 <div className="flex justify-between items-start mb-3">
                   <span className="text-sm font-medium text-notion-gray bg-notion-light-gray px-3 py-1 rounded-md">
@@ -92,29 +108,14 @@ export const SurveysSection = () => {
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   {survey.description}
                 </p>
-                {survey.disabled ? (
-                  <div className="text-center">
-                    <p className="text-sm text-orange-600 mb-4 font-medium">
-                      {survey.disabledMessage}
-                    </p>
-                    <Button 
-                      variant="outline" 
-                      className="w-full cursor-not-allowed opacity-50"
-                      disabled
-                    >
-                      Currently Unavailable
-                    </Button>
-                  </div>
-                ) : (
-                  <Button 
-                    variant="black" 
-                    className="w-full"
-                    onClick={() => window.open(survey.url, '_blank')}
-                  >
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    {t.surveys.takeButton}
-                  </Button>
-                )}
+                <Button 
+                  variant="black" 
+                  className="w-full"
+                  onClick={() => !survey.disabled && window.open(survey.url, '_blank')}
+                >
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  {t.surveys.takeButton}
+                </Button>
               </CardContent>
             </Card>
           ))}
