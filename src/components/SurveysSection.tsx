@@ -59,6 +59,7 @@ export const SurveysSection = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
   const [email, setEmail] = useState("");
+  const [webhookUrl, setWebhookUrl] = useState("https://hook.eu2.make.com/mtpzavwca2ngap7ag0e9lxn03wy6zl7q");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -66,11 +67,20 @@ export const SurveysSection = () => {
     e.preventDefault();
     if (!email) return;
 
+    if (!webhookUrl) {
+      toast({
+        title: "Error",
+        description: "Please configure your webhook URL",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
-      // Send to Make.com webhook
-      const response = await fetch("https://hook.eu2.make.com/mtpzavwca2ngap7ag0e9lxn03wy6zl7q", {
+      // Send to webhook (Make.com or Zapier)
+      const response = await fetch(webhookUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -207,18 +217,28 @@ export const SurveysSection = () => {
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3">
+                  <form onSubmit={handleEmailSubmit} className="space-y-3">
                     <Input
-                      type="email"
-                      placeholder="Enter your email address"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      type="url"
+                      placeholder="Webhook URL (Make.com or Zapier)"
+                      value={webhookUrl}
+                      onChange={(e) => setWebhookUrl(e.target.value)}
                       required
-                      className="flex-1"
+                      className="w-full text-sm"
                     />
-                    <Button type="submit" variant="default" disabled={isLoading}>
-                      {isLoading ? "Submitting..." : "Notify Me"}
-                    </Button>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <Input
+                        type="email"
+                        placeholder="Enter your email address"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        className="flex-1"
+                      />
+                      <Button type="submit" variant="default" disabled={isLoading}>
+                        {isLoading ? "Submitting..." : "Notify Me"}
+                      </Button>
+                    </div>
                   </form>
                 )}
               </div>
