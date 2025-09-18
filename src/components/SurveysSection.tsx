@@ -76,7 +76,7 @@ export const SurveysSection = () => {
                 : 'hover:shadow-elegant border-border hover:border-primary/20 hover:scale-105'
             }`}>
               {survey.disabled && (
-                <div className="absolute inset-0 bg-background/95 backdrop-blur-sm rounded-lg flex items-center justify-center z-10">
+                <div className="absolute bottom-0 left-0 right-0 top-[40%] bg-background/95 backdrop-blur-sm rounded-b-lg flex items-center justify-center z-10">
                   <div className="text-center p-6">
                     <p className="text-sm text-amber-700 dark:text-amber-400 mb-4 font-semibold">
                       {survey.disabledMessage}
