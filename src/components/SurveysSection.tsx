@@ -1,11 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { ExternalLink, Mail, Bell } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
 
 const surveys = [
   {
@@ -56,58 +52,6 @@ const surveys = [
 
 export const SurveysSection = () => {
   const { t } = useLanguage();
-  const { toast } = useToast();
-  const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleEmailSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!email || !email.includes('@')) {
-      toast({
-        title: "Invalid Email",
-        description: "Please enter a valid email address.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      // You'll need to create a Make scenario with a webhook trigger
-      // and replace this URL with your Make webhook URL
-      const makeWebhookUrl = "YOUR_MAKE_WEBHOOK_URL_HERE";
-      
-      const response = await fetch(makeWebhookUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        mode: "no-cors",
-        body: JSON.stringify({
-          email: email,
-          submitted_on: new Date().toISOString(),
-          source: "survey_notifications"
-        }),
-      });
-
-      toast({
-        title: "Success!",
-        description: "Thank you! We'll notify you when new surveys are available.",
-      });
-      
-      setEmail("");
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Something went wrong. Please try again later.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <section id="surveys" className="py-24 bg-gradient-subtle relative overflow-hidden">
@@ -175,59 +119,6 @@ export const SurveysSection = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        {/* Email Subscription Form */}
-        <div className="max-w-md mx-auto mt-16">
-          <Card className="border-border bg-background/50 backdrop-blur-sm">
-            <CardHeader className="text-center pb-4">
-              <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                  <Bell className="h-5 w-5 text-primary" />
-                </div>
-              </div>
-              <CardTitle className="text-lg font-semibold text-foreground">
-                Get Notified
-              </CardTitle>
-              <p className="text-sm text-muted-foreground">
-                Be the first to know when new surveys are available
-              </p>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleEmailSubmit} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="notification-email" className="text-sm font-medium">
-                    Email Address
-                  </Label>
-                  <Input
-                    id="notification-email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="w-full"
-                    disabled={isSubmitting}
-                  />
-                </div>
-                <Button 
-                  type="submit" 
-                  className="w-full" 
-                  disabled={isSubmitting}
-                  variant="default"
-                >
-                  {isSubmitting ? (
-                    "Subscribing..."
-                  ) : (
-                    <>
-                      <Mail className="h-4 w-4 mr-2" />
-                      Notify Me
-                    </>
-                  )}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </section>
