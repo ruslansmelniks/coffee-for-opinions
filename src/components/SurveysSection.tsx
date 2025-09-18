@@ -140,7 +140,7 @@ export const SurveysSection = () => {
           </div>
 
           {/* Big Overlay for First Batch Complete */}
-          <div className="absolute inset-0 top-16 bg-background/95 backdrop-blur-sm rounded-lg flex items-center justify-center z-20">
+          <div className="absolute inset-0 bg-background/95 backdrop-blur-sm rounded-lg flex items-center justify-center z-20">
             <div className="text-center p-12 max-w-2xl">
               <div className="mb-8">
                 <h3 className="text-3xl font-bold text-foreground mb-4">
