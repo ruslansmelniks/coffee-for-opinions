@@ -217,28 +217,18 @@ export const SurveysSection = () => {
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleEmailSubmit} className="space-y-3">
+                  <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3">
                     <Input
-                      type="url"
-                      placeholder="Webhook URL (Make.com or Zapier)"
-                      value={webhookUrl}
-                      onChange={(e) => setWebhookUrl(e.target.value)}
+                      type="email"
+                      placeholder="Enter your email address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full text-sm"
+                      className="flex-1"
                     />
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <Input
-                        type="email"
-                        placeholder="Enter your email address"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        className="flex-1"
-                      />
-                      <Button type="submit" variant="default" disabled={isLoading}>
-                        {isLoading ? "Submitting..." : "Notify Me"}
-                      </Button>
-                    </div>
+                    <Button type="submit" variant="default" disabled={isLoading}>
+                      {isLoading ? "Submitting..." : "Notify Me"}
+                    </Button>
                   </form>
                 )}
               </div>
