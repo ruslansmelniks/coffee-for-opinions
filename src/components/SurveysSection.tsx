@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { ExternalLink, Mail } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const surveys = [
   {
@@ -56,16 +57,48 @@ const surveys = [
 
 export const SurveysSection = () => {
   const { t } = useLanguage();
+  const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleEmailSubmit = (e: React.FormEvent) => {
+  const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      // Here you would typically send the email to your backend
-      console.log("Email submitted:", email);
+    if (!email) return;
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("https://hook.eu2.make.com/mtpzavwca2ngap7ag0e9lxn03wy6zl7q", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "no-cors",
+        body: JSON.stringify({
+          email: email,
+          timestamp: new Date().toISOString(),
+          source: "survey_notification_signup",
+          page: window.location.href
+        }),
+      });
+
       setIsSubmitted(true);
       setEmail("");
+      
+      toast({
+        title: "Success!",
+        description: "Thank you! We'll notify you when new surveys are available.",
+      });
+    } catch (error) {
+      console.error("Error submitting email:", error);
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -180,8 +213,8 @@ export const SurveysSection = () => {
                       required
                       className="flex-1"
                     />
-                    <Button type="submit" variant="default">
-                      Notify Me
+                    <Button type="submit" variant="default" disabled={isLoading}>
+                      {isLoading ? "Submitting..." : "Notify Me"}
                     </Button>
                   </form>
                 )}
