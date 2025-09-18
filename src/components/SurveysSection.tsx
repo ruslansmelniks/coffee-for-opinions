@@ -82,8 +82,8 @@ export const SurveysSection = () => {
                       {survey.disabledMessage}
                     </p>
                     <Button 
-                      variant="outline" 
-                      className="cursor-not-allowed border-muted-foreground/30 text-muted-foreground/70"
+                      variant="secondary" 
+                      className="cursor-not-allowed bg-muted text-muted-foreground border border-border hover:bg-muted"
                       disabled
                     >
                       Currently Unavailable
