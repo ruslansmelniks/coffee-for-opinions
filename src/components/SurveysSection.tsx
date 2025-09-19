@@ -133,7 +133,7 @@ export const SurveysSection = () => {
         
         <div className="relative max-w-6xl mx-auto">
           {/* Survey Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {surveys.map((survey, index) => (
               <Card key={index} className={`group transition-all duration-300 border animate-scale-in relative ${
                 survey.disabled 
@@ -184,6 +184,51 @@ export const SurveysSection = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Separator */}
+          <div className="flex items-center my-12">
+            <div className="flex-1 h-px bg-border"></div>
+            <div className="px-4 text-sm text-muted-foreground">•</div>
+            <div className="flex-1 h-px bg-border"></div>
+          </div>
+
+          {/* Subscription Form */}
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-card border border-border rounded-lg p-6 md:p-8">
+              <div className="flex items-center justify-center mb-4">
+                <Mail className="h-6 w-6 text-primary mr-2" />
+                <h4 className="text-xl font-semibold text-foreground">
+                  Get Notified
+                </h4>
+              </div>
+              <p className="text-muted-foreground mb-6 text-center">
+                Be the first to know when new surveys are available!
+              </p>
+              
+              {isSubmitted ? (
+                <div className="text-center">
+                  <div className="text-primary font-semibold mb-2">✓ Thank you!</div>
+                  <p className="text-sm text-muted-foreground">
+                    We'll notify you when new surveys are available.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3">
+                  <Input
+                    type="email"
+                    placeholder="Enter your email address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="flex-1"
+                  />
+                  <Button type="submit" variant="default" disabled={isLoading}>
+                    {isLoading ? "Submitting..." : "Notify Me"}
+                  </Button>
+                </form>
+              )}
+            </div>
           </div>
 
           {/* Big Overlay for First Batch Complete */}
