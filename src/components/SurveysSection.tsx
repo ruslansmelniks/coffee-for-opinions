@@ -62,6 +62,9 @@ export const SurveysSection = () => {
   const [webhookUrl, setWebhookUrl] = useState("https://hook.eu2.make.com/mtpzavwca2ngap7ag0e9lxn03wy6zl7q");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  
+  // Toggle this to show/hide the "all surveys complete" overlay
+  const [showAllComplete, setShowAllComplete] = useState(true);
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -186,6 +189,7 @@ export const SurveysSection = () => {
           </div>
 
           {/* Big Overlay for First Batch Complete */}
+          {showAllComplete && (
           <div className="absolute inset-0 bg-background/95 backdrop-blur-sm rounded-lg flex items-center justify-center z-20">
             <div className="text-center p-12 max-w-2xl">
               <div className="mb-8">
@@ -234,6 +238,7 @@ export const SurveysSection = () => {
               </div>
             </div>
           </div>
+          )}
         </div>
       </div>
     </section>
