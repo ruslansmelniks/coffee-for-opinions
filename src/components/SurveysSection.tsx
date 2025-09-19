@@ -12,9 +12,7 @@ const surveys = [
     description: "Tell us about your experience with fast loans.",
     category: "Finance",
     estimatedTime: "5 min",
-    url: "https://tally.so/r/nreZV5",
-    disabled: true,
-    disabledMessage: "☕ Oops! We're brewing more coffee for this one. Check back soon!"
+    url: "https://tally.so/r/nreZV5"
   },
   {
     title: "Banks in Latvia", 
@@ -64,7 +62,7 @@ export const SurveysSection = () => {
   const [isLoading, setIsLoading] = useState(false);
   
   // Toggle this to show/hide the "all surveys complete" overlay
-  const [showAllComplete, setShowAllComplete] = useState(true);
+  const [showAllComplete, setShowAllComplete] = useState(false);
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
