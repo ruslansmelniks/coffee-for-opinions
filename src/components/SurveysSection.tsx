@@ -19,7 +19,9 @@ const surveys = [
     description: "Share your thoughts about banks and fintech.",
     category: "Banking",
     estimatedTime: "7 min",
-    url: "https://tally.so/r/m6glLN"
+    url: "https://tally.so/r/m6glLN",
+    disabled: true,
+    disabledMessage: "☕ Oops! We're brewing more coffee for this one. Check back soon!"
   },
   {
     title: "P2P Investments",
