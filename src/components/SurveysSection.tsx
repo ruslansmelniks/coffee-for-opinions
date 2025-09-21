@@ -37,7 +37,9 @@ const surveys = [
     description: "Tell us about gambling and betting habits in Latvia.",
     category: "Finance",
     estimatedTime: "5 min",
-    url: "https://tally.so/r/mVrOLN"
+    url: "https://tally.so/r/mVrOLN",
+    disabled: true,
+    disabledMessage: "☕ Oops! We're brewing more coffee for this one. Check back soon!"
   },
   {
     title: "Daily Flow App",
