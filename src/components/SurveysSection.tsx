@@ -28,7 +28,9 @@ const surveys = [
     description: "Share your experience with P2P platforms like Mintos, Twino, Nectaro.eu.",
     category: "Finance",
     estimatedTime: "6 min",
-    url: "https://tally.so/r/wL8LzJ"
+    url: "https://tally.so/r/wL8LzJ",
+    disabled: true,
+    disabledMessage: "☕ Oops! We're brewing more coffee for this one. Check back soon!"
   },
   {
     title: "Gambling & Betting in Latvia",
@@ -51,7 +53,9 @@ const surveys = [
     description: "Help validate an AI tool for social health sharing.",
     category: "Technology",
     estimatedTime: "5 min",
-    url: "https://tally.so/r/mKXr6A"
+    url: "https://tally.so/r/mKXr6A",
+    disabled: true,
+    disabledMessage: "☕ Oops! We're brewing more coffee for this one. Check back soon!"
   }
 ];
 
