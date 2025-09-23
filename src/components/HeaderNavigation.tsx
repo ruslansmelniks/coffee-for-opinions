@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
-import { Mail, Plus } from "lucide-react";
+import { Mail, Plus, Menu } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -12,6 +13,7 @@ export const HeaderNavigation = () => {
   const [publishEmail, setPublishEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const scrollToNotifications = () => {
     document.getElementById('surveys')?.scrollIntoView({ 
@@ -65,77 +67,150 @@ export const HeaderNavigation = () => {
   };
 
   return (
-    <nav className="fixed top-4 right-4 z-50 flex items-center gap-2">
-      {/* Publish Survey Modal */}
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogTrigger asChild>
-          <Button
-            variant="outline"
-            size="sm"
-            className="font-medium border-border bg-background/90 backdrop-blur-sm hover:bg-secondary"
-          >
-            <Plus className="mr-1 h-4 w-4" />
-            {language === 'en' ? 'Publish your survey' : 'Publicēt aptauju'}
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Plus className="h-5 w-5" />
-              {language === 'en' ? 'Publish Your Survey' : 'Publicēt jūsu aptauju'}
-            </DialogTitle>
-          </DialogHeader>
-          <div className="space-y-4">
-            <p className="text-muted-foreground">
-              {language === 'en' 
-                ? "Interested in publishing your survey on our platform? Leave your email and we'll contact you with partnership details."
-                : "Vēlaties publicēt savu aptauju mūsu platformā? Atstājiet savu e-pastu, un mēs ar jums sazināsimies ar partnerības detaļām."
-              }
-            </p>
-            <form onSubmit={handlePublishSubmit} className="space-y-4">
-              <Input
-                type="email"
-                placeholder={language === 'en' ? "Your email address" : "Jūsu e-pasta adrese"}
-                value={publishEmail}
-                onChange={(e) => setPublishEmail(e.target.value)}
-                required
-              />
-              <div className="flex gap-2">
-                <Button 
-                  type="button" 
-                  variant="outline" 
-                  onClick={() => setIsModalOpen(false)}
-                  className="flex-1"
-                >
-                  {language === 'en' ? 'Cancel' : 'Atcelt'}
-                </Button>
-                <Button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="flex-1"
+    <nav className="fixed top-4 right-4 z-50">
+      {/* Desktop Navigation - Hidden on mobile */}
+      <div className="hidden md:flex items-center gap-2">
+        {/* Publish Survey Modal */}
+        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+          <DialogTrigger asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              className="font-medium border-border bg-background/90 backdrop-blur-sm hover:bg-secondary"
+            >
+              <Plus className="mr-1 h-4 w-4" />
+              {language === 'en' ? 'Publish your survey' : 'Publicēt aptauju'}
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                <Plus className="h-5 w-5" />
+                {language === 'en' ? 'Publish Your Survey' : 'Publicēt jūsu aptauju'}
+              </DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4">
+              <p className="text-muted-foreground">
+                {language === 'en' 
+                  ? "Interested in publishing your survey on our platform? Leave your email and we'll contact you with partnership details."
+                  : "Vēlaties publicēt savu aptauju mūsu platformā? Atstājiet savu e-pastu, un mēs ar jums sazināsimies ar partnerības detaļām."
+                }
+              </p>
+              <form onSubmit={handlePublishSubmit} className="space-y-4">
+                <Input
+                  type="email"
+                  placeholder={language === 'en' ? "Your email address" : "Jūsu e-pasta adrese"}
+                  value={publishEmail}
+                  onChange={(e) => setPublishEmail(e.target.value)}
+                  required
+                />
+                <div className="flex gap-2">
+                  <Button 
+                    type="button" 
+                    variant="outline" 
+                    onClick={() => setIsModalOpen(false)}
+                    className="flex-1"
+                  >
+                    {language === 'en' ? 'Cancel' : 'Atcelt'}
+                  </Button>
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="flex-1"
+                  >
+                    <Mail className="mr-2 h-4 w-4" />
+                    {isSubmitting 
+                      ? (language === 'en' ? 'Sending...' : 'Sūta...')
+                      : (language === 'en' ? 'Send' : 'Sūtīt')
+                    }
+                  </Button>
+                </div>
+              </form>
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* Get Notified Button */}
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={scrollToNotifications}
+          className="font-medium border-border bg-background/90 backdrop-blur-sm hover:bg-secondary"
+        >
+          <Mail className="mr-1 h-4 w-4" />
+          {language === 'en' ? 'Get notified about new surveys' : 'Saņemt paziņojumus par jaunām aptaujām'}
+        </Button>
+      </div>
+
+      {/* Mobile Hamburger Menu - Visible only on mobile */}
+      <div className="md:hidden">
+        <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+          <SheetTrigger asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              className="font-medium border-border bg-background/90 backdrop-blur-sm hover:bg-secondary"
+            >
+              <Menu className="h-4 w-4" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-80 sm:w-96">
+            <div className="space-y-6 pt-6">
+              {/* Publish Survey Section */}
+              <div className="space-y-4">
+                <h3 className="font-semibold text-lg flex items-center gap-2">
+                  <Plus className="h-5 w-5" />
+                  {language === 'en' ? 'Publish Your Survey' : 'Publicēt jūsu aptauju'}
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  {language === 'en' 
+                    ? "Interested in publishing your survey on our platform? Leave your email and we'll contact you with partnership details."
+                    : "Vēlaties publicēt savu aptauju mūsu platformā? Atstājiet savu e-pastu, un mēs ar jums sazināsimies ar partnerības detaļām."
+                  }
+                </p>
+                <form onSubmit={handlePublishSubmit} className="space-y-3">
+                  <Input
+                    type="email"
+                    placeholder={language === 'en' ? "Your email address" : "Jūsu e-pasta adrese"}
+                    value={publishEmail}
+                    onChange={(e) => setPublishEmail(e.target.value)}
+                    required
+                  />
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="w-full"
+                  >
+                    <Mail className="mr-2 h-4 w-4" />
+                    {isSubmitting 
+                      ? (language === 'en' ? 'Sending...' : 'Sūta...')
+                      : (language === 'en' ? 'Send' : 'Sūtīt')
+                    }
+                  </Button>
+                </form>
+              </div>
+
+              {/* Divider */}
+              <div className="border-t border-border"></div>
+
+              {/* Get Notified Section */}
+              <div className="space-y-4">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    scrollToNotifications();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full font-medium"
                 >
                   <Mail className="mr-2 h-4 w-4" />
-                  {isSubmitting 
-                    ? (language === 'en' ? 'Sending...' : 'Sūta...')
-                    : (language === 'en' ? 'Send' : 'Sūtīt')
-                  }
+                  {language === 'en' ? 'Get notified about new surveys' : 'Saņemt paziņojumus par jaunām aptaujām'}
                 </Button>
               </div>
-            </form>
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      {/* Get Notified Button */}
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={scrollToNotifications}
-        className="font-medium border-border bg-background/90 backdrop-blur-sm hover:bg-secondary"
-      >
-        <Mail className="mr-1 h-4 w-4" />
-        {language === 'en' ? 'Get notified about new surveys' : 'Saņemt paziņojumus par jaunām aptaujām'}
-      </Button>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
     </nav>
   );
 };
