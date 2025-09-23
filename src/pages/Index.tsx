@@ -5,6 +5,7 @@ import { PartnersSection } from "@/components/PartnersSection";
 import { TrustSection } from "@/components/TrustSection";
 import { Footer } from "@/components/Footer";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { HeaderNavigation } from "@/components/HeaderNavigation";
 
 const Index = () => {
   const scrollToSurveys = () => {
@@ -16,6 +17,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <LanguageSwitcher />
+      <HeaderNavigation />
       <HeroSection onStartClick={scrollToSurveys} />
       <HowItWorks />
       <SurveysSection />
