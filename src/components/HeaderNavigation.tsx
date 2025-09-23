@@ -2,7 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Mail, Plus, Menu } from "lucide-react";
+import gintsRekensPhoto from "@/assets/gints-rekens.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -104,6 +106,26 @@ export const HeaderNavigation = () => {
                   onChange={(e) => setPublishEmail(e.target.value)}
                   required
                 />
+                
+                {/* Testimonial Section */}
+                <div className="bg-muted/50 rounded-lg p-4 border">
+                  <div className="flex items-start gap-3">
+                    <Avatar className="h-12 w-12 flex-shrink-0">
+                      <AvatarImage src={gintsRekensPhoto} alt="Gints Rekens" />
+                      <AvatarFallback>GR</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                      <p className="text-sm text-foreground italic mb-2">
+                        "With CoffeeData I got real feedback on my product in just a day — fast, simple, and actually useful."
+                      </p>
+                      <div>
+                        <p className="text-sm font-medium text-foreground">Gints Rekens</p>
+                        <p className="text-xs text-muted-foreground">Founder @ Wellif.ai</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
                 <div className="flex gap-2">
                   <Button 
                     type="button" 
@@ -176,6 +198,26 @@ export const HeaderNavigation = () => {
                     onChange={(e) => setPublishEmail(e.target.value)}
                     required
                   />
+                  
+                  {/* Testimonial Section - Mobile */}
+                  <div className="bg-muted/50 rounded-lg p-4 border">
+                    <div className="flex items-start gap-3">
+                      <Avatar className="h-12 w-12 flex-shrink-0">
+                        <AvatarImage src={gintsRekensPhoto} alt="Gints Rekens" />
+                        <AvatarFallback>GR</AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1">
+                        <p className="text-sm text-foreground italic mb-2">
+                          "With CoffeeData I got real feedback on my product in just a day — fast, simple, and actually useful."
+                        </p>
+                        <div>
+                          <p className="text-sm font-medium text-foreground">Gints Rekens</p>
+                          <p className="text-xs text-muted-foreground">Founder @ Wellif.ai</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
                   <Button 
                     type="submit" 
                     disabled={isSubmitting}
