@@ -106,26 +106,6 @@ export const HeaderNavigation = () => {
                   onChange={(e) => setPublishEmail(e.target.value)}
                   required
                 />
-                
-                {/* Testimonial Section */}
-                <div className="bg-muted/50 rounded-lg p-4 border">
-                  <div className="flex items-start gap-3">
-                    <Avatar className="h-12 w-12 flex-shrink-0">
-                      <AvatarImage src={gintsRekensPhoto} alt="Gints Rekens" />
-                      <AvatarFallback>GR</AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1">
-                      <p className="text-sm text-foreground italic mb-2">
-                        "With CoffeeData I got real feedback on my product in just a day — fast, simple, and actually useful."
-                      </p>
-                      <div>
-                        <p className="text-sm font-medium text-foreground">Gints Rekens</p>
-                        <p className="text-xs text-muted-foreground">Founder @ Wellif.ai</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
                 <div className="flex gap-2">
                   <Button 
                     type="button" 
@@ -148,6 +128,25 @@ export const HeaderNavigation = () => {
                   </Button>
                 </div>
               </form>
+              
+              {/* Testimonial Section - Full Width */}
+              <div className="bg-muted/50 rounded-lg p-4 border">
+                <div className="flex items-start gap-3">
+                  <Avatar className="h-12 w-12 flex-shrink-0">
+                    <AvatarImage src={gintsRekensPhoto} alt="Gints Rekens" />
+                    <AvatarFallback>GR</AvatarFallback>
+                  </Avatar>
+                  <div className="flex-1">
+                    <p className="text-sm text-foreground italic mb-2">
+                      "With CoffeeData I got real feedback on my product in just a day — fast, simple, and actually useful."
+                    </p>
+                    <div>
+                      <p className="text-sm font-medium text-foreground">Gints Rekens</p>
+                      <p className="text-xs text-muted-foreground">Founder @ Wellif.ai</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </DialogContent>
         </Dialog>
@@ -198,27 +197,7 @@ export const HeaderNavigation = () => {
                     onChange={(e) => setPublishEmail(e.target.value)}
                     required
                   />
-                  
-                  {/* Testimonial Section - Mobile */}
-                  <div className="bg-muted/50 rounded-lg p-4 border">
-                    <div className="flex items-start gap-3">
-                      <Avatar className="h-12 w-12 flex-shrink-0">
-                        <AvatarImage src={gintsRekensPhoto} alt="Gints Rekens" />
-                        <AvatarFallback>GR</AvatarFallback>
-                      </Avatar>
-                      <div className="flex-1">
-                        <p className="text-sm text-foreground italic mb-2">
-                          "With CoffeeData I got real feedback on my product in just a day — fast, simple, and actually useful."
-                        </p>
-                        <div>
-                          <p className="text-sm font-medium text-foreground">Gints Rekens</p>
-                          <p className="text-xs text-muted-foreground">Founder @ Wellif.ai</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <Button 
+                  <Button
                     type="submit" 
                     disabled={isSubmitting}
                     className="w-full"
@@ -230,6 +209,25 @@ export const HeaderNavigation = () => {
                     }
                   </Button>
                 </form>
+                
+                {/* Testimonial Section - Mobile Full Width */}
+                <div className="bg-muted/50 rounded-lg p-4 border">
+                  <div className="flex items-start gap-3">
+                    <Avatar className="h-12 w-12 flex-shrink-0">
+                      <AvatarImage src={gintsRekensPhoto} alt="Gints Rekens" />
+                      <AvatarFallback>GR</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                      <p className="text-sm text-foreground italic mb-2">
+                        "With CoffeeData I got real feedback on my product in just a day — fast, simple, and actually useful."
+                      </p>
+                      <div>
+                        <p className="text-sm font-medium text-foreground">Gints Rekens</p>
+                        <p className="text-xs text-muted-foreground">Founder @ Wellif.ai</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Divider */}
