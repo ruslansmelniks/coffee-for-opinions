@@ -12,7 +12,9 @@ const surveys = [
     description: "Tell us about your experience with fast loans.",
     category: "Finance",
     estimatedTime: "5 min",
-    url: "https://tally.so/r/nreZV5"
+    url: "https://tally.so/r/nreZV5",
+    disabled: true,
+    disabledMessage: "☕ Oops! We're brewing more coffee for this one. Check back soon!"
   },
   {
     title: "Banks in Latvia", 
