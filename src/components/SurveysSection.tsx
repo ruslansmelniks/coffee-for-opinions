@@ -72,7 +72,7 @@ export const SurveysSection = () => {
   const [isLoading, setIsLoading] = useState(false);
   
   // Toggle this to show/hide the "all surveys complete" overlay
-  const [showAllComplete, setShowAllComplete] = useState(false);
+  const [showAllComplete, setShowAllComplete] = useState(true);
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
