@@ -138,7 +138,7 @@ export const HeaderNavigation = () => {
                   </Avatar>
                   <div className="flex-1">
                     <p className="text-sm text-foreground italic mb-2">
-                      "With CoffeeData I got real feedback on my product in just a day — fast, simple, and actually useful."
+                      "With CoffeeData I got real feedback on my product in just a day - fast, simple, and actually useful. And best of all, I didn't have to annoy my own network to get it."
                     </p>
                     <div>
                       <p className="text-sm font-medium text-foreground">Gints Rekens</p>
@@ -219,7 +219,7 @@ export const HeaderNavigation = () => {
                     </Avatar>
                     <div className="flex-1">
                       <p className="text-sm text-foreground italic mb-2">
-                        "With CoffeeData I got real feedback on my product in just a day — fast, simple, and actually useful."
+                        "With CoffeeData I got real feedback on my product in just a day - fast, simple, and actually useful. And best of all, I didn't have to annoy my own network to get it."
                       </p>
                       <div>
                         <p className="text-sm font-medium text-foreground">Gints Rekens</p>
