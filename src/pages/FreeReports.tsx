@@ -180,44 +180,7 @@ const FreeReports = () => {
 
         {/* Download Section */}
         <section className="mb-16">
-          <Card>
-            <CardHeader>
-              <CardTitle>
-                {language === 'en' ? 'Request Full Report Access' : 'Pieprasīt pilnas atskaites piekļuvi'}
-              </CardTitle>
-              <CardDescription>
-                {language === 'en' ? 'Get the complete banking survey report with detailed methodology and additional insights.' : 'Saņemiet pilnu banku aptaujas atskaiti ar detalizētu metodoloģiju un papildu ieskatu.'}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="name">
-                      {language === 'en' ? 'Full Name' : 'Pilns vārds'}
-                    </Label>
-                    <Input id="name" name="name" type="text" value={formData.name} onChange={handleInputChange} required placeholder={language === 'en' ? 'Enter your full name' : 'Ievadiet savu pilno vārdu'} />
-                  </div>
-                  <div>
-                    <Label htmlFor="email">
-                      {language === 'en' ? 'Email Address' : 'E-pasta adrese'}
-                    </Label>
-                    <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} required placeholder={language === 'en' ? 'Enter your email' : 'Ievadiet savu e-pastu'} />
-                  </div>
-                </div>
-                <div>
-                  <Label htmlFor="company">
-                    {language === 'en' ? 'Company (Optional)' : 'Uzņēmums (neobligāti)'}
-                  </Label>
-                  <Input id="company" name="company" type="text" value={formData.company} onChange={handleInputChange} placeholder={language === 'en' ? 'Enter your company name' : 'Ievadiet uzņēmuma nosaukumu'} />
-                </div>
-                <Button type="submit" className="w-full">
-                  <Download className="w-4 h-4 mr-2" />
-                  {language === 'en' ? 'Request Download Link' : 'Pieprasīt lejupielādes saiti'}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
+          
         </section>
 
         {/* Coming Soon */}
@@ -231,28 +194,7 @@ const FreeReports = () => {
                 {language === 'en' ? 'We are continuously conducting research to provide you with the latest market insights.' : 'Mēs nepārtraukti veicam pētījumus, lai nodrošinātu jums jaunākos tirgus ieskatus.'}
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-4 text-muted-foreground">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full" />
-                  <span>
-                    {language === 'en' ? 'E-commerce Consumer Behavior in the Baltics' : 'E-komercijas patērētāju uzvedība Baltijā'}
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full" />
-                  <span>
-                    {language === 'en' ? 'Cryptocurrency Adoption in Latvia' : 'Kriptovalūtu pieņemšana Latvijā'}
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full" />
-                  <span>
-                    {language === 'en' ? 'Sustainable Consumer Trends 2025' : 'Ilgtspējīgo patērētāju tendences 2025'}
-                  </span>
-                </div>
-              </div>
-            </CardContent>
+            
           </Card>
         </section>
 
