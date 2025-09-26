@@ -304,10 +304,16 @@ const LatvianBankingSurvey = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3 sm:space-y-4">
-                  <ProgressBar label="Rietumu Banka" percentage={35} color="hsl(0, 84%, 60%)" />
-                  <ProgressBar label="OP Bank" percentage={28} color="hsl(0, 84%, 60%)" />
-                  <ProgressBar label="Blue Or" percentage={25} color="hsl(0, 84%, 60%)" />
-                  <ProgressBar label="Regional Banks" percentage={12} color="hsl(0, 84%, 60%)" />
+                  <ProgressBar label="Citadele" percentage={33} color="hsl(0, 84%, 60%)" />
+                  <ProgressBar label="Luminor" percentage={29} color="hsl(0, 84%, 60%)" />
+                  <ProgressBar label="Swedbank" percentage={19} color="hsl(0, 84%, 60%)" />
+                  <ProgressBar label="Other" percentage={14} color="hsl(0, 84%, 60%)" />
+                  <ProgressBar label="SEB" percentage={5} color="hsl(0, 84%, 60%)" />
+                </div>
+                <div className="mt-4 pt-4 border-t border-border">
+                  <p className="text-sm text-muted-foreground">
+                    <strong>Other banks mentioned:</strong> Rietumu Bank, OP Bank, Blue Or
+                  </p>
                 </div>
               </CardContent>
             </Card>
