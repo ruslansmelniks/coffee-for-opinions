@@ -3,11 +3,12 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Mail, Plus, Menu } from "lucide-react";
+import { Mail, Plus, Menu, FileText } from "lucide-react";
 import gintsRekensPhoto from "@/assets/gints-rekens.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 export const HeaderNavigation = () => {
   const { t, language } = useLanguage();
@@ -72,6 +73,17 @@ export const HeaderNavigation = () => {
     <nav className="fixed top-4 right-4 z-50">
       {/* Desktop Navigation - Hidden on mobile */}
       <div className="hidden md:flex items-center gap-2">
+        {/* Free Reports Link */}
+        <Link to="/free-reports">
+          <Button
+            variant="outline"
+            size="sm"
+            className="font-medium border-border bg-background/90 backdrop-blur-sm hover:bg-secondary"
+          >
+            <FileText className="mr-1 h-4 w-4" />
+            {language === 'en' ? 'Free Reports' : 'Bezmaksas atskaites'}
+          </Button>
+        </Link>
         {/* Publish Survey Modal */}
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
           <DialogTrigger asChild>
@@ -177,6 +189,21 @@ export const HeaderNavigation = () => {
           </SheetTrigger>
           <SheetContent side="right" className="w-80 sm:w-96">
             <div className="space-y-6 pt-6">
+              {/* Free Reports Link - Mobile */}
+              <div className="space-y-4">
+                <Link to="/free-reports" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button
+                    variant="outline"
+                    className="w-full font-medium"
+                  >
+                    <FileText className="mr-2 h-4 w-4" />
+                    {language === 'en' ? 'Free Reports' : 'Bezmaksas atskaites'}
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Divider */}
+              <div className="border-t border-border"></div>
               {/* Publish Survey Section */}
               <div className="space-y-4">
                 <h3 className="font-semibold text-lg flex items-center gap-2">
