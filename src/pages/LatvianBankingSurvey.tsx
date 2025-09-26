@@ -9,123 +9,125 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 import coffeeLogoUrl from "@/assets/caffeine-logo.png";
 import { ArrowLeft, Home } from "lucide-react";
 import { Link } from "react-router-dom";
-
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
-
 const LatvianBankingSurvey = () => {
   const [activeTab, setActiveTab] = useState('overview');
-
   const scrollToSection = (sectionId: string) => {
     setActiveTab(sectionId);
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
   };
-
-  const keyStatsData = [
-    { title: "Mobile Preference", value: "90%", description: "Use mobile banking apps" },
-    { title: "Fintech Adoption", value: "71%", description: "Already using alternatives" },
-    { title: "Trust Leader", value: "Swedbank", description: "43% market trust" }
-  ];
-
+  const keyStatsData = [{
+    title: "Mobile Preference",
+    value: "90%",
+    description: "Use mobile banking apps"
+  }, {
+    title: "Fintech Adoption",
+    value: "71%",
+    description: "Already using alternatives"
+  }, {
+    title: "Trust Leader",
+    value: "Swedbank",
+    description: "43% market trust"
+  }];
   const ageDistributionData = {
     labels: ['25-34', '35-44', '18-24'],
     datasets: [{
       data: [57, 29, 14],
       backgroundColor: ['hsl(221, 83%, 53%)', 'hsl(210, 13%, 50%)', 'hsl(142, 76%, 36%)'],
-      borderWidth: 0,
+      borderWidth: 0
     }]
   };
-
   const incomeDistributionData = {
     labels: ['2000+ €', '1200–2000 €', '700–1200 €'],
     datasets: [{
       data: [43, 43, 14],
       backgroundColor: ['hsl(221, 83%, 53%)', 'hsl(210, 13%, 50%)', 'hsl(142, 76%, 36%)'],
-      borderWidth: 0,
+      borderWidth: 0
     }]
   };
-
   const bankTrustData = {
     labels: ['Swedbank', 'Citadele', 'SEB', 'Luminor'],
     datasets: [{
       data: [43, 24, 24, 9],
       backgroundColor: ['hsl(221, 83%, 53%)', 'hsl(210, 13%, 50%)', 'hsl(142, 76%, 36%)', 'hsl(45, 93%, 47%)'],
-      borderWidth: 0,
+      borderWidth: 0
     }]
   };
-
   const fintechUsageData = {
     labels: ['Already using', 'Considering', 'Not interested'],
     datasets: [{
       data: [71, 19, 10],
       backgroundColor: ['hsl(221, 83%, 53%)', 'hsl(45, 93%, 47%)', 'hsl(0, 84%, 60%)'],
-      borderWidth: 0,
+      borderWidth: 0
     }]
   };
-
   const switchingFactorsData = {
     labels: ['Higher savings interest rates', 'Lower fees', 'Better customer service', 'Better mobile app experience', 'More investment opportunities'],
     datasets: [{
       data: [38, 29, 19, 14, 10],
       backgroundColor: 'hsl(221, 83%, 53%)',
-      borderWidth: 0,
+      borderWidth: 0
     }]
   };
-
   const chartOptions = {
     responsive: true,
     plugins: {
       legend: {
-        position: 'bottom' as const,
-      },
+        position: 'bottom' as const
+      }
     },
     scales: {
       y: {
         beginAtZero: true,
         ticks: {
-          callback: function(value: any) {
+          callback: function (value: any) {
             return value + '%';
           }
         }
       }
     }
   };
-
   const pieChartOptions = {
     responsive: true,
     plugins: {
       legend: {
-        position: 'bottom' as const,
+        position: 'bottom' as const
       },
       tooltip: {
         callbacks: {
-          label: function(context: any) {
+          label: function (context: any) {
             return context.label + ': ' + context.parsed + '%';
           }
         }
       }
     }
   };
-
-  const ProgressBar = ({ label, percentage, color = "hsl(221, 83%, 53%)" }: { label: string; percentage: number; color?: string }) => (
-    <div className="mb-3 sm:mb-4">
+  const ProgressBar = ({
+    label,
+    percentage,
+    color = "hsl(221, 83%, 53%)"
+  }: {
+    label: string;
+    percentage: number;
+    color?: string;
+  }) => <div className="mb-3 sm:mb-4">
       <div className="flex justify-between items-center mb-1 sm:mb-2">
         <span className="text-xs sm:text-sm font-medium text-foreground">{label}</span>
         <span className="text-xs sm:text-sm text-muted-foreground">{percentage}%</span>
       </div>
       <div className="w-full bg-muted rounded-full h-2">
-        <div 
-          className="h-2 rounded-full transition-all duration-300" 
-          style={{ width: `${percentage}%`, backgroundColor: color }}
-        />
+        <div className="h-2 rounded-full transition-all duration-300" style={{
+        width: `${percentage}%`,
+        backgroundColor: color
+      }} />
       </div>
-    </div>
-  );
-
-  return (
-    <div className="min-h-screen bg-background">
+    </div>;
+  return <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="bg-white border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
@@ -153,13 +155,7 @@ const LatvianBankingSurvey = () => {
             </BreadcrumbList>
           </Breadcrumb>
 
-          <div className="flex items-center gap-4">
-            <img src={coffeeLogoUrl} alt="CoffeeData.lv" className="w-8 h-8 sm:w-12 sm:h-12" />
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-foreground">CoffeeData.lv</h1>
-              <p className="text-sm sm:text-base text-muted-foreground italic">Consumer Research & Market Analysis</p>
-            </div>
-          </div>
+          
           <div className="mt-4 sm:mt-6">
             <h2 className="text-xl sm:text-2xl font-bold text-foreground">Latvian Banking Survey Results</h2>
             <p className="text-base sm:text-lg text-muted-foreground font-semibold">Consumer Banking Preferences & Behavior Analysis</p>
@@ -172,22 +168,24 @@ const LatvianBankingSurvey = () => {
       <nav className="sticky top-0 bg-white border-b border-border z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex space-x-2 sm:space-x-8 overflow-x-auto py-4">
-            {[
-              { id: 'overview', label: 'Overview' },
-              { id: 'demographics', label: 'Demographics' },
-              { id: 'bank-preferences', label: 'Bank Preferences' },
-              { id: 'digital-behavior', label: 'Digital Behavior' },
-              { id: 'key-findings', label: 'Key Findings' }
-            ].map((tab) => (
-              <Button
-                key={tab.id}
-                variant={activeTab === tab.id ? "default" : "ghost"}
-                className="whitespace-nowrap py-2 px-3 sm:py-4 sm:px-6 text-xs sm:text-sm"
-                onClick={() => scrollToSection(tab.id)}
-              >
+            {[{
+            id: 'overview',
+            label: 'Overview'
+          }, {
+            id: 'demographics',
+            label: 'Demographics'
+          }, {
+            id: 'bank-preferences',
+            label: 'Bank Preferences'
+          }, {
+            id: 'digital-behavior',
+            label: 'Digital Behavior'
+          }, {
+            id: 'key-findings',
+            label: 'Key Findings'
+          }].map(tab => <Button key={tab.id} variant={activeTab === tab.id ? "default" : "ghost"} className="whitespace-nowrap py-2 px-3 sm:py-4 sm:px-6 text-xs sm:text-sm" onClick={() => scrollToSection(tab.id)}>
                 {tab.label}
-              </Button>
-            ))}
+              </Button>)}
           </div>
         </div>
       </nav>
@@ -200,8 +198,7 @@ const LatvianBankingSurvey = () => {
           
           {/* Key Statistics Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
-            {keyStatsData.map((stat, index) => (
-              <Card key={index} className="hover-scale">
+            {keyStatsData.map((stat, index) => <Card key={index} className="hover-scale">
                 <CardHeader className="text-center pb-2 sm:pb-4">
                   <CardTitle className="text-xl sm:text-2xl font-bold text-primary">{stat.value}</CardTitle>
                   <CardDescription className="font-semibold text-sm sm:text-base">{stat.title}</CardDescription>
@@ -209,8 +206,7 @@ const LatvianBankingSurvey = () => {
                 <CardContent className="text-center pt-0">
                   <p className="text-xs sm:text-sm text-muted-foreground">{stat.description}</p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
 
           {/* Key Survey Insights */}
@@ -377,19 +373,19 @@ const LatvianBankingSurvey = () => {
             <CardContent>
               <div className="h-48 sm:h-64">
                 <Bar data={switchingFactorsData} options={{
-                  ...chartOptions,
-                  indexAxis: 'y' as const,
-                  scales: {
-                    x: {
-                      beginAtZero: true,
-                      ticks: {
-                        callback: function(value: any) {
-                          return value + '%';
-                        }
+                ...chartOptions,
+                indexAxis: 'y' as const,
+                scales: {
+                  x: {
+                    beginAtZero: true,
+                    ticks: {
+                      callback: function (value: any) {
+                        return value + '%';
                       }
                     }
                   }
-                }} />
+                }
+              }} />
               </div>
             </CardContent>
           </Card>
@@ -466,8 +462,6 @@ const LatvianBankingSurvey = () => {
           </Card>
         </footer>
       </main>
-    </div>
-  );
+    </div>;
 };
-
 export default LatvianBankingSurvey;
