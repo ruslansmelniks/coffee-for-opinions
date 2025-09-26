@@ -119,15 +119,17 @@ const FreeReports = () => {
             {/* Featured Report */}
             <Card className="lg:col-span-2">
               <CardHeader>
-                <div className="flex items-start justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                   <div className="flex-1">
-                    <CardTitle className="text-2xl mb-2">
-                      {language === 'en' ? 'Latvian Banking Survey 2025' : 'Latvijas banku aptauja 2025'}
-                    </CardTitle>
+                    <Link to="/latvian-banking-survey" className="group">
+                      <CardTitle className="text-2xl mb-2 hover:text-primary transition-colors cursor-pointer">
+                        {language === 'en' ? 'Latvian Banking Survey 2025' : 'Latvijas banku aptauja 2025'}
+                      </CardTitle>
+                    </Link>
                     <CardDescription className="text-lg">
                       {language === 'en' ? 'Consumer Banking Preferences & Behavior Analysis' : 'Patērētāju banku preferences un uzvedības analīze'}
                     </CardDescription>
-                    <div className="flex items-center gap-4 mt-4 text-sm text-muted-foreground">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
                         <span>{language === 'en' ? 'September 2025' : 'Septembris 2025'}</span>
@@ -138,8 +140,8 @@ const FreeReports = () => {
                       </div>
                     </div>
                   </div>
-                  <Link to="/latvian-banking-survey">
-                    <Button className="ml-4">
+                  <Link to="/latvian-banking-survey" className="w-full sm:w-auto">
+                    <Button className="w-full sm:w-auto">
                       {language === 'en' ? 'View Report' : 'Skatīt atskaiti'}
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
