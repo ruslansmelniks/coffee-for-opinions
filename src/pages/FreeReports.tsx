@@ -12,31 +12,31 @@ import { Footer } from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
 import coffeeLogoUrl from "@/assets/caffeine-logo.png";
-
 const FreeReports = () => {
-  const { language } = useLanguage();
-  const { toast } = useToast();
+  const {
+    language
+  } = useLanguage();
+  const {
+    toast
+  } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: ''
   });
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     try {
       const response = await fetch('https://hook.eu2.make.com/urdo76dj7lsyigol9fem9ea49otjmog5', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           ...formData,
@@ -44,13 +44,16 @@ const FreeReports = () => {
           timestamp: new Date().toISOString()
         })
       });
-
       if (response.ok) {
         toast({
           title: language === 'en' ? "Thank you!" : "Paldies!",
           description: language === 'en' ? "We'll send you the download link shortly." : "Mēs drīzumā nosūtīsim jums lejupielādes saiti."
         });
-        setFormData({ name: '', email: '', company: '' });
+        setFormData({
+          name: '',
+          email: '',
+          company: ''
+        });
       } else {
         toast({
           title: language === 'en' ? "Error" : "Kļūda",
@@ -67,9 +70,7 @@ const FreeReports = () => {
       });
     }
   };
-
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <LanguageSwitcher />
       <HeaderNavigation />
       
@@ -94,15 +95,7 @@ const FreeReports = () => {
             </BreadcrumbList>
           </Breadcrumb>
 
-          <div className="flex items-center gap-4 mb-6">
-            <img src={coffeeLogoUrl} alt="CoffeeData.lv" className="w-12 h-12" />
-            <div>
-              <h1 className="text-3xl font-bold text-foreground">CoffeeData.lv</h1>
-              <p className="text-muted-foreground italic">
-                {language === 'en' ? 'Consumer Research & Market Analysis' : 'Patērētāju pētījumi un tirgus analīze'}
-              </p>
-            </div>
-          </div>
+          
           <div>
             <h2 className="text-2xl font-bold text-foreground">
               {language === 'en' ? 'Free Reports' : 'Bezmaksas atskaites'}
@@ -156,10 +149,7 @@ const FreeReports = () => {
               <CardContent>
                 <div className="space-y-4">
                   <p className="text-muted-foreground">
-                    {language === 'en' 
-                      ? 'Comprehensive analysis of consumer banking preferences and digital behavior in Latvia. This report reveals key insights into mobile banking adoption, fintech usage, and trust distribution among major banking institutions.'
-                      : 'Visaptverošā patērētāju banku preferenču un digitālās uzvedības analīze Latvijā. Šī atskaite atklāj galvenos ieskatus par mobilo banku pieņemšanu, fintech izmantošanu un uzticības sadali starp galvenajām banku iestādēm.'
-                    }
+                    {language === 'en' ? 'Comprehensive analysis of consumer banking preferences and digital behavior in Latvia. This report reveals key insights into mobile banking adoption, fintech usage, and trust distribution among major banking institutions.' : 'Visaptverošā patērētāju banku preferenču un digitālās uzvedības analīze Latvijā. Šī atskaite atklāj galvenos ieskatus par mobilo banku pieņemšanu, fintech izmantošanu un uzticības sadali starp galvenajām banku iestādēm.'}
                   </p>
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -196,10 +186,7 @@ const FreeReports = () => {
                 {language === 'en' ? 'Request Full Report Access' : 'Pieprasīt pilnas atskaites piekļuvi'}
               </CardTitle>
               <CardDescription>
-                {language === 'en' 
-                  ? 'Get the complete banking survey report with detailed methodology and additional insights.'
-                  : 'Saņemiet pilnu banku aptaujas atskaiti ar detalizētu metodoloģiju un papildu ieskatu.'
-                }
+                {language === 'en' ? 'Get the complete banking survey report with detailed methodology and additional insights.' : 'Saņemiet pilnu banku aptaujas atskaiti ar detalizētu metodoloģiju un papildu ieskatu.'}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -209,43 +196,20 @@ const FreeReports = () => {
                     <Label htmlFor="name">
                       {language === 'en' ? 'Full Name' : 'Pilns vārds'}
                     </Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      type="text"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                      placeholder={language === 'en' ? 'Enter your full name' : 'Ievadiet savu pilno vārdu'}
-                    />
+                    <Input id="name" name="name" type="text" value={formData.name} onChange={handleInputChange} required placeholder={language === 'en' ? 'Enter your full name' : 'Ievadiet savu pilno vārdu'} />
                   </div>
                   <div>
                     <Label htmlFor="email">
                       {language === 'en' ? 'Email Address' : 'E-pasta adrese'}
                     </Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      placeholder={language === 'en' ? 'Enter your email' : 'Ievadiet savu e-pastu'}
-                    />
+                    <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} required placeholder={language === 'en' ? 'Enter your email' : 'Ievadiet savu e-pastu'} />
                   </div>
                 </div>
                 <div>
                   <Label htmlFor="company">
                     {language === 'en' ? 'Company (Optional)' : 'Uzņēmums (neobligāti)'}
                   </Label>
-                  <Input
-                    id="company"
-                    name="company"
-                    type="text"
-                    value={formData.company}
-                    onChange={handleInputChange}
-                    placeholder={language === 'en' ? 'Enter your company name' : 'Ievadiet uzņēmuma nosaukumu'}
-                  />
+                  <Input id="company" name="company" type="text" value={formData.company} onChange={handleInputChange} placeholder={language === 'en' ? 'Enter your company name' : 'Ievadiet uzņēmuma nosaukumu'} />
                 </div>
                 <Button type="submit" className="w-full">
                   <Download className="w-4 h-4 mr-2" />
@@ -264,10 +228,7 @@ const FreeReports = () => {
                 {language === 'en' ? 'More Reports Coming Soon' : 'Drīzumā vairāk atskaišu'}
               </CardTitle>
               <CardDescription>
-                {language === 'en' 
-                  ? 'We are continuously conducting research to provide you with the latest market insights.'
-                  : 'Mēs nepārtraukti veicam pētījumus, lai nodrošinātu jums jaunākos tirgus ieskatus.'
-                }
+                {language === 'en' ? 'We are continuously conducting research to provide you with the latest market insights.' : 'Mēs nepārtraukti veicam pētījumus, lai nodrošinātu jums jaunākos tirgus ieskatus.'}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -275,28 +236,19 @@ const FreeReports = () => {
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-primary rounded-full" />
                   <span>
-                    {language === 'en' 
-                      ? 'E-commerce Consumer Behavior in the Baltics'
-                      : 'E-komercijas patērētāju uzvedība Baltijā'
-                    }
+                    {language === 'en' ? 'E-commerce Consumer Behavior in the Baltics' : 'E-komercijas patērētāju uzvedība Baltijā'}
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-primary rounded-full" />
                   <span>
-                    {language === 'en' 
-                      ? 'Cryptocurrency Adoption in Latvia'
-                      : 'Kriptovalūtu pieņemšana Latvijā'
-                    }
+                    {language === 'en' ? 'Cryptocurrency Adoption in Latvia' : 'Kriptovalūtu pieņemšana Latvijā'}
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-primary rounded-full" />
                   <span>
-                    {language === 'en' 
-                      ? 'Sustainable Consumer Trends 2025'
-                      : 'Ilgtspējīgo patērētāju tendences 2025'
-                    }
+                    {language === 'en' ? 'Sustainable Consumer Trends 2025' : 'Ilgtspējīgo patērētāju tendences 2025'}
                   </span>
                 </div>
               </div>
@@ -314,10 +266,7 @@ const FreeReports = () => {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground mb-4">
-                {language === 'en' 
-                  ? 'Consumer preferences and behavior analysis conducted in Latvia. Data collected through structured questionnaire methodology.'
-                  : 'Patērētāju preferenču un uzvedības analīze, kas veikta Latvijā. Dati savākti, izmantojot strukturētu anketu metodoloģiju.'
-                }
+                {language === 'en' ? 'Consumer preferences and behavior analysis conducted in Latvia. Data collected through structured questionnaire methodology.' : 'Patērētāju preferenču un uzvedības analīze, kas veikta Latvijā. Dati savākti, izmantojot strukturētu anketu metodoloģiju.'}
               </p>
               <div>
                 <p className="font-semibold text-foreground">
@@ -331,8 +280,6 @@ const FreeReports = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default FreeReports;
