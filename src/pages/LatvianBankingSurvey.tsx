@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import coffeeLogoUrl from "@/assets/caffeine-logo.png";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
@@ -109,10 +110,10 @@ const LatvianBankingSurvey = () => {
   };
 
   const ProgressBar = ({ label, percentage, color = "hsl(221, 83%, 53%)" }: { label: string; percentage: number; color?: string }) => (
-    <div className="mb-4">
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-sm font-medium text-foreground">{label}</span>
-        <span className="text-sm text-muted-foreground">{percentage}%</span>
+    <div className="mb-3 sm:mb-4">
+      <div className="flex justify-between items-center mb-1 sm:mb-2">
+        <span className="text-xs sm:text-sm font-medium text-foreground">{label}</span>
+        <span className="text-xs sm:text-sm text-muted-foreground">{percentage}%</span>
       </div>
       <div className="w-full bg-muted rounded-full h-2">
         <div 
@@ -127,22 +128,42 @@ const LatvianBankingSurvey = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="bg-white border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <Link to="/free-reports" className="inline-flex items-center text-muted-foreground hover:text-foreground mb-4">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Free Reports
-          </Link>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+          {/* Breadcrumbs */}
+          <Breadcrumb className="mb-4">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link to="/" className="flex items-center gap-1">
+                    <Home className="w-4 h-4" />
+                    Home
+                  </Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link to="/free-reports">Free Reports</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Latvian Banking Survey 2025</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+
           <div className="flex items-center gap-4">
-            <img src={coffeeLogoUrl} alt="CoffeeData.lv" className="w-12 h-12" />
+            <img src={coffeeLogoUrl} alt="CoffeeData.lv" className="w-8 h-8 sm:w-12 sm:h-12" />
             <div>
-              <h1 className="text-3xl font-bold text-foreground">CoffeeData.lv</h1>
-              <p className="text-muted-foreground italic">Consumer Research & Market Analysis</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-foreground">CoffeeData.lv</h1>
+              <p className="text-sm sm:text-base text-muted-foreground italic">Consumer Research & Market Analysis</p>
             </div>
           </div>
-          <div className="mt-6">
-            <h2 className="text-2xl font-bold text-foreground">Latvian Banking Survey Results</h2>
-            <p className="text-lg text-muted-foreground font-semibold">Consumer Banking Preferences & Behavior Analysis</p>
-            <p className="text-sm text-muted-foreground mt-2">September 2025 • Consumer Survey</p>
+          <div className="mt-4 sm:mt-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground">Latvian Banking Survey Results</h2>
+            <p className="text-base sm:text-lg text-muted-foreground font-semibold">Consumer Banking Preferences & Behavior Analysis</p>
+            <p className="text-xs sm:text-sm text-muted-foreground mt-2">September 2025 • Consumer Survey</p>
           </div>
         </div>
       </header>
@@ -150,7 +171,7 @@ const LatvianBankingSurvey = () => {
       {/* Navigation Tabs */}
       <nav className="sticky top-0 bg-white border-b border-border z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex space-x-8 overflow-x-auto">
+          <div className="flex space-x-2 sm:space-x-8 overflow-x-auto py-4">
             {[
               { id: 'overview', label: 'Overview' },
               { id: 'demographics', label: 'Demographics' },
@@ -161,7 +182,7 @@ const LatvianBankingSurvey = () => {
               <Button
                 key={tab.id}
                 variant={activeTab === tab.id ? "default" : "ghost"}
-                className="whitespace-nowrap py-4 px-6"
+                className="whitespace-nowrap py-2 px-3 sm:py-4 sm:px-6 text-xs sm:text-sm"
                 onClick={() => scrollToSection(tab.id)}
               >
                 {tab.label}
@@ -172,21 +193,21 @@ const LatvianBankingSurvey = () => {
       </nav>
 
       {/* Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         {/* Overview Section */}
-        <section id="overview" className="mb-16">
-          <h3 className="text-xl font-bold text-foreground mb-6">Overview</h3>
+        <section id="overview" className="mb-8 sm:mb-16">
+          <h3 className="text-lg sm:text-xl font-bold text-foreground mb-4 sm:mb-6">Overview</h3>
           
           {/* Key Statistics Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
             {keyStatsData.map((stat, index) => (
-              <Card key={index}>
-                <CardHeader className="text-center">
-                  <CardTitle className="text-2xl font-bold text-primary">{stat.value}</CardTitle>
-                  <CardDescription className="font-semibold">{stat.title}</CardDescription>
+              <Card key={index} className="hover-scale">
+                <CardHeader className="text-center pb-2 sm:pb-4">
+                  <CardTitle className="text-xl sm:text-2xl font-bold text-primary">{stat.value}</CardTitle>
+                  <CardDescription className="font-semibold text-sm sm:text-base">{stat.title}</CardDescription>
                 </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-sm text-muted-foreground">{stat.description}</p>
+                <CardContent className="text-center pt-0">
+                  <p className="text-xs sm:text-sm text-muted-foreground">{stat.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -195,29 +216,29 @@ const LatvianBankingSurvey = () => {
           {/* Key Survey Insights */}
           <Card>
             <CardHeader>
-              <CardTitle>Key Survey Insights</CardTitle>
+              <CardTitle className="text-base sm:text-lg">Key Survey Insights</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-3">
+              <ul className="space-y-2 sm:space-y-3">
                 <li className="flex items-start">
-                  <Badge variant="secondary" className="mr-3 mt-0.5">90%</Badge>
-                  <span>of respondents prefer mobile banking applications over traditional internet banking</span>
+                  <Badge variant="secondary" className="mr-2 sm:mr-3 mt-0.5 text-xs">90%</Badge>
+                  <span className="text-sm sm:text-base">of respondents prefer mobile banking applications over traditional internet banking</span>
                 </li>
                 <li className="flex items-start">
-                  <Badge variant="secondary" className="mr-3 mt-0.5">71%</Badge>
-                  <span>are already using fintech solutions like Revolut or Wise alongside traditional banks</span>
+                  <Badge variant="secondary" className="mr-2 sm:mr-3 mt-0.5 text-xs">71%</Badge>
+                  <span className="text-sm sm:text-base">are already using fintech solutions like Revolut or Wise alongside traditional banks</span>
                 </li>
                 <li className="flex items-start">
-                  <Badge variant="secondary" className="mr-3 mt-0.5">38%</Badge>
-                  <span>Rate sensitivity is the primary driver for bank switching (38% of responses)</span>
+                  <Badge variant="secondary" className="mr-2 sm:mr-3 mt-0.5 text-xs">38%</Badge>
+                  <span className="text-sm sm:text-base">Rate sensitivity is the primary driver for bank switching (38% of responses)</span>
                 </li>
                 <li className="flex items-start">
-                  <Badge variant="secondary" className="mr-3 mt-0.5">38%</Badge>
-                  <span>Equal perception of banks being both 'fair & transparent' and 'too expensive' (38% each)</span>
+                  <Badge variant="secondary" className="mr-2 sm:mr-3 mt-0.5 text-xs">38%</Badge>
+                  <span className="text-sm sm:text-base">Equal perception of banks being both 'fair & transparent' and 'too expensive' (38% each)</span>
                 </li>
                 <li className="flex items-start">
-                  <Badge variant="secondary" className="mr-3 mt-0.5">43%</Badge>
-                  <span>Swedbank maintains the strongest trust position with 43% of respondents</span>
+                  <Badge variant="secondary" className="mr-2 sm:mr-3 mt-0.5 text-xs">43%</Badge>
+                  <span className="text-sm sm:text-base">Swedbank maintains the strongest trust position with 43% of respondents</span>
                 </li>
               </ul>
             </CardContent>
@@ -225,39 +246,39 @@ const LatvianBankingSurvey = () => {
         </section>
 
         {/* Demographics Section */}
-        <section id="demographics" className="mb-16">
-          <h3 className="text-xl font-bold text-foreground mb-6">Demographics</h3>
+        <section id="demographics" className="mb-8 sm:mb-16">
+          <h3 className="text-lg sm:text-xl font-bold text-foreground mb-4 sm:mb-6">Demographics</h3>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <Card>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+            <Card className="hover-scale">
               <CardHeader>
-                <CardTitle>Age Distribution</CardTitle>
+                <CardTitle className="text-base sm:text-lg">Age Distribution</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="h-64">
+                <div className="h-48 sm:h-64">
                   <Bar data={ageDistributionData} options={chartOptions} />
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="hover-scale">
               <CardHeader>
-                <CardTitle>Gender Distribution</CardTitle>
+                <CardTitle className="text-base sm:text-lg">Gender Distribution</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <ProgressBar label="Female" percentage={76} />
                   <ProgressBar label="Male" percentage={24} color="hsl(210, 13%, 50%)" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="hover-scale">
               <CardHeader>
-                <CardTitle>Income Distribution</CardTitle>
+                <CardTitle className="text-base sm:text-lg">Income Distribution</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="h-64">
+                <div className="h-48 sm:h-64">
                   <Pie data={incomeDistributionData} options={pieChartOptions} />
                 </div>
               </CardContent>
@@ -266,27 +287,27 @@ const LatvianBankingSurvey = () => {
         </section>
 
         {/* Bank Preferences Section */}
-        <section id="bank-preferences" className="mb-16">
-          <h3 className="text-xl font-bold text-foreground mb-6">Bank Preferences</h3>
+        <section id="bank-preferences" className="mb-8 sm:mb-16">
+          <h3 className="text-lg sm:text-xl font-bold text-foreground mb-4 sm:mb-6">Bank Preferences</h3>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-            <Card>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+            <Card className="hover-scale">
               <CardHeader>
-                <CardTitle>Most Trusted Banks</CardTitle>
+                <CardTitle className="text-base sm:text-lg">Most Trusted Banks</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="h-64">
+                <div className="h-48 sm:h-64">
                   <Bar data={bankTrustData} options={chartOptions} />
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="hover-scale">
               <CardHeader>
-                <CardTitle>Banks with Worst Reputation</CardTitle>
+                <CardTitle className="text-base sm:text-lg">Banks with Worst Reputation</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <ProgressBar label="Rietumu Banka" percentage={35} color="hsl(0, 84%, 60%)" />
                   <ProgressBar label="OP Bank" percentage={28} color="hsl(0, 84%, 60%)" />
                   <ProgressBar label="Blue Or" percentage={25} color="hsl(0, 84%, 60%)" />
@@ -296,17 +317,17 @@ const LatvianBankingSurvey = () => {
             </Card>
           </div>
 
-          <Card>
+          <Card className="hover-scale">
             <CardHeader>
-              <CardTitle>Bank Perceptions</CardTitle>
+              <CardTitle className="text-base sm:text-lg">Bank Perceptions</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                <div className="space-y-3 sm:space-y-4">
                   <ProgressBar label="Fair and transparent" percentage={38} color="hsl(142, 76%, 36%)" />
                   <ProgressBar label="Too expensive" percentage={38} color="hsl(0, 84%, 60%)" />
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <ProgressBar label="Innovative and modern" percentage={33} color="hsl(221, 83%, 53%)" />
                   <ProgressBar label="Outdated and slow" percentage={29} color="hsl(45, 93%, 47%)" />
                 </div>
@@ -316,28 +337,28 @@ const LatvianBankingSurvey = () => {
         </section>
 
         {/* Digital Behavior Section */}
-        <section id="digital-behavior" className="mb-16">
-          <h3 className="text-xl font-bold text-foreground mb-6">Digital Behavior</h3>
+        <section id="digital-behavior" className="mb-8 sm:mb-16">
+          <h3 className="text-lg sm:text-xl font-bold text-foreground mb-4 sm:mb-6">Digital Behavior</h3>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+            <Card className="hover-scale">
               <CardHeader>
-                <CardTitle>Banking Channel Preference</CardTitle>
+                <CardTitle className="text-base sm:text-lg">Banking Channel Preference</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <ProgressBar label="Mobile app" percentage={90} />
                   <ProgressBar label="Internet banking" percentage={10} color="hsl(210, 13%, 50%)" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="hover-scale">
               <CardHeader>
-                <CardTitle>Fintech (Revolut, Wise, N26) Usage</CardTitle>
+                <CardTitle className="text-base sm:text-lg">Fintech (Revolut, Wise, N26) Usage</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="h-64">
+                <div className="h-48 sm:h-64">
                   <Pie data={fintechUsageData} options={pieChartOptions} />
                 </div>
               </CardContent>
@@ -346,15 +367,15 @@ const LatvianBankingSurvey = () => {
         </section>
 
         {/* Key Findings Section */}
-        <section id="key-findings" className="mb-16">
-          <h3 className="text-xl font-bold text-foreground mb-6">Key Findings</h3>
+        <section id="key-findings" className="mb-8 sm:mb-16">
+          <h3 className="text-lg sm:text-xl font-bold text-foreground mb-4 sm:mb-6">Key Findings</h3>
           
-          <Card className="mb-6">
+          <Card className="mb-4 sm:mb-6 hover-scale">
             <CardHeader>
-              <CardTitle>Bank Switching Factors</CardTitle>
+              <CardTitle className="text-base sm:text-lg">Bank Switching Factors</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="h-64">
+              <div className="h-48 sm:h-64">
                 <Bar data={switchingFactorsData} options={{
                   ...chartOptions,
                   indexAxis: 'y' as const,
@@ -373,43 +394,43 @@ const LatvianBankingSurvey = () => {
             </CardContent>
           </Card>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+            <Card className="hover-scale">
               <CardHeader>
-                <CardTitle>Common Customer Frustrations</CardTitle>
+                <CardTitle className="text-base sm:text-lg">Common Customer Frustrations</CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-3">
+                <ul className="space-y-2 sm:space-y-3">
                   <li className="flex items-start">
-                    <span className="w-2 h-2 bg-destructive rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>Lacking functionality in mobile apps (advanced search, payment features)</span>
+                    <span className="w-2 h-2 bg-destructive rounded-full mt-2 mr-2 sm:mr-3 flex-shrink-0"></span>
+                    <span className="text-sm sm:text-base">Lacking functionality in mobile apps (advanced search, payment features)</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="w-2 h-2 bg-destructive rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>High fees and expensive services compared to alternatives</span>
+                    <span className="w-2 h-2 bg-destructive rounded-full mt-2 mr-2 sm:mr-3 flex-shrink-0"></span>
+                    <span className="text-sm sm:text-base">High fees and expensive services compared to alternatives</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="w-2 h-2 bg-destructive rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>Slow customer service response times</span>
+                    <span className="w-2 h-2 bg-destructive rounded-full mt-2 mr-2 sm:mr-3 flex-shrink-0"></span>
+                    <span className="text-sm sm:text-base">Slow customer service response times</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="w-2 h-2 bg-destructive rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>Outdated technology and user interfaces</span>
+                    <span className="w-2 h-2 bg-destructive rounded-full mt-2 mr-2 sm:mr-3 flex-shrink-0"></span>
+                    <span className="text-sm sm:text-base">Outdated technology and user interfaces</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="w-2 h-2 bg-destructive rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>Limited investment and savings options with competitive rates</span>
+                    <span className="w-2 h-2 bg-destructive rounded-full mt-2 mr-2 sm:mr-3 flex-shrink-0"></span>
+                    <span className="text-sm sm:text-base">Limited investment and savings options with competitive rates</span>
                   </li>
                 </ul>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="hover-scale">
               <CardHeader>
-                <CardTitle>Summary Analysis</CardTitle>
+                <CardTitle className="text-base sm:text-lg">Summary Analysis</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4 text-sm text-muted-foreground">
+                <div className="space-y-3 sm:space-y-4 text-xs sm:text-sm text-muted-foreground">
                   <p>
                     The survey reveals a predominantly digital-first banking preference among respondents, with mobile applications being the overwhelmingly preferred banking channel. This demographic shows significant adoption of fintech alternatives, indicating potential market disruption in traditional banking services.
                   </p>
@@ -425,21 +446,21 @@ const LatvianBankingSurvey = () => {
           </div>
         </section>
 
-        <Separator className="my-8" />
+        <Separator className="my-6 sm:my-8" />
 
         {/* Footer Section */}
         <footer className="text-center">
-          <Card>
+          <Card className="hover-scale">
             <CardHeader>
-              <CardTitle>About This Survey</CardTitle>
+              <CardTitle className="text-base sm:text-lg">About This Survey</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground mb-4">
+              <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
                 Consumer banking preferences and behavior analysis conducted in Latvia. Data collected through structured questionnaire methodology.
               </p>
               <div>
-                <p className="font-semibold text-foreground">For more information:</p>
-                <p className="text-muted-foreground">📧 ruslans@coffeedata.lv</p>
+                <p className="font-semibold text-foreground text-sm sm:text-base">For more information:</p>
+                <p className="text-muted-foreground text-sm sm:text-base">📧 ruslans@coffeedata.lv</p>
               </div>
             </CardContent>
           </Card>
