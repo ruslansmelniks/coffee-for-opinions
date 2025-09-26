@@ -121,9 +121,9 @@ const FreeReports = () => {
               <CardHeader>
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                   <div className="flex-1">
-                    <Link to="/latvian-banking-survey" className="group">
+                    <Link to="/latvia-banking-market-research-2025" className="group">
                       <CardTitle className="text-2xl mb-2 hover:text-primary transition-colors cursor-pointer">
-                        {language === 'en' ? 'Latvian Banking Survey 2025' : 'Latvijas banku aptauja 2025'}
+                        {language === 'en' ? 'Latvia Banking Market Research 2025' : 'Latvijas banku tirgus pētījums 2025'}
                       </CardTitle>
                     </Link>
                     <CardDescription className="text-lg">
@@ -140,7 +140,7 @@ const FreeReports = () => {
                       </div>
                     </div>
                   </div>
-                  <Link to="/latvian-banking-survey" className="w-full sm:w-auto">
+                  <Link to="/latvia-banking-market-research-2025" className="w-full sm:w-auto">
                     <Button className="w-full sm:w-auto">
                       {language === 'en' ? 'View Report' : 'Skatīt atskaiti'}
                       <ArrowRight className="w-4 h-4 ml-2" />

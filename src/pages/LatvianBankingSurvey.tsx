@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import { Bar, Pie } from 'react-chartjs-2';
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,10 @@ import { Link } from "react-router-dom";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 const LatvianBankingSurvey = () => {
   const [activeTab, setActiveTab] = useState('overview');
+  
+  useEffect(() => {
+    document.title = "Latvia Banking Market Research 2025 | Consumer Preferences & Fintech Adoption";
+  }, []);
   const scrollToSection = (sectionId: string) => {
     setActiveTab(sectionId);
     const element = document.getElementById(sectionId);
@@ -150,16 +154,16 @@ const LatvianBankingSurvey = () => {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbPage>Latvian Banking Survey 2025</BreadcrumbPage>
+                <BreadcrumbPage>Latvia Banking Market Research 2025</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
 
           
           <div className="mt-4 sm:mt-6">
-            <h2 className="text-xl sm:text-2xl font-bold text-foreground">Latvian Banking Survey Results</h2>
-            <p className="text-base sm:text-lg text-muted-foreground font-semibold">Consumer Banking Preferences & Behavior Analysis</p>
-            <p className="text-xs sm:text-sm text-muted-foreground mt-2">September 2025 • Consumer Survey</p>
+            <h1 className="text-xl sm:text-2xl font-bold text-foreground">Latvia Banking Market Research 2025</h1>
+            <p className="text-base sm:text-lg text-muted-foreground font-semibold">Consumer Preferences & Fintech Adoption</p>
+            <p className="text-xs sm:text-sm text-muted-foreground mt-2">September 2025 • Market Research</p>
           </div>
         </div>
       </header>
