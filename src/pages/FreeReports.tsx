@@ -10,54 +10,35 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Download, Calendar, Users, FileText, Mail, Building2, CreditCard, Smartphone, TrendingUp, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Bar, Pie, Doughnut } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  ArcElement,
-} from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import coffeeLogoImg from "@/assets/caffeine-logo.png";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  ArcElement
-);
-
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 const FreeReports = () => {
-  const { t, language } = useLanguage();
-  const { toast } = useToast();
+  const {
+    t,
+    language
+  } = useLanguage();
+  const {
+    toast
+  } = useToast();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [activeSection, setActiveSection] = useState("overview");
-
   const handleDownloadRequest = async (reportTitle: string) => {
     if (!email) {
       toast({
         title: language === 'en' ? "Email Required" : "Nepieciešams e-pasts",
-        description: language === 'en' 
-          ? "Please enter your email to download the report." 
-          : "Lūdzu, ievadiet savu e-pastu, lai lejupielādētu atskaiti.",
-        variant: "destructive",
+        description: language === 'en' ? "Please enter your email to download the report." : "Lūdzu, ievadiet savu e-pastu, lai lejupielādētu atskaiti.",
+        variant: "destructive"
       });
       return;
     }
-
     setIsSubmitting(true);
-
     try {
       await fetch("https://hook.eu2.make.com/urdo76dj7lsyigol9fem9ea49otjmog5", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         mode: "no-cors",
         body: JSON.stringify({
@@ -67,93 +48,86 @@ const FreeReports = () => {
           report_title: reportTitle,
           page: window.location.href,
           submitted_on: new Date().toISOString()
-        }),
+        })
       });
-
       toast({
         title: language === 'en' ? "Thank you!" : "Paldies!",
-        description: language === 'en' 
-          ? "We'll send you the download link shortly." 
-          : "Mēs drīzumā nosūtīsim jums lejupielādes saiti.",
+        description: language === 'en' ? "We'll send you the download link shortly." : "Mēs drīzumā nosūtīsim jums lejupielādes saiti."
       });
-      
       setEmail("");
     } catch (error) {
       console.error("Error submitting email:", error);
       toast({
         title: language === 'en' ? "Error" : "Kļūda",
-        description: language === 'en' 
-          ? "Something went wrong. Please try again." 
-          : "Kaut kas nogāja greizi. Lūdzu, mēģiniet vēlreiz.",
-        variant: "destructive",
+        description: language === 'en' ? "Something went wrong. Please try again." : "Kaut kas nogāja greizi. Lūdzu, mēģiniet vēlreiz.",
+        variant: "destructive"
       });
     } finally {
       setIsSubmitting(false);
     }
   };
-
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: 'top' as const,
-      },
+        position: 'top' as const
+      }
     },
     scales: {
       y: {
         beginAtZero: true,
         max: 100,
         ticks: {
-          callback: function(value: any) {
+          callback: function (value: any) {
             return value + '%';
-          },
-        },
-      },
-    },
+          }
+        }
+      }
+    }
   };
-
   const pieOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: 'right' as const,
-      },
-    },
+        position: 'right' as const
+      }
+    }
   };
-
   const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
   };
-
-  const sections = [
-    { id: "overview", label: language === 'en' ? "Overview" : "Pārskats" },
-    { id: "demographics", label: language === 'en' ? "Demographics" : "Demogrāfija" },
-    { id: "preferences", label: language === 'en' ? "Bank Preferences" : "Banku preferences" },
-    { id: "digital", label: language === 'en' ? "Digital Behavior" : "Digitālā uzvedība" },
-    { id: "findings", label: language === 'en' ? "Key Findings" : "Galvenie secinājumi" },
-  ];
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+  const sections = [{
+    id: "overview",
+    label: language === 'en' ? "Overview" : "Pārskats"
+  }, {
+    id: "demographics",
+    label: language === 'en' ? "Demographics" : "Demogrāfija"
+  }, {
+    id: "preferences",
+    label: language === 'en' ? "Bank Preferences" : "Banku preferences"
+  }, {
+    id: "digital",
+    label: language === 'en' ? "Digital Behavior" : "Digitālā uzvedība"
+  }, {
+    id: "findings",
+    label: language === 'en' ? "Key Findings" : "Galvenie secinājumi"
+  }];
+  return <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
       <LanguageSwitcher />
       <HeaderNavigation />
       
       {/* Header Section */}
       <section className="pt-24 pb-8 px-4 border-b">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-4 mb-6">
-            <img src={coffeeLogoImg} alt="CoffeeData.lv" className="h-12 w-12" />
-            <div>
-              <h1 className="text-3xl font-bold text-primary">CoffeeData.lv</h1>
-              <p className="text-muted-foreground italic">Consumer Research & Market Analysis</p>
-            </div>
-          </div>
+          
           
           <div className="text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -173,16 +147,9 @@ const FreeReports = () => {
       <section className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex overflow-x-auto gap-1 py-4">
-            {sections.map((section) => (
-              <Button
-                key={section.id}
-                variant={activeSection === section.id ? "default" : "ghost"}
-                onClick={() => scrollToSection(section.id)}
-                className="whitespace-nowrap"
-              >
+            {sections.map(section => <Button key={section.id} variant={activeSection === section.id ? "default" : "ghost"} onClick={() => scrollToSection(section.id)} className="whitespace-nowrap">
                 {section.label}
-              </Button>
-            ))}
+              </Button>)}
           </div>
         </div>
       </section>
@@ -241,38 +208,23 @@ const FreeReports = () => {
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2" />
-                    <span>{language === 'en' 
-                      ? '90% of respondents prefer mobile banking applications over traditional internet banking'
-                      : '90% respondentu dod priekšroku mobilo banku aplikācijām nevis tradicionālajai internetbankai'
-                    }</span>
+                    <span>{language === 'en' ? '90% of respondents prefer mobile banking applications over traditional internet banking' : '90% respondentu dod priekšroku mobilo banku aplikācijām nevis tradicionālajai internetbankai'}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2" />
-                    <span>{language === 'en' 
-                      ? '71% are already using fintech solutions like Revolut or Wise alongside traditional banks'
-                      : '71% jau izmanto fintech risinājumus kā Revolut vai Wise līdzās tradicionālajām bankām'
-                    }</span>
+                    <span>{language === 'en' ? '71% are already using fintech solutions like Revolut or Wise alongside traditional banks' : '71% jau izmanto fintech risinājumus kā Revolut vai Wise līdzās tradicionālajām bankām'}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2" />
-                    <span>{language === 'en' 
-                      ? 'Rate sensitivity is the primary driver for bank switching (38% of responses)'
-                      : 'Likmju jutība ir galvenais bankas maiņas dzinējspēks (38% atbilžu)'
-                    }</span>
+                    <span>{language === 'en' ? 'Rate sensitivity is the primary driver for bank switching (38% of responses)' : 'Likmju jutība ir galvenais bankas maiņas dzinējspēks (38% atbilžu)'}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2" />
-                    <span>{language === 'en' 
-                      ? "Equal perception of banks being both 'fair & transparent' and 'too expensive' (38% each)"
-                      : "Vienāda banku uztvere kā 'godīgas un pārredzamas' un 'pārāk dārgas' (38% katrs)"
-                    }</span>
+                    <span>{language === 'en' ? "Equal perception of banks being both 'fair & transparent' and 'too expensive' (38% each)" : "Vienāda banku uztvere kā 'godīgas un pārredzamas' un 'pārāk dārgas' (38% katrs)"}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2" />
-                    <span>{language === 'en' 
-                      ? 'Swedbank maintains the strongest trust position with 43% of respondents'
-                      : 'Swedbank saglabā visrītāko uzticības pozīciju ar 43% respondentu'
-                    }</span>
+                    <span>{language === 'en' ? 'Swedbank maintains the strongest trust position with 43% of respondents' : 'Swedbank saglabā visrītāko uzticības pozīciju ar 43% respondentu'}</span>
                   </li>
                 </ul>
               </CardContent>
@@ -292,17 +244,14 @@ const FreeReports = () => {
                 <div>
                   <h4 className="font-semibold mb-4">{language === 'en' ? 'Age Distribution' : 'Vecuma sadalījums'}</h4>
                   <div className="h-64">
-                    <Bar
-                      data={{
-                        labels: ['25-34', '35-44', '18-24'],
-                        datasets: [{
-                          label: '%',
-                          data: [57, 29, 14],
-                          backgroundColor: ['#3b82f6', '#10b981', '#f59e0b'],
-                        }]
-                      }}
-                      options={chartOptions}
-                    />
+                    <Bar data={{
+                    labels: ['25-34', '35-44', '18-24'],
+                    datasets: [{
+                      label: '%',
+                      data: [57, 29, 14],
+                      backgroundColor: ['#3b82f6', '#10b981', '#f59e0b']
+                    }]
+                  }} options={chartOptions} />
                   </div>
                 </div>
 
@@ -310,16 +259,13 @@ const FreeReports = () => {
                 <div>
                   <h4 className="font-semibold mb-4">{language === 'en' ? 'Gender Distribution' : 'Dzimuma sadalījums'}</h4>
                   <div className="h-64">
-                    <Doughnut
-                      data={{
-                        labels: [language === 'en' ? 'Female' : 'Sievietes', language === 'en' ? 'Male' : 'Vīrieši'],
-                        datasets: [{
-                          data: [76, 24],
-                          backgroundColor: ['#ec4899', '#3b82f6'],
-                        }]
-                      }}
-                      options={pieOptions}
-                    />
+                    <Doughnut data={{
+                    labels: [language === 'en' ? 'Female' : 'Sievietes', language === 'en' ? 'Male' : 'Vīrieši'],
+                    datasets: [{
+                      data: [76, 24],
+                      backgroundColor: ['#ec4899', '#3b82f6']
+                    }]
+                  }} options={pieOptions} />
                   </div>
                 </div>
 
@@ -327,16 +273,13 @@ const FreeReports = () => {
                 <div>
                   <h4 className="font-semibold mb-4">{language === 'en' ? 'Income Distribution' : 'Ienākumu sadalījums'}</h4>
                   <div className="h-64">
-                    <Pie
-                      data={{
-                        labels: ['2000+ €', '1200–2000 €', '700–1200 €'],
-                        datasets: [{
-                          data: [43, 43, 14],
-                          backgroundColor: ['#10b981', '#3b82f6', '#f59e0b'],
-                        }]
-                      }}
-                      options={pieOptions}
-                    />
+                    <Pie data={{
+                    labels: ['2000+ €', '1200–2000 €', '700–1200 €'],
+                    datasets: [{
+                      data: [43, 43, 14],
+                      backgroundColor: ['#10b981', '#3b82f6', '#f59e0b']
+                    }]
+                  }} options={pieOptions} />
                   </div>
                 </div>
               </div>
@@ -353,17 +296,14 @@ const FreeReports = () => {
               </CardHeader>
               <CardContent>
                 <div className="h-64">
-                  <Bar
-                    data={{
-                      labels: ['Swedbank', 'Citadele', 'SEB', 'Luminor'],
-                      datasets: [{
-                        label: '%',
-                        data: [43, 24, 24, 9],
-                        backgroundColor: '#10b981',
-                      }]
-                    }}
-                    options={chartOptions}
-                  />
+                  <Bar data={{
+                  labels: ['Swedbank', 'Citadele', 'SEB', 'Luminor'],
+                  datasets: [{
+                    label: '%',
+                    data: [43, 24, 24, 9],
+                    backgroundColor: '#10b981'
+                  }]
+                }} options={chartOptions} />
                 </div>
               </CardContent>
             </Card>
@@ -380,7 +320,9 @@ const FreeReports = () => {
                       <span>35%</span>
                     </div>
                     <div className="w-full bg-muted rounded-full h-2">
-                      <div className="bg-red-500 h-2 rounded-full" style={{width: '35%'}}></div>
+                      <div className="bg-red-500 h-2 rounded-full" style={{
+                      width: '35%'
+                    }}></div>
                     </div>
                   </div>
                   <div>
@@ -389,7 +331,9 @@ const FreeReports = () => {
                       <span>28%</span>
                     </div>
                     <div className="w-full bg-muted rounded-full h-2">
-                      <div className="bg-red-500 h-2 rounded-full" style={{width: '28%'}}></div>
+                      <div className="bg-red-500 h-2 rounded-full" style={{
+                      width: '28%'
+                    }}></div>
                     </div>
                   </div>
                   <div>
@@ -398,7 +342,9 @@ const FreeReports = () => {
                       <span>25%</span>
                     </div>
                     <div className="w-full bg-muted rounded-full h-2">
-                      <div className="bg-red-500 h-2 rounded-full" style={{width: '25%'}}></div>
+                      <div className="bg-red-500 h-2 rounded-full" style={{
+                      width: '25%'
+                    }}></div>
                     </div>
                   </div>
                   <div>
@@ -407,7 +353,9 @@ const FreeReports = () => {
                       <span>12%</span>
                     </div>
                     <div className="w-full bg-muted rounded-full h-2">
-                      <div className="bg-red-500 h-2 rounded-full" style={{width: '12%'}}></div>
+                      <div className="bg-red-500 h-2 rounded-full" style={{
+                      width: '12%'
+                    }}></div>
                     </div>
                   </div>
                 </CardContent>
@@ -424,7 +372,9 @@ const FreeReports = () => {
                       <span>38%</span>
                     </div>
                     <div className="w-full bg-muted rounded-full h-2">
-                      <div className="bg-green-500 h-2 rounded-full" style={{width: '38%'}}></div>
+                      <div className="bg-green-500 h-2 rounded-full" style={{
+                      width: '38%'
+                    }}></div>
                     </div>
                   </div>
                   <div>
@@ -433,7 +383,9 @@ const FreeReports = () => {
                       <span>38%</span>
                     </div>
                     <div className="w-full bg-muted rounded-full h-2">
-                      <div className="bg-red-500 h-2 rounded-full" style={{width: '38%'}}></div>
+                      <div className="bg-red-500 h-2 rounded-full" style={{
+                      width: '38%'
+                    }}></div>
                     </div>
                   </div>
                   <div>
@@ -442,7 +394,9 @@ const FreeReports = () => {
                       <span>33%</span>
                     </div>
                     <div className="w-full bg-muted rounded-full h-2">
-                      <div className="bg-blue-500 h-2 rounded-full" style={{width: '33%'}}></div>
+                      <div className="bg-blue-500 h-2 rounded-full" style={{
+                      width: '33%'
+                    }}></div>
                     </div>
                   </div>
                   <div>
@@ -451,7 +405,9 @@ const FreeReports = () => {
                       <span>29%</span>
                     </div>
                     <div className="w-full bg-muted rounded-full h-2">
-                      <div className="bg-orange-500 h-2 rounded-full" style={{width: '29%'}}></div>
+                      <div className="bg-orange-500 h-2 rounded-full" style={{
+                      width: '29%'
+                    }}></div>
                     </div>
                   </div>
                 </CardContent>
@@ -469,19 +425,13 @@ const FreeReports = () => {
               </CardHeader>
               <CardContent>
                 <div className="h-64">
-                  <Doughnut
-                    data={{
-                      labels: [
-                        language === 'en' ? 'Mobile app' : 'Mobilā aplikācija', 
-                        language === 'en' ? 'Internet banking' : 'Internetbanka'
-                      ],
-                      datasets: [{
-                        data: [90, 10],
-                        backgroundColor: ['#3b82f6', '#64748b'],
-                      }]
-                    }}
-                    options={pieOptions}
-                  />
+                  <Doughnut data={{
+                  labels: [language === 'en' ? 'Mobile app' : 'Mobilā aplikācija', language === 'en' ? 'Internet banking' : 'Internetbanka'],
+                  datasets: [{
+                    data: [90, 10],
+                    backgroundColor: ['#3b82f6', '#64748b']
+                  }]
+                }} options={pieOptions} />
                 </div>
               </CardContent>
             </Card>
@@ -492,20 +442,13 @@ const FreeReports = () => {
               </CardHeader>
               <CardContent>
                 <div className="h-64">
-                  <Pie
-                    data={{
-                      labels: [
-                        language === 'en' ? 'Already using' : 'Jau izmanto', 
-                        language === 'en' ? 'Considering' : 'Apsver', 
-                        language === 'en' ? 'Not interested' : 'Neinteresē'
-                      ],
-                      datasets: [{
-                        data: [71, 19, 10],
-                        backgroundColor: ['#10b981', '#f59e0b', '#ef4444'],
-                      }]
-                    }}
-                    options={pieOptions}
-                  />
+                  <Pie data={{
+                  labels: [language === 'en' ? 'Already using' : 'Jau izmanto', language === 'en' ? 'Considering' : 'Apsver', language === 'en' ? 'Not interested' : 'Neinteresē'],
+                  datasets: [{
+                    data: [71, 19, 10],
+                    backgroundColor: ['#10b981', '#f59e0b', '#ef4444']
+                  }]
+                }} options={pieOptions} />
                 </div>
               </CardContent>
             </Card>
@@ -521,37 +464,28 @@ const FreeReports = () => {
               </CardHeader>
               <CardContent>
                 <div className="h-64">
-                  <Bar
-                    data={{
-                      labels: [
-                        language === 'en' ? 'Higher savings rates' : 'Augstākas uzkrājumu likmes',
-                        language === 'en' ? 'Lower fees' : 'Zemākas komisijas',
-                        language === 'en' ? 'Better service' : 'Labāks serviss',
-                        language === 'en' ? 'Better app' : 'Labāka aplikācija',
-                        language === 'en' ? 'More investments' : 'Vairāk investīciju'
-                      ],
-                      datasets: [{
-                        label: '%',
-                        data: [38, 29, 19, 14, 10],
-                        backgroundColor: '#3b82f6',
-                      }]
-                    }}
-                    options={{
-                      ...chartOptions,
-                      indexAxis: 'y' as const,
-                      scales: {
-                        x: {
-                          beginAtZero: true,
-                          max: 50,
-                          ticks: {
-                            callback: function(value: any) {
-                              return value + '%';
-                            },
-                          },
-                        },
-                      },
-                    }}
-                  />
+                  <Bar data={{
+                  labels: [language === 'en' ? 'Higher savings rates' : 'Augstākas uzkrājumu likmes', language === 'en' ? 'Lower fees' : 'Zemākas komisijas', language === 'en' ? 'Better service' : 'Labāks serviss', language === 'en' ? 'Better app' : 'Labāka aplikācija', language === 'en' ? 'More investments' : 'Vairāk investīciju'],
+                  datasets: [{
+                    label: '%',
+                    data: [38, 29, 19, 14, 10],
+                    backgroundColor: '#3b82f6'
+                  }]
+                }} options={{
+                  ...chartOptions,
+                  indexAxis: 'y' as const,
+                  scales: {
+                    x: {
+                      beginAtZero: true,
+                      max: 50,
+                      ticks: {
+                        callback: function (value: any) {
+                          return value + '%';
+                        }
+                      }
+                    }
+                  }
+                }} />
                 </div>
               </CardContent>
             </Card>
@@ -565,38 +499,23 @@ const FreeReports = () => {
                   <ul className="space-y-3 text-sm">
                     <li className="flex items-start gap-3">
                       <AlertCircle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
-                      <span>{language === 'en' 
-                        ? 'Lacking functionality in mobile apps (advanced search, payment features)'
-                        : 'Trūkst funkcionalitātes mobilajās aplikācijās (izvērstā meklēšana, maksājumu funkcijas)'
-                      }</span>
+                      <span>{language === 'en' ? 'Lacking functionality in mobile apps (advanced search, payment features)' : 'Trūkst funkcionalitātes mobilajās aplikācijās (izvērstā meklēšana, maksājumu funkcijas)'}</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <AlertCircle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
-                      <span>{language === 'en' 
-                        ? 'High fees and expensive services compared to alternatives'
-                        : 'Augstas komisijas un dārgi pakalpojumi salīdzinājumā ar alternatīvām'
-                      }</span>
+                      <span>{language === 'en' ? 'High fees and expensive services compared to alternatives' : 'Augstas komisijas un dārgi pakalpojumi salīdzinājumā ar alternatīvām'}</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <AlertCircle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
-                      <span>{language === 'en' 
-                        ? 'Slow customer service response times'
-                        : 'Lēni klientu servisa atbildes laiki'
-                      }</span>
+                      <span>{language === 'en' ? 'Slow customer service response times' : 'Lēni klientu servisa atbildes laiki'}</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <AlertCircle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
-                      <span>{language === 'en' 
-                        ? 'Outdated technology and user interfaces'
-                        : 'Novecojusi tehnoloģija un lietotāju saskarnes'
-                      }</span>
+                      <span>{language === 'en' ? 'Outdated technology and user interfaces' : 'Novecojusi tehnoloģija un lietotāju saskarnes'}</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <AlertCircle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
-                      <span>{language === 'en' 
-                        ? 'Limited investment and savings options with competitive rates'
-                        : 'Ierobežotas investīciju un uzkrājumu iespējas ar konkurētspējīgām likmēm'
-                      }</span>
+                      <span>{language === 'en' ? 'Limited investment and savings options with competitive rates' : 'Ierobežotas investīciju un uzkrājumu iespējas ar konkurētspējīgām likmēm'}</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -608,22 +527,13 @@ const FreeReports = () => {
                 </CardHeader>
                 <CardContent className="space-y-4 text-sm">
                   <p>
-                    {language === 'en' 
-                      ? 'The survey reveals a predominantly digital-first banking preference among respondents, with mobile applications being the overwhelmingly preferred banking channel. This demographic shows significant adoption of fintech alternatives, indicating potential market disruption in traditional banking services.'
-                      : 'Aptauja atklāj galvenokārt digitālu banku pakalpojumu preferences respondentu vidū, ar mobilajām aplikācijām kā pārāk dominējošo banku kanālu. Šī demogrāfiskā grupa uzrāda ievērojamu fintech alternatīvu pieņemšanu, norādot uz potenciālu tirgus traucējumu tradicionālajos banku pakalpojumos.'
-                    }
+                    {language === 'en' ? 'The survey reveals a predominantly digital-first banking preference among respondents, with mobile applications being the overwhelmingly preferred banking channel. This demographic shows significant adoption of fintech alternatives, indicating potential market disruption in traditional banking services.' : 'Aptauja atklāj galvenokārt digitālu banku pakalpojumu preferences respondentu vidū, ar mobilajām aplikācijām kā pārāk dominējošo banku kanālu. Šī demogrāfiskā grupa uzrāda ievērojamu fintech alternatīvu pieņemšanu, norādot uz potenciālu tirgus traucējumu tradicionālajos banku pakalpojumos.'}
                   </p>
                   <p>
-                    {language === 'en' 
-                      ? 'Trust distribution shows market concentration with Swedbank maintaining leadership position, while perception data reveals polarized views on banking services - customers simultaneously view banks as transparent yet expensive.'
-                      : 'Uzticības sadalījums rāda tirgus koncentrāciju ar Swedbank, kas saglabā līdera pozīciju, kamēr uztveres dati atklāj polarizētus viedokļus par banku pakalpojumiem - klienti vienlaikus uzskata bankas par pārredzamām, tomēr dārgām.'
-                    }
+                    {language === 'en' ? 'Trust distribution shows market concentration with Swedbank maintaining leadership position, while perception data reveals polarized views on banking services - customers simultaneously view banks as transparent yet expensive.' : 'Uzticības sadalījums rāda tirgus koncentrāciju ar Swedbank, kas saglabā līdera pozīciju, kamēr uztveres dati atklāj polarizētus viedokļus par banku pakalpojumiem - klienti vienlaikus uzskata bankas par pārredzamām, tomēr dārgām.'}
                   </p>
                   <p>
-                    {language === 'en' 
-                      ? 'Rate sensitivity emerges as the primary switching motivator, suggesting that competitive pricing strategies could effectively influence customer loyalty and acquisition in this market segment.'
-                      : 'Likmju jutība parādās kā galvenais maiņas motivators, norādot, ka konkurētspējīgas cenu stratēģijas varētu efektīvi ietekmēt klientu lojalitāti un piesaisti šajā tirgus segmentā.'
-                    }
+                    {language === 'en' ? 'Rate sensitivity emerges as the primary switching motivator, suggesting that competitive pricing strategies could effectively influence customer loyalty and acquisition in this market segment.' : 'Likmju jutība parādās kā galvenais maiņas motivators, norādot, ka konkurētspējīgas cenu stratēģijas varētu efektīvi ietekmēt klientu lojalitāti un piesaisti šajā tirgus segmentā.'}
                   </p>
                 </CardContent>
               </Card>
@@ -642,10 +552,7 @@ const FreeReports = () => {
                     {language === 'en' ? 'Download Full Report' : 'Lejupielādēt pilno atskaiti'}
                   </h3>
                   <p className="text-muted-foreground mb-6">
-                    {language === 'en' 
-                      ? "Get the complete banking survey report with detailed analysis, methodology, and additional insights."
-                      : "Iegūstiet pilnu banku aptaujas atskaiti ar detalizētu analīzi, metodoloģiju un papildu ieskaitiem."
-                    }
+                    {language === 'en' ? "Get the complete banking survey report with detailed analysis, methodology, and additional insights." : "Iegūstiet pilnu banku aptaujas atskaiti ar detalizētu analīzi, metodoloģiju un papildu ieskaitiem."}
                   </p>
                   <div className="grid grid-cols-3 gap-4 text-center">
                     <div className="p-3 bg-background/50 rounded-lg">
@@ -665,29 +572,13 @@ const FreeReports = () => {
                 
                 <div className="bg-background/50 p-6 rounded-lg">
                   <div className="space-y-4">
-                    <Input
-                      type="email"
-                      placeholder={language === 'en' ? "Your email address" : "Jūsu e-pasta adrese"}
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <Button
-                      onClick={() => handleDownloadRequest(language === 'en' ? "Banks in Latvia - Autumn 2025" : "Bankas Latvijā - Rudens 2025")}
-                      disabled={isSubmitting}
-                      className="w-full"
-                      size="lg"
-                    >
+                    <Input type="email" placeholder={language === 'en' ? "Your email address" : "Jūsu e-pasta adrese"} value={email} onChange={e => setEmail(e.target.value)} />
+                    <Button onClick={() => handleDownloadRequest(language === 'en' ? "Banks in Latvia - Autumn 2025" : "Bankas Latvijā - Rudens 2025")} disabled={isSubmitting} className="w-full" size="lg">
                       <Mail className="mr-2 h-4 w-4" />
-                      {isSubmitting 
-                        ? (language === 'en' ? 'Sending...' : 'Sūta...')
-                        : (language === 'en' ? 'Get Download Link' : 'Saņemt lejupielādes saiti')
-                      }
+                      {isSubmitting ? language === 'en' ? 'Sending...' : 'Sūta...' : language === 'en' ? 'Get Download Link' : 'Saņemt lejupielādes saiti'}
                     </Button>
                     <p className="text-xs text-muted-foreground text-center">
-                      {language === 'en' 
-                        ? "We respect your privacy. No spam, unsubscribe anytime."
-                        : "Mēs respektējam jūsu privātumu. Nekāda mēstule, atteikties jebkurā laikā."
-                      }
+                      {language === 'en' ? "We respect your privacy. No spam, unsubscribe anytime." : "Mēs respektējam jūsu privātumu. Nekāda mēstule, atteikties jebkurā laikā."}
                     </p>
                   </div>
                 </div>
@@ -704,10 +595,7 @@ const FreeReports = () => {
             <div>
               <h3 className="font-semibold mb-4">{language === 'en' ? 'About This Survey' : 'Par šo aptauju'}</h3>
               <p className="text-muted-foreground mb-4">
-                {language === 'en' 
-                  ? "Consumer banking preferences and behavior analysis conducted in Latvia. Data collected through structured questionnaire methodology."
-                  : "Patērētāju banku preferences un uzvedības analīze, kas veikta Latvijā. Dati savākti ar strukturētas anketas metodoloģiju."
-                }
+                {language === 'en' ? "Consumer banking preferences and behavior analysis conducted in Latvia. Data collected through structured questionnaire methodology." : "Patērētāju banku preferences un uzvedības analīze, kas veikta Latvijā. Dati savākti ar strukturētas anketas metodoloģiju."}
               </p>
             </div>
             <div>
@@ -725,8 +613,6 @@ const FreeReports = () => {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default FreeReports;
