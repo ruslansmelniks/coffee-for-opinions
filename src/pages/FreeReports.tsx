@@ -148,34 +148,7 @@ const FreeReports = () => {
                   </Link>
                 </div>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <p className="text-muted-foreground">
-                    {language === 'en' ? 'Comprehensive analysis of consumer banking preferences and digital behavior in Latvia. This report reveals key insights into mobile banking adoption, fintech usage, and trust distribution among major banking institutions.' : 'Visaptverošā patērētāju banku preferenču un digitālās uzvedības analīze Latvijā. Šī atskaite atklāj galvenos ieskatus par mobilo banku pieņemšanu, fintech izmantošanu un uzticības sadali starp galvenajām banku iestādēm.'}
-                  </p>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="text-center p-4 bg-muted rounded-lg">
-                      <div className="text-2xl font-bold text-primary">90%</div>
-                      <div className="text-sm text-muted-foreground">
-                        {language === 'en' ? 'Mobile Preference' : 'Mobilās preferences'}
-                      </div>
-                    </div>
-                    <div className="text-center p-4 bg-muted rounded-lg">
-                      <div className="text-2xl font-bold text-primary">71%</div>
-                      <div className="text-sm text-muted-foreground">
-                        {language === 'en' ? 'Fintech Adoption' : 'Fintech pieņemšana'}
-                      </div>
-                    </div>
-                    <div className="text-center p-4 bg-muted rounded-lg">
-                      <div className="text-2xl font-bold text-primary">43%</div>
-                      <div className="text-sm text-muted-foreground">
-                        {language === 'en' ? 'Trust Swedbank' : 'Uzticas Swedbank'}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
+              
             </Card>
           </div>
         </section>
@@ -187,39 +160,12 @@ const FreeReports = () => {
 
         {/* Coming Soon */}
         <section className="mb-16">
-          <Card>
-            <CardHeader>
-              <CardTitle>
-                {language === 'en' ? 'More Reports Coming Soon' : 'Drīzumā vairāk atskaišu'}
-              </CardTitle>
-              <CardDescription>
-                {language === 'en' ? 'We are continuously conducting research to provide you with the latest market insights.' : 'Mēs nepārtraukti veicam pētījumus, lai nodrošinātu jums jaunākos tirgus ieskatus.'}
-              </CardDescription>
-            </CardHeader>
-            
-          </Card>
+          
         </section>
 
         {/* Footer Section */}
         <footer className="text-center">
-          <Card>
-            <CardHeader>
-              <CardTitle>
-                {language === 'en' ? 'About Our Research' : 'Par mūsu pētījumiem'}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground mb-4">
-                {language === 'en' ? 'Consumer preferences and behavior analysis conducted in Latvia. Data collected through structured questionnaire methodology.' : 'Patērētāju preferenču un uzvedības analīze, kas veikta Latvijā. Dati savākti, izmantojot strukturētu anketu metodoloģiju.'}
-              </p>
-              <div>
-                <p className="font-semibold text-foreground">
-                  {language === 'en' ? 'For more information:' : 'Sīkākai informācijai:'}
-                </p>
-                <p className="text-muted-foreground">📧 ruslans@coffeedata.lv</p>
-              </div>
-            </CardContent>
-          </Card>
+          
         </footer>
       </main>
 
