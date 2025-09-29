@@ -116,20 +116,20 @@ const FreeReports = () => {
           </h3>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Featured Report */}
-            <Card className="lg:col-span-2">
+            {/* Featured Banking Report */}
+            <Card>
               <CardHeader>
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                <div className="flex flex-col gap-4">
                   <div className="flex-1">
                     <Link to="/latvia-banking-market-research-2025" className="group">
-                      <CardTitle className="text-2xl mb-2 hover:text-primary transition-colors cursor-pointer">
+                      <CardTitle className="text-xl mb-2 hover:text-primary transition-colors cursor-pointer">
                         {language === 'en' ? 'Latvia Banking Market Research 2025' : 'Latvijas banku tirgus pētījums 2025'}
                       </CardTitle>
                     </Link>
-                    <CardDescription className="text-lg">
+                    <CardDescription className="text-base mb-4">
                       {language === 'en' ? 'Consumer Banking Preferences & Behavior Analysis' : 'Patērētāju banku preferences un uzvedības analīze'}
                     </CardDescription>
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-4 text-sm text-muted-foreground">
+                    <div className="flex flex-col gap-2 mb-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
                         <span>{language === 'en' ? 'September 2025' : 'Septembris 2025'}</span>
@@ -140,15 +140,48 @@ const FreeReports = () => {
                       </div>
                     </div>
                   </div>
-                  <Link to="/latvia-banking-market-research-2025" className="w-full sm:w-auto">
-                    <Button className="w-full sm:w-auto">
+                  <Link to="/latvia-banking-market-research-2025" className="w-full">
+                    <Button className="w-full">
                       {language === 'en' ? 'View Report' : 'Skatīt atskaiti'}
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   </Link>
                 </div>
               </CardHeader>
-              
+            </Card>
+
+            {/* Quick Loans Report */}
+            <Card>
+              <CardHeader>
+                <div className="flex flex-col gap-4">
+                  <div className="flex-1">
+                    <Link to="/quick-loans-latvia-market-research-2025" className="group">
+                      <CardTitle className="text-xl mb-2 hover:text-primary transition-colors cursor-pointer">
+                        {language === 'en' ? 'Quick Loans in Latvia Market Research 2025' : 'Ātro kredītu Latvijā tirgus pētījums 2025'}
+                      </CardTitle>
+                    </Link>
+                    <CardDescription className="text-base mb-4">
+                      {language === 'en' ? 'Consumer Behavior & Market Analysis' : 'Patērētāju uzvedības un tirgus analīze'}
+                    </CardDescription>
+                    <div className="flex flex-col gap-2 mb-4 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        <span>{language === 'en' ? 'September 2025' : 'Septembris 2025'}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Users className="w-4 h-4" />
+                        <span>{language === 'en' ? 'Market Research' : 'Tirgus pētījums'}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <Link to="/quick-loans-latvia-market-research-2025" className="w-full">
+                    <Button className="w-full">
+                      {language === 'en' ? 'View Report' : 'Skatīt atskaiti'}
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </Link>
+                </div>
+              </CardHeader>
             </Card>
           </div>
         </section>
