@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import coffeeLogoUrl from "@/assets/caffeine-logo.png";
-import { ArrowLeft, Home } from "lucide-react";
+import { ArrowLeft, Home, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { HeaderNavigation } from "@/components/HeaderNavigation";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
@@ -474,6 +474,28 @@ const LatvianBankingSurvey = () => {
             </CardContent>
           </Card>
         </footer>
+
+        {/* Publish Your Survey Section */}
+        <section className="mt-16 mb-8">
+          <div className="bg-gradient-to-br from-primary/5 via-background to-primary/10 rounded-2xl p-8 text-center">
+            <div className="max-w-2xl mx-auto">
+              <h3 className="text-2xl font-bold text-foreground mb-4">
+                Want a similar report from your survey?
+              </h3>
+              <p className="text-lg text-muted-foreground mb-6">
+                Up to 100 responses in 24 hours. Professional market research insights from your own survey data.
+              </p>
+              <Button 
+                size="lg" 
+                className="font-medium px-8 py-3"
+                onClick={() => window.open('mailto:ruslans@coffeedata.lv', '_blank')}
+              >
+                <Plus className="mr-2 h-5 w-5" />
+                Publish Your Survey
+              </Button>
+            </div>
+          </div>
+        </section>
       </main>
     </div>;
 };

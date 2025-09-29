@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
-import { Home } from "lucide-react";
+import { Home, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { HeaderNavigation } from "@/components/HeaderNavigation";
 import { Footer } from "@/components/Footer";
@@ -819,6 +819,34 @@ const QuickLoansLatvia = () => {
           </div>
         )}
       </main>
+
+      {/* Publish Your Survey Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+        <div className="bg-gradient-to-br from-primary/5 via-background to-primary/10 rounded-2xl p-8 text-center">
+          <div className="max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-foreground mb-4">
+              {language === 'en' 
+                ? 'Want a similar report from your survey?' 
+                : 'Vēlaties līdzīgu atskaiti no savas aptaujas?'
+              }
+            </h3>
+            <p className="text-lg text-muted-foreground mb-6">
+              {language === 'en'
+                ? 'Up to 100 responses in 24 hours. Professional market research insights from your own survey data.'
+                : 'Līdz 100 atbildēm 24 stundās. Profesionāli tirgus pētījumu ieskati no jūsu aptaujas datiem.'
+              }
+            </p>
+            <Button 
+              size="lg" 
+              className="font-medium px-8 py-3"
+              onClick={() => window.open('mailto:ruslans@coffeedata.lv', '_blank')}
+            >
+              <Plus className="mr-2 h-5 w-5" />
+              {language === 'en' ? 'Publish Your Survey' : 'Publicēt aptauju'}
+            </Button>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

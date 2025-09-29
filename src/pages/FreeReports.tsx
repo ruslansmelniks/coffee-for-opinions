@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Plus } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
-import { ArrowRight, Download, Calendar, Users, Home } from "lucide-react";
+import { ArrowRight, Calendar, Users, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 import { HeaderNavigation } from "@/components/HeaderNavigation";
 import { Footer } from "@/components/Footer";
@@ -18,116 +17,8 @@ const FreeReports = () => {
   const {
     toast
   } = useToast();
-  const [bankingFormData, setBankingFormData] = useState({
-    name: '',
-    email: '',
-    company: ''
-  });
-  const [loansFormData, setLoansFormData] = useState({
-    name: '',
-    email: '',
-    company: ''
-  });
+  const [publishEmail, setPublishEmail] = useState('');
 
-  const handleBankingInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setBankingFormData({
-      ...bankingFormData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleLoansInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLoansFormData({
-      ...loansFormData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleBankingSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('https://hook.eu2.make.com/urdo76dj7lsyigol9fem9ea49otjmog5', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          ...bankingFormData,
-          report: 'Latvia Banking Market Research 2025',
-          timestamp: new Date().toISOString(),
-          source: 'free_reports_banking',
-          page: window.location.href
-        })
-      });
-      if (response.ok) {
-        toast({
-          title: language === 'en' ? "Thank you!" : "Paldies!",
-          description: language === 'en' ? "We'll send you the download link shortly." : "Mēs drīzumā nosūtīsim jums lejupielādes saiti."
-        });
-        setBankingFormData({
-          name: '',
-          email: '',
-          company: ''
-        });
-      } else {
-        toast({
-          title: language === 'en' ? "Error" : "Kļūda",
-          description: language === 'en' ? "Something went wrong. Please try again." : "Kaut kas nogāja greizi. Lūdzu, mēģiniet vēlreiz.",
-          variant: "destructive"
-        });
-      }
-    } catch (error) {
-      console.error('Error submitting banking form:', error);
-      toast({
-        title: language === 'en' ? "Error" : "Kļūda",
-        description: language === 'en' ? "Something went wrong. Please try again." : "Kaut kas nogāja greizi. Lūdzu, mēģiniet vēlreiz.",
-        variant: "destructive"
-      });
-    }
-  };
-
-  const handleLoansSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('https://hook.eu2.make.com/urdo76dj7lsyigol9fem9ea49otjmog5', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          ...loansFormData,
-          report: 'Quick Loans in Latvia Market Research 2025',
-          timestamp: new Date().toISOString(),
-          source: 'free_reports_loans',
-          page: window.location.href
-        })
-      });
-      if (response.ok) {
-        toast({
-          title: language === 'en' ? "Thank you!" : "Paldies!",
-          description: language === 'en' ? "We'll send you the download link shortly." : "Mēs drīzumā nosūtīsim jums lejupielādes saiti."
-        });
-        setLoansFormData({
-          name: '',
-          email: '',
-          company: ''
-        });
-      } else {
-        toast({
-          title: language === 'en' ? "Error" : "Kļūda",
-          description: language === 'en' ? "Something went wrong. Please try again." : "Kaut kas nogāja greizi. Lūdzu, mēģiniet vēlreiz.",
-          variant: "destructive"
-        });
-      }
-    } catch (error) {
-      console.error('Error submitting loans form:', error);
-      toast({
-        title: language === 'en' ? "Error" : "Kļūda",
-        description: language === 'en' ? "Something went wrong. Please try again." : "Kaut kas nogāja greizi. Lūdzu, mēģiniet vēlreiz.",
-        variant: "destructive"
-      });
-    }
-  };
   return <div className="min-h-screen bg-background">
       <HeaderNavigation />
       
@@ -198,65 +89,13 @@ const FreeReports = () => {
                     </div>
                   </div>
                   <Link to="/latvia-banking-market-research-2025" className="w-full">
-                    <Button className="w-full mb-4">
+                    <Button className="w-full">
                       {language === 'en' ? 'View Report' : 'Skatīt atskaiti'}
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   </Link>
                 </div>
               </CardHeader>
-              <CardContent>
-                <div className="border-t pt-4">
-                  <h4 className="font-semibold mb-3 text-sm">
-                    {language === 'en' ? 'Get Free Access' : 'Saņemt bezmaksas piekļuvi'}
-                  </h4>
-                  <form onSubmit={handleBankingSubmit} className="space-y-3">
-                    <div>
-                      <Label htmlFor="banking-name" className="text-xs">
-                        {language === 'en' ? 'Name' : 'Vārds'}
-                      </Label>
-                      <Input
-                        id="banking-name"
-                        name="name"
-                        value={bankingFormData.name}
-                        onChange={handleBankingInputChange}
-                        required
-                        className="h-8 text-sm"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="banking-email" className="text-xs">
-                        {language === 'en' ? 'Email' : 'E-pasts'}
-                      </Label>
-                      <Input
-                        id="banking-email"
-                        name="email"
-                        type="email"
-                        value={bankingFormData.email}
-                        onChange={handleBankingInputChange}
-                        required
-                        className="h-8 text-sm"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="banking-company" className="text-xs">
-                        {language === 'en' ? 'Company' : 'Uzņēmums'}
-                      </Label>
-                      <Input
-                        id="banking-company"
-                        name="company"
-                        value={bankingFormData.company}
-                        onChange={handleBankingInputChange}
-                        className="h-8 text-sm"
-                      />
-                    </div>
-                    <Button type="submit" className="w-full h-8 text-sm">
-                      <Download className="w-3 h-3 mr-1" />
-                      {language === 'en' ? 'Request Download' : 'Pieprasīt lejupielādi'}
-                    </Button>
-                  </form>
-                </div>
-              </CardContent>
             </Card>
 
             {/* Quick Loans Report */}
@@ -284,72 +123,40 @@ const FreeReports = () => {
                     </div>
                   </div>
                   <Link to="/quick-loans-latvia-market-research-2025" className="w-full">
-                    <Button className="w-full mb-4">
+                    <Button className="w-full">
                       {language === 'en' ? 'View Report' : 'Skatīt atskaiti'}
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   </Link>
                 </div>
               </CardHeader>
-              <CardContent>
-                <div className="border-t pt-4">
-                  <h4 className="font-semibold mb-3 text-sm">
-                    {language === 'en' ? 'Get Free Access' : 'Saņemt bezmaksas piekļuvi'}
-                  </h4>
-                  <form onSubmit={handleLoansSubmit} className="space-y-3">
-                    <div>
-                      <Label htmlFor="loans-name" className="text-xs">
-                        {language === 'en' ? 'Name' : 'Vārds'}
-                      </Label>
-                      <Input
-                        id="loans-name"
-                        name="name"
-                        value={loansFormData.name}
-                        onChange={handleLoansInputChange}
-                        required
-                        className="h-8 text-sm"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="loans-email" className="text-xs">
-                        {language === 'en' ? 'Email' : 'E-pasts'}
-                      </Label>
-                      <Input
-                        id="loans-email"
-                        name="email"
-                        type="email"
-                        value={loansFormData.email}
-                        onChange={handleLoansInputChange}
-                        required
-                        className="h-8 text-sm"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="loans-company" className="text-xs">
-                        {language === 'en' ? 'Company' : 'Uzņēmums'}
-                      </Label>
-                      <Input
-                        id="loans-company"
-                        name="company"
-                        value={loansFormData.company}
-                        onChange={handleLoansInputChange}
-                        className="h-8 text-sm"
-                      />
-                    </div>
-                    <Button type="submit" className="w-full h-8 text-sm">
-                      <Download className="w-3 h-3 mr-1" />
-                      {language === 'en' ? 'Request Download' : 'Pieprasīt lejupielādi'}
-                    </Button>
-                  </form>
-                </div>
-              </CardContent>
             </Card>
           </div>
         </section>
 
-        {/* Download Section */}
+        {/* Publish Your Survey Section */}
         <section className="mb-16">
-          
+          <div className="bg-gradient-to-br from-primary/5 via-background to-primary/10 rounded-2xl p-8 text-center">
+            <div className="max-w-2xl mx-auto">
+              <h3 className="text-2xl font-bold text-foreground mb-4">
+                {language === 'en' ? 'Publish Your Survey' : 'Publicējiet savu aptauju'}
+              </h3>
+              <p className="text-lg text-muted-foreground mb-6">
+                {language === 'en' 
+                  ? 'Have a survey you want to share? We can help you reach a wider audience and generate professional insights from your data.'
+                  : 'Vai jums ir aptauja, ko vēlaties dalīt? Mēs varam palīdzēt jums sasniegt plašāku auditoriju un ģenerēt profesionālus ieskatus no jūsu datiem.'
+                }
+              </p>
+              <Button 
+                size="lg" 
+                className="font-medium px-8 py-3"
+                onClick={() => window.open('mailto:ruslans@coffeedata.lv', '_blank')}
+              >
+                <Plus className="mr-2 h-5 w-5" />
+                {language === 'en' ? 'Publish Your Survey' : 'Publicēt aptauju'}
+              </Button>
+            </div>
+          </div>
         </section>
 
         {/* Coming Soon */}
