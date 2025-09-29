@@ -317,7 +317,6 @@ const QuickLoansLatvia = () => {
                       dataKey="value" 
                       fill="#2563eb" 
                       radius={[0, 4, 4, 0]}
-                      minPointSize={5}
                     />
                   </BarChart>
                 </ResponsiveContainer>
@@ -351,7 +350,6 @@ const QuickLoansLatvia = () => {
                       dataKey="value" 
                       fill="#2563eb" 
                       radius={[0, 4, 4, 0]}
-                      minPointSize={5}
                     />
                   </BarChart>
                 </ResponsiveContainer>
@@ -385,7 +383,6 @@ const QuickLoansLatvia = () => {
                       dataKey="value" 
                       fill="#2563eb" 
                       radius={[0, 4, 4, 0]}
-                      minPointSize={5}
                     />
                   </BarChart>
                 </ResponsiveContainer>
@@ -434,7 +431,6 @@ const QuickLoansLatvia = () => {
                     dataKey="value" 
                     fill="#2563eb" 
                     radius={[0, 4, 4, 0]}
-                    minPointSize={5}
                   />
                 </BarChart>
               </ResponsiveContainer>
@@ -475,7 +471,6 @@ const QuickLoansLatvia = () => {
                       dataKey="value" 
                       fill="#8b5cf6" 
                       radius={[0, 4, 4, 0]}
-                      minPointSize={5}
                     />
                   </BarChart>
                 </ResponsiveContainer>
@@ -509,7 +504,6 @@ const QuickLoansLatvia = () => {
                       dataKey="value" 
                       fill="#f97316" 
                       radius={[0, 4, 4, 0]}
-                      minPointSize={5}
                     />
                   </BarChart>
                 </ResponsiveContainer>
@@ -544,7 +538,6 @@ const QuickLoansLatvia = () => {
                     dataKey="value" 
                     fill="#ef4444" 
                     radius={[0, 4, 4, 0]}
-                    minPointSize={5}
                   />
                 </BarChart>
               </ResponsiveContainer>
@@ -592,7 +585,6 @@ const QuickLoansLatvia = () => {
                     dataKey="value" 
                     fill="#10b981" 
                     radius={[0, 4, 4, 0]}
-                    minPointSize={5}
                   />
                 </BarChart>
               </ResponsiveContainer>
@@ -626,7 +618,6 @@ const QuickLoansLatvia = () => {
                     dataKey="value" 
                     fill="#ef4444" 
                     radius={[0, 4, 4, 0]}
-                    minPointSize={5}
                   />
                 </BarChart>
               </ResponsiveContainer>
