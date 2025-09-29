@@ -286,13 +286,13 @@ const QuickLoansLatvia = () => {
                 <h3 className="text-xl font-bold text-foreground mb-6">
                   {language === 'en' ? 'Age Distribution' : 'Vecuma sadalījums'}
                 </h3>
-                <ResponsiveContainer width="100%" height={180}>
-                  <BarChart data={ageData} layout="horizontal" margin={{ left: 0, right: 30 }}>
+                <ResponsiveContainer width="100%" height={220}>
+                  <BarChart data={ageData} layout="horizontal" margin={{ left: 0, right: 30, top: 20, bottom: 20 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
                     <XAxis type="number" domain={[0, 80]} tick={{ fill: '#64748b', fontSize: 12 }} />
                     <YAxis dataKey="label" type="category" width={60} tick={{ fill: '#64748b', fontSize: 12 }} />
                     <Tooltip content={<CustomTooltip />} />
-                    <Bar dataKey="value" fill="#2563eb" radius={[0, 4, 4, 0]} />
+                    <Bar dataKey="value" fill="#2563eb" radius={[0, 4, 4, 0]} barSize={40} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -302,13 +302,13 @@ const QuickLoansLatvia = () => {
                 <h3 className="text-xl font-bold text-foreground mb-6">
                   {language === 'en' ? 'Gender Distribution' : 'Dzimuma sadalījums'}
                 </h3>
-                <ResponsiveContainer width="100%" height={180}>
-                  <BarChart data={genderData} layout="horizontal" margin={{ left: 0, right: 30 }}>
+                <ResponsiveContainer width="100%" height={200}>
+                  <BarChart data={genderData} layout="horizontal" margin={{ left: 0, right: 30, top: 20, bottom: 20 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
                     <XAxis type="number" domain={[0, 60]} tick={{ fill: '#64748b', fontSize: 12 }} />
                     <YAxis dataKey="label" type="category" width={80} tick={{ fill: '#64748b', fontSize: 12 }} />
                     <Tooltip content={<CustomTooltip />} />
-                    <Bar dataKey="value" fill="#2563eb" radius={[0, 4, 4, 0]} />
+                    <Bar dataKey="value" fill="#2563eb" radius={[0, 4, 4, 0]} barSize={50} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -318,13 +318,13 @@ const QuickLoansLatvia = () => {
                 <h3 className="text-xl font-bold text-foreground mb-6">
                   {language === 'en' ? 'Geographic Distribution' : 'Ģeogrāfiskais sadalījums'}
                 </h3>
-                <ResponsiveContainer width="100%" height={180}>
-                  <BarChart data={locationData} layout="horizontal" margin={{ left: 0, right: 30 }}>
+                <ResponsiveContainer width="100%" height={220}>
+                  <BarChart data={locationData} layout="horizontal" margin={{ left: 0, right: 30, top: 20, bottom: 20 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
                     <XAxis type="number" domain={[0, 90]} tick={{ fill: '#64748b', fontSize: 12 }} />
                     <YAxis dataKey="label" type="category" width={80} tick={{ fill: '#64748b', fontSize: 12 }} />
                     <Tooltip content={<CustomTooltip />} />
-                    <Bar dataKey="value" fill="#2563eb" radius={[0, 4, 4, 0]} />
+                    <Bar dataKey="value" fill="#2563eb" radius={[0, 4, 4, 0]} barSize={40} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -349,13 +349,13 @@ const QuickLoansLatvia = () => {
               <h3 className="text-xl font-bold text-foreground mb-6">
                 {language === 'en' ? 'Most Used Providers' : 'Visbiežāk izmantotie pakalpojumu sniedzēji'}
               </h3>
-              <ResponsiveContainer width="100%" height={280}>
-                <BarChart data={providersData} layout="horizontal" margin={{ left: 0, right: 30 }}>
+              <ResponsiveContainer width="100%" height={320}>
+                <BarChart data={providersData} layout="horizontal" margin={{ left: 0, right: 30, top: 20, bottom: 20 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
                   <XAxis type="number" domain={[0, 30]} tick={{ fill: '#64748b', fontSize: 12 }} />
                   <YAxis dataKey="label" type="category" width={80} tick={{ fill: '#64748b', fontSize: 12 }} />
                   <Tooltip content={<CustomTooltip />} />
-                  <Bar dataKey="value" fill="#2563eb" radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="value" fill="#2563eb" radius={[0, 4, 4, 0]} barSize={35} />
                 </BarChart>
               </ResponsiveContainer>
               <p className="text-sm text-muted-foreground mt-4 bg-slate-50 p-3 rounded">
@@ -372,13 +372,13 @@ const QuickLoansLatvia = () => {
                 <h3 className="text-xl font-bold text-foreground mb-6">
                   {language === 'en' ? 'Loan Frequency' : 'Kredīta biežums'}
                 </h3>
-                <ResponsiveContainer width="100%" height={180}>
-                  <BarChart data={frequencyData} layout="horizontal" margin={{ left: 0, right: 30 }}>
+                <ResponsiveContainer width="100%" height={220}>
+                  <BarChart data={frequencyData} layout="horizontal" margin={{ left: 0, right: 30, top: 20, bottom: 20 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
                     <XAxis type="number" domain={[0, 60]} tick={{ fill: '#64748b', fontSize: 12 }} />
                     <YAxis dataKey="label" type="category" width={140} tick={{ fill: '#64748b', fontSize: 11 }} />
                     <Tooltip content={<CustomTooltip />} />
-                    <Bar dataKey="value" fill="#8b5cf6" radius={[0, 4, 4, 0]} />
+                    <Bar dataKey="value" fill="#8b5cf6" radius={[0, 4, 4, 0]} barSize={40} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -388,13 +388,13 @@ const QuickLoansLatvia = () => {
                 <h3 className="text-xl font-bold text-foreground mb-6">
                   {language === 'en' ? 'Typical Loan Amount' : 'Tipiskā kredīta summa'}
                 </h3>
-                <ResponsiveContainer width="100%" height={180}>
-                  <BarChart data={amountsData} layout="horizontal" margin={{ left: 0, right: 30 }}>
+                <ResponsiveContainer width="100%" height={220}>
+                  <BarChart data={amountsData} layout="horizontal" margin={{ left: 0, right: 30, top: 20, bottom: 20 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
                     <XAxis type="number" domain={[0, 70]} tick={{ fill: '#64748b', fontSize: 12 }} />
                     <YAxis dataKey="label" type="category" width={80} tick={{ fill: '#64748b', fontSize: 12 }} />
                     <Tooltip content={<CustomTooltip />} />
-                    <Bar dataKey="value" fill="#f97316" radius={[0, 4, 4, 0]} />
+                    <Bar dataKey="value" fill="#f97316" radius={[0, 4, 4, 0]} barSize={40} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -405,13 +405,13 @@ const QuickLoansLatvia = () => {
               <h3 className="text-xl font-bold text-foreground mb-6">
                 {language === 'en' ? 'Primary Reasons for Taking Loans' : 'Galvenie iemesli kredītu ņemšanai'}
               </h3>
-              <ResponsiveContainer width="100%" height={240}>
-                <BarChart data={reasonsData} layout="horizontal" margin={{ left: 0, right: 30 }}>
+              <ResponsiveContainer width="100%" height={280}>
+                <BarChart data={reasonsData} layout="horizontal" margin={{ left: 0, right: 30, top: 20, bottom: 20 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
                   <XAxis type="number" domain={[0, 70]} tick={{ fill: '#64748b', fontSize: 12 }} />
                   <YAxis dataKey="label" type="category" width={160} tick={{ fill: '#64748b', fontSize: 11 }} />
                   <Tooltip content={<CustomTooltip />} />
-                  <Bar dataKey="value" fill="#ef4444" radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="value" fill="#ef4444" radius={[0, 4, 4, 0]} barSize={35} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -435,13 +435,13 @@ const QuickLoansLatvia = () => {
               <h3 className="text-xl font-bold text-foreground mb-6">
                 {language === 'en' ? 'Most Important Factors' : 'Svarīgākie faktori'}
               </h3>
-              <ResponsiveContainer width="100%" height={220}>
-                <BarChart data={decisionFactorsData} layout="horizontal" margin={{ left: 0, right: 30 }}>
+              <ResponsiveContainer width="100%" height={260}>
+                <BarChart data={decisionFactorsData} layout="horizontal" margin={{ left: 0, right: 30, top: 20, bottom: 20 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
                   <XAxis type="number" domain={[0, 100]} tick={{ fill: '#64748b', fontSize: 12 }} />
                   <YAxis dataKey="label" type="category" width={160} tick={{ fill: '#64748b', fontSize: 12 }} />
                   <Tooltip content={<CustomTooltip />} />
-                  <Bar dataKey="value" fill="#10b981" radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="value" fill="#10b981" radius={[0, 4, 4, 0]} barSize={40} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -451,13 +451,13 @@ const QuickLoansLatvia = () => {
               <h3 className="text-xl font-bold text-foreground mb-6">
                 {language === 'en' ? 'User Concerns' : 'Lietotāju bažas'}
               </h3>
-              <ResponsiveContainer width="100%" height={200}>
-                <BarChart data={concernsData} layout="horizontal" margin={{ left: 0, right: 30 }}>
+              <ResponsiveContainer width="100%" height={240}>
+                <BarChart data={concernsData} layout="horizontal" margin={{ left: 0, right: 30, top: 20, bottom: 20 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
                   <XAxis type="number" domain={[0, 30]} tick={{ fill: '#64748b', fontSize: 12 }} />
                   <YAxis dataKey="label" type="category" width={140} tick={{ fill: '#64748b', fontSize: 11 }} />
                   <Tooltip content={<CustomTooltip />} />
-                  <Bar dataKey="value" fill="#ef4444" radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="value" fill="#ef4444" radius={[0, 4, 4, 0]} barSize={40} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
