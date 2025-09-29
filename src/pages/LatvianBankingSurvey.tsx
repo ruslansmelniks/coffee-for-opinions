@@ -10,9 +10,11 @@ import coffeeLogoUrl from "@/assets/caffeine-logo.png";
 import { ArrowLeft, Home, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { HeaderNavigation } from "@/components/HeaderNavigation";
+import { PublishSurveyModal } from "@/components/PublishSurveyModal";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 const LatvianBankingSurvey = () => {
   const [activeTab, setActiveTab] = useState('overview');
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   useEffect(() => {
     document.title = "Latvia Banking Market Research 2025 | Consumer Preferences & Fintech Adoption";
@@ -488,7 +490,7 @@ const LatvianBankingSurvey = () => {
               <Button 
                 size="lg" 
                 className="font-medium px-8 py-3"
-                onClick={() => window.open('mailto:ruslans@coffeedata.lv', '_blank')}
+                onClick={() => setIsModalOpen(true)}
               >
                 <Plus className="mr-2 h-5 w-5" />
                 Publish Your Survey
@@ -497,6 +499,11 @@ const LatvianBankingSurvey = () => {
           </div>
         </section>
       </main>
+
+      <PublishSurveyModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>;
 };
 export default LatvianBankingSurvey;

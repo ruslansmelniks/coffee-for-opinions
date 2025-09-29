@@ -9,6 +9,7 @@ import { HeaderNavigation } from "@/components/HeaderNavigation";
 import { Footer } from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
+import { PublishSurveyModal } from "@/components/PublishSurveyModal";
 import coffeeLogoUrl from "@/assets/caffeine-logo.png";
 const FreeReports = () => {
   const {
@@ -17,7 +18,7 @@ const FreeReports = () => {
   const {
     toast
   } = useToast();
-  const [publishEmail, setPublishEmail] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return <div className="min-h-screen bg-background">
       <HeaderNavigation />
@@ -150,7 +151,7 @@ const FreeReports = () => {
               <Button 
                 size="lg" 
                 className="font-medium px-8 py-3"
-                onClick={() => window.open('mailto:ruslans@coffeedata.lv', '_blank')}
+                onClick={() => setIsModalOpen(true)}
               >
                 <Plus className="mr-2 h-5 w-5" />
                 {language === 'en' ? 'Publish Your Survey' : 'Publicēt aptauju'}
@@ -171,6 +172,11 @@ const FreeReports = () => {
       </main>
 
       <Footer />
+
+      <PublishSurveyModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>;
 };
 export default FreeReports;

@@ -6,10 +6,12 @@ import { Link } from "react-router-dom";
 import { HeaderNavigation } from "@/components/HeaderNavigation";
 import { Footer } from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { PublishSurveyModal } from "@/components/PublishSurveyModal";
 
 const QuickLoansLatvia = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const { language } = useLanguage();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     document.title = "Quick Loans in Latvia - Market Research Report 2025 | Consumer Behavior & Market Analysis";
@@ -839,7 +841,7 @@ const QuickLoansLatvia = () => {
             <Button 
               size="lg" 
               className="font-medium px-8 py-3"
-              onClick={() => window.open('mailto:ruslans@coffeedata.lv', '_blank')}
+              onClick={() => setIsModalOpen(true)}
             >
               <Plus className="mr-2 h-5 w-5" />
               {language === 'en' ? 'Publish Your Survey' : 'Publicēt aptauju'}
@@ -849,6 +851,11 @@ const QuickLoansLatvia = () => {
       </section>
 
       <Footer />
+
+      <PublishSurveyModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>
   );
 };
