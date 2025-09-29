@@ -110,14 +110,14 @@ export const HeaderNavigation = () => {
       )}
       
       <nav className="fixed top-4 right-4 z-50">
-      {/* Desktop Navigation - Hidden on mobile */}
-      <div className="hidden md:flex items-center gap-2">
+        {/* Desktop Navigation - Hidden on mobile */}
+        <div className="hidden md:flex items-center gap-2 bg-background/80 backdrop-blur-md rounded-lg border border-border/20 p-2 shadow-lg">
         {/* Free Reports Link */}
         <Link to="/free-reports">
           <Button
             variant="outline"
             size="sm"
-            className="font-medium border-border bg-background/90 backdrop-blur-sm hover:bg-secondary"
+            className="font-medium border-border/30 bg-background/50 hover:bg-background/80 transition-all"
           >
             <FileText className="mr-1 h-4 w-4" />
             {language === 'en' ? 'Free Reports' : 'Bezmaksas atskaites'}
@@ -129,7 +129,7 @@ export const HeaderNavigation = () => {
             <Button
               variant="outline"
               size="sm"
-              className="font-medium border-border bg-background/90 backdrop-blur-sm hover:bg-secondary"
+              className="font-medium border-border/30 bg-background/50 hover:bg-background/80 transition-all"
             >
               <Plus className="mr-1 h-4 w-4" />
               {language === 'en' ? 'Publish your survey' : 'Publicēt aptauju'}
@@ -207,27 +207,27 @@ export const HeaderNavigation = () => {
           variant="outline"
           size="sm"
           onClick={scrollToNotifications}
-          className="font-medium border-border bg-background/90 backdrop-blur-sm hover:bg-secondary"
+          className="font-medium border-border/30 bg-background/50 hover:bg-background/80 transition-all"
         >
           <Mail className="mr-1 h-4 w-4" />
           {language === 'en' ? 'Get notified about new surveys' : 'Saņemt paziņojumus par jaunām aptaujām'}
         </Button>
         
         {/* Vertical Separator */}
-        <div className="w-px h-8 bg-border"></div>
+        <div className="w-px h-8 bg-border/30"></div>
         
         {/* Language Switcher */}
         <LanguageSwitcher />
       </div>
 
       {/* Mobile Hamburger Menu - Visible only on mobile */}
-      <div className="md:hidden">
+      <div className="md:hidden bg-background/80 backdrop-blur-md rounded-lg border border-border/20 p-1 shadow-lg">
         <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
           <SheetTrigger asChild>
             <Button
               variant="outline"
               size="sm"
-              className="font-medium border-border bg-background/90 backdrop-blur-sm hover:bg-secondary"
+              className="font-medium border-border/30 bg-background/50 hover:bg-background/80 transition-all"
             >
               <Menu className="h-4 w-4" />
             </Button>
