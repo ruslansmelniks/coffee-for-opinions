@@ -96,22 +96,24 @@ export const HeaderNavigation = () => {
 
   return (
     <>
-      {/* Logo - Top Left Corner */}
-      {showLogo && (
-        <div className="fixed top-4 left-4 z-50">
-          <Link to="/">
-            <img 
-              src={coffeDataLogo} 
-              alt="CoffeeData Logo" 
-              className="max-h-9 w-auto hover:opacity-80 transition-opacity"
-            />
-          </Link>
-        </div>
-      )}
-      
-      <nav className="fixed top-4 right-4 z-50">
+      <nav className="fixed top-4 left-4 right-4 z-50 flex items-center justify-between">
+        {/* Logo - Always visible when showLogo is true */}
+        {showLogo && (
+          <div className="bg-background/80 backdrop-blur-md rounded-lg border border-border/20 p-2">
+            <Link to="/">
+              <img 
+                src={coffeDataLogo} 
+                alt="CoffeeData Logo" 
+                className="max-h-9 w-auto hover:opacity-80 transition-opacity"
+              />
+            </Link>
+          </div>
+        )}
+        
+        {/* Right side navigation */}
+        <div className="ml-auto">
         {/* Desktop Navigation - Hidden on mobile */}
-        <div className="hidden md:flex items-center gap-2 bg-background/80 backdrop-blur-md rounded-lg border border-border/20 p-2 shadow-lg">
+        <div className="hidden md:flex items-center gap-2 bg-background/80 backdrop-blur-md rounded-lg border border-border/20 p-2">
         {/* Free Reports Link */}
         <Link to="/free-reports">
           <Button
@@ -221,7 +223,7 @@ export const HeaderNavigation = () => {
       </div>
 
       {/* Mobile Hamburger Menu - Visible only on mobile */}
-      <div className="md:hidden bg-background/80 backdrop-blur-md rounded-lg border border-border/20 p-1 shadow-lg">
+      <div className="md:hidden bg-background/80 backdrop-blur-md rounded-lg border border-border/20 p-1">
         <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
           <SheetTrigger asChild>
             <Button
@@ -328,10 +330,11 @@ export const HeaderNavigation = () => {
                 <LanguageSwitcher />
               </div>
             </div>
-          </SheetContent>
+           </SheetContent>
         </Sheet>
-      </div>
-    </nav>
+        </div>
+        </div>
+      </nav>
     </>
   );
 };
