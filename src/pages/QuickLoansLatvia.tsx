@@ -4,7 +4,6 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 import { Home } from "lucide-react";
 import { Link } from "react-router-dom";
 import { HeaderNavigation } from "@/components/HeaderNavigation";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Footer } from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -34,7 +33,6 @@ const QuickLoansLatvia = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <LanguageSwitcher />
       <HeaderNavigation />
       
       {/* Header */}

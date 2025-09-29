@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 const NotFound = () => {
   const location = useLocation();
@@ -18,7 +17,6 @@ const NotFound = () => {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
-      <LanguageSwitcher />
       <div className="text-center">
         <h1 className="text-6xl font-bold text-foreground mb-4">404</h1>
         <h2 className="text-2xl font-semibold text-foreground mb-4">{t.notFound.title}</h2>

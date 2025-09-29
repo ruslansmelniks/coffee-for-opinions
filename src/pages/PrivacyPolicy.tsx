@@ -1,14 +1,12 @@
 import { Home } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 const PrivacyPolicy = () => {
   const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-background">
-      <LanguageSwitcher />
       <div className="container mx-auto px-4 py-16 max-w-4xl">
         <Link 
           to="/" 
