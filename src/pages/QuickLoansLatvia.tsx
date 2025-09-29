@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Button } from "@/components/ui/button";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Home } from "lucide-react";
@@ -12,8 +11,6 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const QuickLoansLatvia = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const { language } = useLanguage();
-
-  console.log('QuickLoansLatvia component rendered, activeTab:', activeTab);
 
   useEffect(() => {
     document.title = "Quick Loans in Latvia - Market Research Report 2025 | Consumer Behavior & Market Analysis";
@@ -34,85 +31,6 @@ const QuickLoansLatvia = () => {
     { id: 'factors', label: language === 'en' ? 'Decision Factors' : 'Lēmuma faktori' },
     { id: 'findings', label: language === 'en' ? 'Key Findings' : 'Galvenie secinājumi' }
   ];
-
-  // Data
-  const ageData = [
-    { label: '35-44', value: 7.1 },
-    { label: '18-24', value: 14.3 },
-    { label: '25-34', value: 78.6 }
-  ].sort((a, b) => b.value - a.value);
-
-  console.log('Age Data:', ageData);
-
-  const genderData = [
-    { label: language === 'en' ? 'Female' : 'Sievietes', value: 42.9 },
-    { label: language === 'en' ? 'Male' : 'Vīrieši', value: 57.1 }
-  ].sort((a, b) => b.value - a.value);
-
-  console.log('Gender Data:', genderData);
-
-  const locationData = [
-    { label: 'Jūrmala', value: 7.1 },
-    { label: 'Valmiera', value: 7.1 },
-    { label: 'Rīga', value: 85.7 }
-  ].sort((a, b) => b.value - a.value);
-
-  console.log('Location Data:', locationData);
-
-  const providersData = [
-    { label: 'Other', value: 9.5 },
-    { label: 'Bino', value: 9.5 },
-    { label: 'Esto', value: 14.3 },
-    { label: 'Credit24', value: 14.3 },
-    { label: 'Vivus', value: 23.8 },
-    { label: 'SmsCredit', value: 28.6 }
-  ].sort((a, b) => b.value - a.value);
-
-  const frequencyData = [
-    { label: language === 'en' ? 'Several times a year' : 'Vairākas reizes gadā', value: 7.1 },
-    { label: language === 'en' ? 'Once a year' : 'Reizi gadā', value: 35.7 },
-    { label: language === 'en' ? 'Once in lifetime' : 'Reizi dzīvē', value: 57.1 }
-  ].sort((a, b) => b.value - a.value);
-
-  const amountsData = [
-    { label: '1000+ €', value: 7.1 },
-    { label: '<100 €', value: 14.3 },
-    { label: '500–1000 €', value: 14.3 },
-    { label: '100–500 €', value: 64.3 }
-  ].sort((a, b) => b.value - a.value);
-
-  const reasonsData = [
-    { label: language === 'en' ? 'Shopping/Lifestyle' : 'Iepirkšanās/Dzīvesveids', value: 7.1 },
-    { label: language === 'en' ? 'Education' : 'Izglītība', value: 7.1 },
-    { label: language === 'en' ? 'Daily spending/Travel' : 'Ikdienas tēriņi/Ceļojumi', value: 7.1 },
-    { label: language === 'en' ? 'Other' : 'Cits', value: 14.3 },
-    { label: language === 'en' ? 'Emergency/Unexpected' : 'Ārkārtas/Neparedzēti', value: 64.3 }
-  ].sort((a, b) => b.value - a.value);
-
-  const decisionFactorsData = [
-    { label: language === 'en' ? 'Friend recommendations' : 'Draugu ieteikumi', value: 64.2 },
-    { label: language === 'en' ? 'Interest rates' : 'Procentu likmes', value: 84.2 },
-    { label: language === 'en' ? 'Transparency' : 'Caurspīdīgums', value: 88.6 },
-    { label: language === 'en' ? 'Speed of approval' : 'Apstiprināšanas ātrums', value: 91.4 }
-  ].sort((a, b) => b.value - a.value);
-
-  const concernsData = [
-    { label: language === 'en' ? 'Too easy access' : 'Pārāk viegla piekļuve', value: 7.1 },
-    { label: language === 'en' ? 'Repayment difficulty' : 'Atmaksāšanas grūtības', value: 14.3 },
-    { label: language === 'en' ? 'Hidden fees' : 'Slēptās izmaksas', value: 21.4 },
-    { label: language === 'en' ? 'High interest rates' : 'Augstas procentu likmes', value: 28.6 }
-  ].sort((a, b) => b.value - a.value);
-
-  const CustomTooltip = ({ active, payload }: any) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="bg-white p-2 shadow-lg rounded border border-slate-200">
-          <p className="text-sm font-semibold text-slate-900">{payload[0].value}%</p>
-        </div>
-      );
-    }
-    return null;
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -294,32 +212,35 @@ const QuickLoansLatvia = () => {
                 <h3 className="text-xl font-bold text-foreground mb-6">
                   {language === 'en' ? 'Age Distribution' : 'Vecuma sadalījums'}
                 </h3>
-                <ResponsiveContainer width="100%" height={220}>
-                  <BarChart 
-                    data={ageData} 
-                    layout="horizontal" 
-                    margin={{ left: 0, right: 30, top: 20, bottom: 20 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
-                    <XAxis 
-                      type="number" 
-                      domain={[0, 'dataMax + 10']} 
-                      tick={{ fill: '#64748b', fontSize: 12 }} 
-                    />
-                    <YAxis 
-                      dataKey="label" 
-                      type="category" 
-                      width={60} 
-                      tick={{ fill: '#64748b', fontSize: 12 }} 
-                    />
-                    <Tooltip content={<CustomTooltip />} />
-                    <Bar 
-                      dataKey="value" 
-                      fill="#2563eb" 
-                      radius={[0, 4, 4, 0]}
-                    />
-                  </BarChart>
-                </ResponsiveContainer>
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">25-34</span>
+                      <span className="text-sm font-semibold text-foreground">78.6%</span>
+                    </div>
+                    <div className="w-full bg-slate-200 rounded-full h-3">
+                      <div className="bg-blue-600 h-3 rounded-full" style={{ width: '78.6%' }}></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">18-24</span>
+                      <span className="text-sm font-semibold text-foreground">14.3%</span>
+                    </div>
+                    <div className="w-full bg-slate-200 rounded-full h-3">
+                      <div className="bg-blue-600 h-3 rounded-full" style={{ width: '14.3%' }}></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">35-44</span>
+                      <span className="text-sm font-semibold text-foreground">7.1%</span>
+                    </div>
+                    <div className="w-full bg-slate-200 rounded-full h-3">
+                      <div className="bg-blue-600 h-3 rounded-full" style={{ width: '7.1%' }}></div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Gender Distribution */}
@@ -327,65 +248,66 @@ const QuickLoansLatvia = () => {
                 <h3 className="text-xl font-bold text-foreground mb-6">
                   {language === 'en' ? 'Gender Distribution' : 'Dzimuma sadalījums'}
                 </h3>
-                <ResponsiveContainer width="100%" height={200}>
-                  <BarChart 
-                    data={genderData} 
-                    layout="horizontal" 
-                    margin={{ left: 0, right: 30, top: 20, bottom: 20 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
-                    <XAxis 
-                      type="number" 
-                      domain={[0, 'dataMax + 10']} 
-                      tick={{ fill: '#64748b', fontSize: 12 }} 
-                    />
-                    <YAxis 
-                      dataKey="label" 
-                      type="category" 
-                      width={80} 
-                      tick={{ fill: '#64748b', fontSize: 12 }} 
-                    />
-                    <Tooltip content={<CustomTooltip />} />
-                    <Bar 
-                      dataKey="value" 
-                      fill="#2563eb" 
-                      radius={[0, 4, 4, 0]}
-                    />
-                  </BarChart>
-                </ResponsiveContainer>
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">
+                        {language === 'en' ? 'Male' : 'Vīrieši'}
+                      </span>
+                      <span className="text-sm font-semibold text-foreground">57.1%</span>
+                    </div>
+                    <div className="w-full bg-slate-200 rounded-full h-3">
+                      <div className="bg-blue-600 h-3 rounded-full" style={{ width: '57.1%' }}></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">
+                        {language === 'en' ? 'Female' : 'Sievietes'}
+                      </span>
+                      <span className="text-sm font-semibold text-foreground">42.9%</span>
+                    </div>
+                    <div className="w-full bg-slate-200 rounded-full h-3">
+                      <div className="bg-blue-600 h-3 rounded-full" style={{ width: '42.9%' }}></div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              {/* Location Distribution */}
+              {/* Geographic Distribution */}
               <div className="bg-white border border-slate-200 rounded-lg p-6 md:col-span-2">
                 <h3 className="text-xl font-bold text-foreground mb-6">
                   {language === 'en' ? 'Geographic Distribution' : 'Ģeogrāfiskais sadalījums'}
                 </h3>
-                <ResponsiveContainer width="100%" height={220}>
-                  <BarChart 
-                    data={locationData} 
-                    layout="horizontal" 
-                    margin={{ left: 0, right: 30, top: 20, bottom: 20 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
-                    <XAxis 
-                      type="number" 
-                      domain={[0, 'dataMax + 10']} 
-                      tick={{ fill: '#64748b', fontSize: 12 }} 
-                    />
-                    <YAxis 
-                      dataKey="label" 
-                      type="category" 
-                      width={80} 
-                      tick={{ fill: '#64748b', fontSize: 12 }} 
-                    />
-                    <Tooltip content={<CustomTooltip />} />
-                    <Bar 
-                      dataKey="value" 
-                      fill="#2563eb" 
-                      radius={[0, 4, 4, 0]}
-                    />
-                  </BarChart>
-                </ResponsiveContainer>
+                <div className="space-y-4 max-w-2xl">
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">Rīga</span>
+                      <span className="text-sm font-semibold text-foreground">85.7%</span>
+                    </div>
+                    <div className="w-full bg-slate-200 rounded-full h-3">
+                      <div className="bg-blue-600 h-3 rounded-full" style={{ width: '85.7%' }}></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">Jūrmala</span>
+                      <span className="text-sm font-semibold text-foreground">7.1%</span>
+                    </div>
+                    <div className="w-full bg-slate-200 rounded-full h-3">
+                      <div className="bg-blue-600 h-3 rounded-full" style={{ width: '7.1%' }}></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">Valmiera</span>
+                      <span className="text-sm font-semibold text-foreground">7.1%</span>
+                    </div>
+                    <div className="w-full bg-slate-200 rounded-full h-3">
+                      <div className="bg-blue-600 h-3 rounded-full" style={{ width: '7.1%' }}></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -408,32 +330,62 @@ const QuickLoansLatvia = () => {
               <h3 className="text-xl font-bold text-foreground mb-6">
                 {language === 'en' ? 'Most Used Providers' : 'Visbiežāk izmantotie pakalpojumu sniedzēji'}
               </h3>
-              <ResponsiveContainer width="100%" height={320}>
-                <BarChart 
-                  data={providersData} 
-                  layout="horizontal" 
-                  margin={{ left: 0, right: 30, top: 20, bottom: 20 }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
-                  <XAxis 
-                    type="number" 
-                    domain={[0, 'dataMax + 5']} 
-                    tick={{ fill: '#64748b', fontSize: 12 }} 
-                  />
-                  <YAxis 
-                    dataKey="label" 
-                    type="category" 
-                    width={80} 
-                    tick={{ fill: '#64748b', fontSize: 12 }} 
-                  />
-                  <Tooltip content={<CustomTooltip />} />
-                  <Bar 
-                    dataKey="value" 
-                    fill="#2563eb" 
-                    radius={[0, 4, 4, 0]}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
+              <div className="space-y-4">
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">SmsCredit</span>
+                    <span className="text-sm font-semibold text-foreground">28.6%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-blue-600 h-3 rounded-full" style={{ width: '28.6%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">Vivus</span>
+                    <span className="text-sm font-semibold text-foreground">23.8%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-blue-600 h-3 rounded-full" style={{ width: '23.8%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">Esto</span>
+                    <span className="text-sm font-semibold text-foreground">14.3%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-blue-600 h-3 rounded-full" style={{ width: '14.3%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">Credit24</span>
+                    <span className="text-sm font-semibold text-foreground">14.3%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-blue-600 h-3 rounded-full" style={{ width: '14.3%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">Bino</span>
+                    <span className="text-sm font-semibold text-foreground">9.5%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-blue-600 h-3 rounded-full" style={{ width: '9.5%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">Other</span>
+                    <span className="text-sm font-semibold text-foreground">9.5%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-blue-600 h-3 rounded-full" style={{ width: '9.5%' }}></div>
+                  </div>
+                </div>
+              </div>
               <p className="text-sm text-muted-foreground mt-4 bg-slate-50 p-3 rounded">
                 <strong>{language === 'en' ? 'Note:' : 'Piezīme:'}</strong> {language === 'en' 
                   ? 'Some respondents have used multiple providers, so percentages may total more than 100%.'
@@ -448,32 +400,41 @@ const QuickLoansLatvia = () => {
                 <h3 className="text-xl font-bold text-foreground mb-6">
                   {language === 'en' ? 'Loan Frequency' : 'Kredīta biežums'}
                 </h3>
-                <ResponsiveContainer width="100%" height={220}>
-                  <BarChart 
-                    data={frequencyData} 
-                    layout="horizontal" 
-                    margin={{ left: 0, right: 30, top: 20, bottom: 20 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
-                    <XAxis 
-                      type="number" 
-                      domain={[0, 'dataMax + 10']} 
-                      tick={{ fill: '#64748b', fontSize: 12 }} 
-                    />
-                    <YAxis 
-                      dataKey="label" 
-                      type="category" 
-                      width={140} 
-                      tick={{ fill: '#64748b', fontSize: 11 }} 
-                    />
-                    <Tooltip content={<CustomTooltip />} />
-                    <Bar 
-                      dataKey="value" 
-                      fill="#8b5cf6" 
-                      radius={[0, 4, 4, 0]}
-                    />
-                  </BarChart>
-                </ResponsiveContainer>
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">
+                        {language === 'en' ? 'Once in lifetime' : 'Reizi dzīvē'}
+                      </span>
+                      <span className="text-sm font-semibold text-foreground">57.1%</span>
+                    </div>
+                    <div className="w-full bg-slate-200 rounded-full h-3">
+                      <div className="bg-purple-600 h-3 rounded-full" style={{ width: '57.1%' }}></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">
+                        {language === 'en' ? 'Once a year' : 'Reizi gadā'}
+                      </span>
+                      <span className="text-sm font-semibold text-foreground">35.7%</span>
+                    </div>
+                    <div className="w-full bg-slate-200 rounded-full h-3">
+                      <div className="bg-purple-600 h-3 rounded-full" style={{ width: '35.7%' }}></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">
+                        {language === 'en' ? 'Several times a year' : 'Vairākas reizes gadā'}
+                      </span>
+                      <span className="text-sm font-semibold text-foreground">7.1%</span>
+                    </div>
+                    <div className="w-full bg-slate-200 rounded-full h-3">
+                      <div className="bg-purple-600 h-3 rounded-full" style={{ width: '7.1%' }}></div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Typical Loan Amount */}
@@ -481,32 +442,44 @@ const QuickLoansLatvia = () => {
                 <h3 className="text-xl font-bold text-foreground mb-6">
                   {language === 'en' ? 'Typical Loan Amount' : 'Tipiskā kredīta summa'}
                 </h3>
-                <ResponsiveContainer width="100%" height={220}>
-                  <BarChart 
-                    data={amountsData} 
-                    layout="horizontal" 
-                    margin={{ left: 0, right: 30, top: 20, bottom: 20 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
-                    <XAxis 
-                      type="number" 
-                      domain={[0, 'dataMax + 10']} 
-                      tick={{ fill: '#64748b', fontSize: 12 }} 
-                    />
-                    <YAxis 
-                      dataKey="label" 
-                      type="category" 
-                      width={80} 
-                      tick={{ fill: '#64748b', fontSize: 12 }} 
-                    />
-                    <Tooltip content={<CustomTooltip />} />
-                    <Bar 
-                      dataKey="value" 
-                      fill="#f97316" 
-                      radius={[0, 4, 4, 0]}
-                    />
-                  </BarChart>
-                </ResponsiveContainer>
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">100–500 €</span>
+                      <span className="text-sm font-semibold text-foreground">64.3%</span>
+                    </div>
+                    <div className="w-full bg-slate-200 rounded-full h-3">
+                      <div className="bg-orange-600 h-3 rounded-full" style={{ width: '64.3%' }}></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">500–1000 €</span>
+                      <span className="text-sm font-semibold text-foreground">14.3%</span>
+                    </div>
+                    <div className="w-full bg-slate-200 rounded-full h-3">
+                      <div className="bg-orange-600 h-3 rounded-full" style={{ width: '14.3%' }}></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">&lt;100 €</span>
+                      <span className="text-sm font-semibold text-foreground">14.3%</span>
+                    </div>
+                    <div className="w-full bg-slate-200 rounded-full h-3">
+                      <div className="bg-orange-600 h-3 rounded-full" style={{ width: '14.3%' }}></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-muted-foreground">1000+ €</span>
+                      <span className="text-sm font-semibold text-foreground">7.1%</span>
+                    </div>
+                    <div className="w-full bg-slate-200 rounded-full h-3">
+                      <div className="bg-orange-600 h-3 rounded-full" style={{ width: '7.1%' }}></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -515,32 +488,63 @@ const QuickLoansLatvia = () => {
               <h3 className="text-xl font-bold text-foreground mb-6">
                 {language === 'en' ? 'Primary Reasons for Taking Loans' : 'Galvenie iemesli kredītu ņemšanai'}
               </h3>
-              <ResponsiveContainer width="100%" height={280}>
-                <BarChart 
-                  data={reasonsData} 
-                  layout="horizontal" 
-                  margin={{ left: 0, right: 30, top: 20, bottom: 20 }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
-                  <XAxis 
-                    type="number" 
-                    domain={[0, 'dataMax + 10']} 
-                    tick={{ fill: '#64748b', fontSize: 12 }} 
-                  />
-                  <YAxis 
-                    dataKey="label" 
-                    type="category" 
-                    width={160} 
-                    tick={{ fill: '#64748b', fontSize: 11 }} 
-                  />
-                  <Tooltip content={<CustomTooltip />} />
-                  <Bar 
-                    dataKey="value" 
-                    fill="#ef4444" 
-                    radius={[0, 4, 4, 0]}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
+              <div className="space-y-4 max-w-3xl">
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">
+                      {language === 'en' ? 'Emergency/Unexpected' : 'Ārkārtas/Neparedzēti'}
+                    </span>
+                    <span className="text-sm font-semibold text-foreground">64.3%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-red-600 h-3 rounded-full" style={{ width: '64.3%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">
+                      {language === 'en' ? 'Other' : 'Cits'}
+                    </span>
+                    <span className="text-sm font-semibold text-foreground">14.3%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-red-600 h-3 rounded-full" style={{ width: '14.3%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">
+                      {language === 'en' ? 'Shopping/Lifestyle' : 'Iepirkšanās/Dzīvesveids'}
+                    </span>
+                    <span className="text-sm font-semibold text-foreground">7.1%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-red-600 h-3 rounded-full" style={{ width: '7.1%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">
+                      {language === 'en' ? 'Education' : 'Izglītība'}
+                    </span>
+                    <span className="text-sm font-semibold text-foreground">7.1%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-red-600 h-3 rounded-full" style={{ width: '7.1%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">
+                      {language === 'en' ? 'Daily spending/Travel' : 'Ikdienas tēriņi/Ceļojumi'}
+                    </span>
+                    <span className="text-sm font-semibold text-foreground">7.1%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-red-600 h-3 rounded-full" style={{ width: '7.1%' }}></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -562,32 +566,52 @@ const QuickLoansLatvia = () => {
               <h3 className="text-xl font-bold text-foreground mb-6">
                 {language === 'en' ? 'Most Important Factors' : 'Svarīgākie faktori'}
               </h3>
-              <ResponsiveContainer width="100%" height={260}>
-                <BarChart 
-                  data={decisionFactorsData} 
-                  layout="horizontal" 
-                  margin={{ left: 0, right: 30, top: 20, bottom: 20 }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
-                  <XAxis 
-                    type="number" 
-                    domain={[0, 'dataMax + 10']} 
-                    tick={{ fill: '#64748b', fontSize: 12 }} 
-                  />
-                  <YAxis 
-                    dataKey="label" 
-                    type="category" 
-                    width={160} 
-                    tick={{ fill: '#64748b', fontSize: 12 }} 
-                  />
-                  <Tooltip content={<CustomTooltip />} />
-                  <Bar 
-                    dataKey="value" 
-                    fill="#10b981" 
-                    radius={[0, 4, 4, 0]}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
+              <div className="space-y-4 max-w-3xl">
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">
+                      {language === 'en' ? 'Speed of approval' : 'Apstiprināšanas ātrums'}
+                    </span>
+                    <span className="text-sm font-semibold text-foreground">91.4%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-green-600 h-3 rounded-full" style={{ width: '91.4%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">
+                      {language === 'en' ? 'Transparency' : 'Caurspīdīgums'}
+                    </span>
+                    <span className="text-sm font-semibold text-foreground">88.6%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-green-600 h-3 rounded-full" style={{ width: '88.6%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">
+                      {language === 'en' ? 'Interest rates' : 'Procentu likmes'}
+                    </span>
+                    <span className="text-sm font-semibold text-foreground">84.2%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-green-600 h-3 rounded-full" style={{ width: '84.2%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">
+                      {language === 'en' ? 'Friend recommendations' : 'Draugu ieteikumi'}
+                    </span>
+                    <span className="text-sm font-semibold text-foreground">64.2%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-green-600 h-3 rounded-full" style={{ width: '64.2%' }}></div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* User Concerns */}
@@ -595,32 +619,52 @@ const QuickLoansLatvia = () => {
               <h3 className="text-xl font-bold text-foreground mb-6">
                 {language === 'en' ? 'User Concerns' : 'Lietotāju bažas'}
               </h3>
-              <ResponsiveContainer width="100%" height={240}>
-                <BarChart 
-                  data={concernsData} 
-                  layout="horizontal" 
-                  margin={{ left: 0, right: 30, top: 20, bottom: 20 }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
-                  <XAxis 
-                    type="number" 
-                    domain={[0, 'dataMax + 5']} 
-                    tick={{ fill: '#64748b', fontSize: 12 }} 
-                  />
-                  <YAxis 
-                    dataKey="label" 
-                    type="category" 
-                    width={140} 
-                    tick={{ fill: '#64748b', fontSize: 11 }} 
-                  />
-                  <Tooltip content={<CustomTooltip />} />
-                  <Bar 
-                    dataKey="value" 
-                    fill="#ef4444" 
-                    radius={[0, 4, 4, 0]}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
+              <div className="space-y-4 max-w-2xl">
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">
+                      {language === 'en' ? 'High interest rates' : 'Augstas procentu likmes'}
+                    </span>
+                    <span className="text-sm font-semibold text-foreground">28.6%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-red-600 h-3 rounded-full" style={{ width: '28.6%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">
+                      {language === 'en' ? 'Hidden fees' : 'Slēptās izmaksas'}
+                    </span>
+                    <span className="text-sm font-semibold text-foreground">21.4%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-red-600 h-3 rounded-full" style={{ width: '21.4%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">
+                      {language === 'en' ? 'Repayment difficulty' : 'Atmaksāšanas grūtības'}
+                    </span>
+                    <span className="text-sm font-semibold text-foreground">14.3%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-red-600 h-3 rounded-full" style={{ width: '14.3%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-muted-foreground">
+                      {language === 'en' ? 'Too easy access' : 'Pārāk viegla piekļuve'}
+                    </span>
+                    <span className="text-sm font-semibold text-foreground">7.1%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-3">
+                    <div className="bg-red-600 h-3 rounded-full" style={{ width: '7.1%' }}></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )}
