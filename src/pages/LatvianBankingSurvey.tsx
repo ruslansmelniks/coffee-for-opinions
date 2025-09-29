@@ -9,6 +9,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 import coffeeLogoUrl from "@/assets/caffeine-logo.png";
 import { ArrowLeft, Home } from "lucide-react";
 import { Link } from "react-router-dom";
+import { HeaderNavigation } from "@/components/HeaderNavigation";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 const LatvianBankingSurvey = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -132,9 +133,11 @@ const LatvianBankingSurvey = () => {
       </div>
     </div>;
   return <div className="min-h-screen bg-background">
+      <HeaderNavigation />
+      
       {/* Header */}
-      <header className="bg-white border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+      <header className="bg-white border-b border-border pt-24 pb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumbs */}
           <Breadcrumb className="mb-4">
             <BreadcrumbList>
