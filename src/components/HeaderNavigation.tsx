@@ -9,6 +9,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export const HeaderNavigation = () => {
   const { t, language } = useLanguage();
@@ -173,6 +174,12 @@ export const HeaderNavigation = () => {
           <Mail className="mr-1 h-4 w-4" />
           {language === 'en' ? 'Get notified about new surveys' : 'Saņemt paziņojumus par jaunām aptaujām'}
         </Button>
+        
+        {/* Vertical Separator */}
+        <div className="w-px h-8 bg-border"></div>
+        
+        {/* Language Switcher */}
+        <LanguageSwitcher />
       </div>
 
       {/* Mobile Hamburger Menu - Visible only on mobile */}
@@ -273,6 +280,14 @@ export const HeaderNavigation = () => {
                   <Mail className="mr-2 h-4 w-4" />
                   {language === 'en' ? 'Get notified about new surveys' : 'Saņemt paziņojumus par jaunām aptaujām'}
                 </Button>
+              </div>
+
+              {/* Divider */}
+              <div className="border-t border-border"></div>
+              
+              {/* Language Switcher */}
+              <div className="flex justify-center">
+                <LanguageSwitcher />
               </div>
             </div>
           </SheetContent>

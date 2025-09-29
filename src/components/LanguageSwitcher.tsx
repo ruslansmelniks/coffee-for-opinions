@@ -13,7 +13,7 @@ export const LanguageSwitcher = () => {
       variant="outline"
       size="sm"
       onClick={toggleLanguage}
-      className="fixed top-4 left-4 z-50 font-medium border-border bg-background/90 backdrop-blur-sm hover:bg-secondary"
+      className="font-medium border-border bg-background/90 backdrop-blur-sm hover:bg-secondary"
     >
       {language === 'en' ? 'LV' : 'EN'}
     </Button>
