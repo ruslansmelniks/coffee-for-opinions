@@ -5,19 +5,43 @@ import { Input } from "@/components/ui/input";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Mail, Plus, Menu, FileText } from "lucide-react";
 import gintsRekensPhoto from "@/assets/gints-rekens.png";
+import coffeDataLogo from "@/assets/coffeedata-logo.png";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export const HeaderNavigation = () => {
   const { t, language } = useLanguage();
   const { toast } = useToast();
+  const location = useLocation();
   const [publishEmail, setPublishEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showLogo, setShowLogo] = useState(false);
+  
+  const isLandingPage = location.pathname === '/';
+
+  useEffect(() => {
+    if (!isLandingPage) {
+      setShowLogo(true);
+      return;
+    }
+
+    const handleScroll = () => {
+      const heroSection = document.querySelector('section');
+      if (heroSection) {
+        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+        setShowLogo(window.scrollY > heroBottom - 100);
+      }
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isLandingPage]);
 
   const scrollToNotifications = () => {
     document.getElementById('surveys')?.scrollIntoView({ 
@@ -71,7 +95,21 @@ export const HeaderNavigation = () => {
   };
 
   return (
-    <nav className="fixed top-4 right-4 z-50">
+    <>
+      {/* Logo - Top Left Corner */}
+      {showLogo && (
+        <div className="fixed top-4 left-4 z-50">
+          <Link to="/">
+            <img 
+              src={coffeDataLogo} 
+              alt="CoffeeData Logo" 
+              className="max-h-9 w-auto hover:opacity-80 transition-opacity"
+            />
+          </Link>
+        </div>
+      )}
+      
+      <nav className="fixed top-4 right-4 z-50">
       {/* Desktop Navigation - Hidden on mobile */}
       <div className="hidden md:flex items-center gap-2">
         {/* Free Reports Link */}
@@ -294,5 +332,6 @@ export const HeaderNavigation = () => {
         </Sheet>
       </div>
     </nav>
+    </>
   );
 };
