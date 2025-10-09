@@ -14,13 +14,163 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          age_range: string | null
+          city: string | null
+          created_at: string | null
+          email: string
+          id: string
+          name: string | null
+          points_balance: number | null
+          total_surveys_completed: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          age_range?: string | null
+          city?: string | null
+          created_at?: string | null
+          email: string
+          id: string
+          name?: string | null
+          points_balance?: number | null
+          total_surveys_completed?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          age_range?: string | null
+          city?: string | null
+          created_at?: string | null
+          email?: string
+          id?: string
+          name?: string | null
+          points_balance?: number | null
+          total_surveys_completed?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      survey_responses: {
+        Row: {
+          completed_at: string | null
+          id: string
+          points_awarded: number
+          survey_name: string
+          survey_url: string | null
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          id?: string
+          points_awarded: number
+          survey_name: string
+          survey_url?: string | null
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          id?: string
+          points_awarded?: number
+          survey_name?: string
+          survey_url?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "survey_responses_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      voucher_claims: {
+        Row: {
+          claimed_at: string | null
+          id: string
+          user_id: string
+          voucher_id: string
+        }
+        Insert: {
+          claimed_at?: string | null
+          id?: string
+          user_id: string
+          voucher_id: string
+        }
+        Update: {
+          claimed_at?: string | null
+          id?: string
+          user_id?: string
+          voucher_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "voucher_claims_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "voucher_claims_voucher_id_fkey"
+            columns: ["voucher_id"]
+            isOneToOne: false
+            referencedRelation: "vouchers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      vouchers: {
+        Row: {
+          cafe_name: string
+          code: string
+          created_at: string | null
+          id: string
+          is_used: boolean | null
+          used_at: string | null
+          used_by_user_id: string | null
+        }
+        Insert: {
+          cafe_name?: string
+          code: string
+          created_at?: string | null
+          id?: string
+          is_used?: boolean | null
+          used_at?: string | null
+          used_by_user_id?: string | null
+        }
+        Update: {
+          cafe_name?: string
+          code?: string
+          created_at?: string | null
+          id?: string
+          is_used?: boolean | null
+          used_at?: string | null
+          used_by_user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vouchers_used_by_user_id_fkey"
+            columns: ["used_by_user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      claim_voucher: {
+        Args: { p_user_id: string }
+        Returns: {
+          cafe_name: string
+          voucher_code: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
