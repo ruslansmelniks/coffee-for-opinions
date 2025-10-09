@@ -10,6 +10,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import FreeReports from "./pages/FreeReports";
 import LatvianBankingSurvey from "./pages/LatvianBankingSurvey";
 import QuickLoansLatvia from "./pages/QuickLoansLatvia";
+import Auth from "./pages/Auth";
 
 const queryClient = new QueryClient();
 
@@ -22,9 +23,10 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-        <Route path="/free-reports" element={<FreeReports />} />
-        <Route path="/latvia-banking-market-research-2025" element={<LatvianBankingSurvey />} />
-        <Route path="/quick-loans-latvia-market-research-2025" element={<QuickLoansLatvia />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/free-reports" element={<FreeReports />} />
+            <Route path="/latvia-banking-market-research-2025" element={<LatvianBankingSurvey />} />
+            <Route path="/quick-loans-latvia-market-research-2025" element={<QuickLoansLatvia />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
