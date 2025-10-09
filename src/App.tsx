@@ -11,6 +11,9 @@ import FreeReports from "./pages/FreeReports";
 import LatvianBankingSurvey from "./pages/LatvianBankingSurvey";
 import QuickLoansLatvia from "./pages/QuickLoansLatvia";
 import Auth from "./pages/Auth";
+import Dashboard from "./pages/Dashboard";
+import Claim from "./pages/Claim";
+import Profile from "./pages/Profile";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +27,9 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/claim" element={<Claim />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/free-reports" element={<FreeReports />} />
             <Route path="/latvia-banking-market-research-2025" element={<LatvianBankingSurvey />} />
             <Route path="/quick-loans-latvia-market-research-2025" element={<QuickLoansLatvia />} />
