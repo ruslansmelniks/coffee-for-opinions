@@ -204,16 +204,16 @@ export const HeaderNavigation = () => {
           </DialogContent>
         </Dialog>
 
-        {/* Get Notified Button */}
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={scrollToNotifications}
-          className="font-medium border-border/30 bg-background/50 hover:bg-background/80 transition-all"
-        >
-          <Mail className="mr-1 h-4 w-4" />
-          {language === 'en' ? 'Get notified about new surveys' : 'Saņemt paziņojumus par jaunām aptaujām'}
-        </Button>
+        {/* Login/Register Links */}
+        <Link to="/auth">
+          <Button
+            variant="outline"
+            size="sm"
+            className="font-medium border-border/30 bg-background/50 hover:bg-background/80 transition-all"
+          >
+            {language === 'en' ? 'Login / Register' : 'Pieslēgties / Reģistrēties'}
+          </Button>
+        </Link>
         
         {/* Vertical Separator */}
         <div className="w-px h-8 bg-border/30"></div>
@@ -307,19 +307,16 @@ export const HeaderNavigation = () => {
               {/* Divider */}
               <div className="border-t border-border"></div>
 
-              {/* Get Notified Section */}
+              {/* Login/Register Link */}
               <div className="space-y-4">
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    scrollToNotifications();
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="w-full font-medium"
-                >
-                  <Mail className="mr-2 h-4 w-4" />
-                  {language === 'en' ? 'Get notified about new surveys' : 'Saņemt paziņojumus par jaunām aptaujām'}
-                </Button>
+                <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button
+                    variant="outline"
+                    className="w-full font-medium"
+                  >
+                    {language === 'en' ? 'Login / Register' : 'Pieslēgties / Reģistrēties'}
+                  </Button>
+                </Link>
               </div>
 
               {/* Divider */}
