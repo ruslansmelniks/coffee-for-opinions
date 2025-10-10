@@ -43,6 +43,7 @@ function DashboardContent() {
   const [surveys, setSurveys] = useState<Survey[]>([]);
   const [recentActivity, setRecentActivity] = useState<Activity[]>([]);
   const [coffeeClaimed, setCoffeeClaimed] = useState(0);
+  const [showRefreshHint, setShowRefreshHint] = useState(false);
 
   useEffect(() => {
     fetchProfile();
@@ -116,8 +117,24 @@ function DashboardContent() {
     navigate('/');
   };
 
-  const handleStartSurvey = (survey: Survey) => {
-    navigate(survey.url);
+  const handleStartSurvey = async (survey: Survey) => {
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (!user?.email) {
+      alert('Please log in to complete surveys');
+      return;
+    }
+    
+    // Add email parameter to URL
+    const separator = survey.url.includes('?') ? '&' : '?';
+    const tallyUrl = `${survey.url}${separator}email=${encodeURIComponent(user.email)}`;
+    
+    // Open in new tab
+    window.open(tallyUrl, '_blank');
+    
+    // Show hint to refresh after completing survey
+    setShowRefreshHint(true);
+    setTimeout(() => setShowRefreshHint(false), 15000);
   };
 
   const points = profile?.points_balance || 0;
@@ -165,16 +182,7 @@ function DashboardContent() {
 
             <div className="text-center">
               <Coffee className="w-16 h-16 text-amber-600 mx-auto mb-2" />
-              {points >= 100 ? (
-                <button 
-                  onClick={() => navigate('/claim')}
-                  className="bg-amber-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-amber-700 transition"
-                >
-                  Claim Coffee
-                </button>
-              ) : (
-                <span className="text-sm text-gray-500">Complete surveys to earn</span>
-              )}
+              <span className="text-sm text-gray-500">Complete surveys to earn</span>
             </div>
           </div>
 
@@ -187,6 +195,16 @@ function DashboardContent() {
               />
             </div>
           </div>
+
+          {/* Claim Coffee Button */}
+          {points >= 100 && (
+            <button 
+              onClick={() => navigate('/claim')}
+              className="mt-4 bg-amber-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-amber-700 transition w-full"
+            >
+              🎉 Claim Your Free Coffee!
+            </button>
+          )}
         </div>
 
         {/* Stats Grid */}
@@ -229,6 +247,15 @@ function DashboardContent() {
               </div>
             ))}
           </div>
+
+          {/* Refresh Hint */}
+          {showRefreshHint && (
+            <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-sm text-blue-800">
+                💡 <strong>After completing the survey</strong>, refresh this page to see your updated points!
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Recent Activity */}
