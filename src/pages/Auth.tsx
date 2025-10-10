@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Mail, Chrome } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 export default function Auth() {
@@ -14,21 +11,20 @@ export default function Auth() {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [magicLinkSent, setMagicLinkSent] = useState(false);
+  const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
   useEffect(() => {
     // Check if user is already logged in
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
-        navigate('/');
+        navigate('/dashboard');
       }
     });
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
-        navigate('/');
+        navigate('/dashboard');
       }
     });
 
@@ -38,20 +34,17 @@ export default function Auth() {
   const handleGoogleSignIn = async () => {
     try {
       setLoading(true);
+      setMessage(null);
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/`,
+          redirectTo: `${window.location.origin}/dashboard`,
         },
       });
       
       if (error) throw error;
     } catch (error: any) {
-      toast({
-        title: 'Error',
-        description: error.message,
-        variant: 'destructive',
-      });
+      setMessage({ type: 'error', text: error.message });
     } finally {
       setLoading(false);
     }
@@ -61,224 +54,124 @@ export default function Auth() {
     e.preventDefault();
     try {
       setLoading(true);
+      setMessage(null);
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: `${window.location.origin}/`,
+          emailRedirectTo: `${window.location.origin}/dashboard`,
         },
       });
       
       if (error) throw error;
       
-      setMagicLinkSent(true);
-      toast({
-        title: 'Check your email',
-        description: 'We sent you a magic link to sign in.',
-      });
+      setMessage({ type: 'success', text: 'Check your email for the login link!' });
     } catch (error: any) {
-      toast({
-        title: 'Error',
-        description: error.message,
-        variant: 'destructive',
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleEmailSignUp = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      setLoading(true);
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: `${window.location.origin}/`,
-        },
-      });
-      
-      if (error) throw error;
-      
-      toast({
-        title: 'Success',
-        description: 'Account created! You can now sign in.',
-      });
-    } catch (error: any) {
-      toast({
-        title: 'Error',
-        description: error.message,
-        variant: 'destructive',
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleEmailSignIn = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      setLoading(true);
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      
-      if (error) throw error;
-    } catch (error: any) {
-      toast({
-        title: 'Error',
-        description: error.message,
-        variant: 'destructive',
-      });
+      setMessage({ type: 'error', text: error.message });
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-muted p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">Welcome</CardTitle>
-          <CardDescription className="text-center">
+    <div className="min-h-screen flex items-center justify-center bg-white p-4">
+      <div className="w-full max-w-[400px] space-y-8 px-6 py-12">
+        {/* Coffee Icon & Welcome */}
+        <div className="text-center space-y-3">
+          <div className="text-5xl">☕</div>
+          <h1 className="text-2xl font-semibold text-[#1F1F1F]">Welcome</h1>
+          <p className="text-[#6B7280]">
             Sign in to your account or create a new one
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Tabs defaultValue="magic-link" className="w-full">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="magic-link">Magic Link</TabsTrigger>
-              <TabsTrigger value="password">Email/Password</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="magic-link" className="space-y-4">
-              {magicLinkSent ? (
-                <div className="text-center space-y-4 py-6">
-                  <Mail className="h-12 w-12 text-primary mx-auto" />
-                  <div>
-                    <h3 className="font-semibold text-lg">Check your email</h3>
-                    <p className="text-sm text-muted-foreground mt-2">
-                      We sent a magic link to {email}
-                    </p>
-                  </div>
-                  <Button 
-                    variant="outline" 
-                    onClick={() => setMagicLinkSent(false)}
-                    className="w-full"
-                  >
-                    Try another email
-                  </Button>
-                </div>
-              ) : (
-                <form onSubmit={handleMagicLink} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="magic-email">Email</Label>
-                    <Input
-                      id="magic-email"
-                      type="email"
-                      placeholder="you@example.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <Button type="submit" className="w-full" disabled={loading}>
-                    {loading ? 'Sending...' : 'Send Magic Link'}
-                  </Button>
-                </form>
-              )}
-            </TabsContent>
-            
-            <TabsContent value="password" className="space-y-4">
-              <Tabs defaultValue="signin" className="w-full">
-                <TabsList className="grid w-full grid-cols-2">
-                  <TabsTrigger value="signin">Sign In</TabsTrigger>
-                  <TabsTrigger value="signup">Sign Up</TabsTrigger>
-                </TabsList>
-                
-                <TabsContent value="signin">
-                  <form onSubmit={handleEmailSignIn} className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="signin-email">Email</Label>
-                      <Input
-                        id="signin-email"
-                        type="email"
-                        placeholder="you@example.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="signin-password">Password</Label>
-                      <Input
-                        id="signin-password"
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                      />
-                    </div>
-                    <Button type="submit" className="w-full" disabled={loading}>
-                      {loading ? 'Signing in...' : 'Sign In'}
-                    </Button>
-                  </form>
-                </TabsContent>
-                
-                <TabsContent value="signup">
-                  <form onSubmit={handleEmailSignUp} className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="signup-email">Email</Label>
-                      <Input
-                        id="signup-email"
-                        type="email"
-                        placeholder="you@example.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="signup-password">Password</Label>
-                      <Input
-                        id="signup-password"
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        minLength={6}
-                      />
-                    </div>
-                    <Button type="submit" className="w-full" disabled={loading}>
-                      {loading ? 'Creating account...' : 'Sign Up'}
-                    </Button>
-                  </form>
-                </TabsContent>
-              </Tabs>
-            </TabsContent>
-          </Tabs>
-          
-          <div className="relative my-6">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t" />
+          </p>
+        </div>
+
+        {/* Magic Link Form */}
+        <div className="bg-white border border-[#E5E7EB] rounded-lg p-6 space-y-4">
+          <form onSubmit={handleMagicLink} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-sm font-medium text-[#1F1F1F]">
+                Email
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="h-11 rounded-lg border-[#E5E7EB] focus:border-[#1F1F1F] focus:ring-[#1F1F1F]"
+              />
             </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
+            
+            <Button 
+              type="submit" 
+              className="w-full h-11 bg-[#000000] hover:bg-[#1F1F1F] text-white font-medium rounded-lg transition-colors"
+              disabled={loading}
+            >
+              {loading ? 'Sending...' : 'Send Magic Link'}
+            </Button>
+          </form>
+
+          {/* Success/Error Messages */}
+          {message && (
+            <div className={`p-3 rounded-lg text-sm ${
+              message.type === 'success' 
+                ? 'bg-[#ECFDF5] text-[#065F46]' 
+                : 'bg-[#FEF2F2] text-[#991B1B]'
+            }`}>
+              {message.type === 'success' ? '✅ ' : '❌ '}
+              {message.text}
             </div>
+          )}
+        </div>
+
+        {/* Divider */}
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-[#E5E7EB]"></div>
           </div>
-          
-          <Button
-            variant="outline"
-            className="w-full"
-            onClick={handleGoogleSignIn}
-            disabled={loading}
-          >
-            <Chrome className="mr-2 h-4 w-4" />
-            Google
-          </Button>
-        </CardContent>
-      </Card>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-white px-2 text-[#6B7280] font-medium tracking-wider">
+              OR CONTINUE WITH
+            </span>
+          </div>
+        </div>
+
+        {/* Google Button */}
+        <Button
+          variant="outline"
+          onClick={handleGoogleSignIn}
+          disabled={loading}
+          className="w-full h-11 bg-white hover:bg-[#F9FAFB] border border-[#E5E7EB] text-[#1F1F1F] font-medium rounded-lg transition-colors"
+        >
+          <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24">
+            <path
+              fill="#4285F4"
+              d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+            />
+            <path
+              fill="#34A853"
+              d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+            />
+            <path
+              fill="#FBBC05"
+              d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+            />
+            <path
+              fill="#EA4335"
+              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+            />
+          </svg>
+          Google
+        </Button>
+
+        {/* Terms & Privacy */}
+        <p className="text-xs text-center text-[#6B7280]">
+          By continuing, you agree to our{' '}
+          <Link to="/privacy-policy" className="underline hover:text-[#1F1F1F]">
+            Terms and Privacy Policy
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
