@@ -73,7 +73,7 @@ function DashboardContent() {
         description: 'Share your banking preferences and experiences',
         duration: 5,
         points: 50,
-        url: '/latvia-banking-market-research-2025'
+        url: 'https://tally.so/r/m6glLN'
       },
       {
         id: 'quick-loans',
@@ -81,7 +81,7 @@ function DashboardContent() {
         description: 'Experience with quick loan services',
         duration: 5,
         points: 50,
-        url: '/quick-loans-latvia-market-research-2025'
+        url: 'https://tally.so/r/nreZV5'
       }
     ]);
   };
