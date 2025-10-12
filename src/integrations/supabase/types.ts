@@ -56,108 +56,53 @@ export type Database = {
           id: string
           points_awarded: number
           survey_name: string
-          survey_url: string | null
-          user_id: string
+          user_email: string
         }
         Insert: {
           completed_at?: string | null
           id?: string
           points_awarded: number
           survey_name: string
-          survey_url?: string | null
-          user_id: string
+          user_email: string
         }
         Update: {
           completed_at?: string | null
           id?: string
           points_awarded?: number
           survey_name?: string
-          survey_url?: string | null
-          user_id?: string
+          user_email?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "survey_responses_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      voucher_claims: {
-        Row: {
-          claimed_at: string | null
-          id: string
-          user_id: string
-          voucher_id: string
-        }
-        Insert: {
-          claimed_at?: string | null
-          id?: string
-          user_id: string
-          voucher_id: string
-        }
-        Update: {
-          claimed_at?: string | null
-          id?: string
-          user_id?: string
-          voucher_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "voucher_claims_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "voucher_claims_voucher_id_fkey"
-            columns: ["voucher_id"]
-            isOneToOne: false
-            referencedRelation: "vouchers"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       vouchers: {
         Row: {
-          cafe_name: string
+          assigned_at: string | null
+          assigned_to: string | null
           code: string
           created_at: string | null
           id: string
           is_used: boolean | null
-          used_at: string | null
-          used_by_user_id: string | null
+          partner: string
         }
         Insert: {
-          cafe_name?: string
+          assigned_at?: string | null
+          assigned_to?: string | null
           code: string
           created_at?: string | null
           id?: string
           is_used?: boolean | null
-          used_at?: string | null
-          used_by_user_id?: string | null
+          partner?: string
         }
         Update: {
-          cafe_name?: string
+          assigned_at?: string | null
+          assigned_to?: string | null
           code?: string
           created_at?: string | null
           id?: string
           is_used?: boolean | null
-          used_at?: string | null
-          used_by_user_id?: string | null
+          partner?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "vouchers_used_by_user_id_fkey"
-            columns: ["used_by_user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
     }
     Views: {
@@ -169,11 +114,8 @@ export type Database = {
         Returns: Json
       }
       claim_voucher: {
-        Args: { p_user_id: string }
-        Returns: {
-          cafe_name: string
-          voucher_code: string
-        }[]
+        Args: { p_partner?: string; p_user_email: string }
+        Returns: Json
       }
     }
     Enums: {
