@@ -41,25 +41,31 @@ function ClaimContent() {
 
   const handleClaim = async () => {
     const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
+    if (!user?.email) return;
 
     setLoading(true);
     try {
       const { data, error } = await supabase.rpc('claim_voucher', {
-        p_user_id: user.id
+        p_user_email: user.email,
+        p_partner: 'Caffeine'
       });
 
       if (error) throw error;
 
-      if (data && data.length > 0) {
-        setVoucherCode(data[0].voucher_code);
-        setCafeName(data[0].cafe_name);
+      // New function returns a single object with success flag
+      const result = data as { success: boolean; voucher_code?: string; partner?: string; error?: string };
+      
+      if (result && result.success) {
+        setVoucherCode(result.voucher_code || '');
+        setCafeName(result.partner || 'Caffeine');
         setClaimed(true);
         
         toast({
           title: 'Coffee Claimed!',
           description: 'Your voucher code is ready to use.',
         });
+      } else {
+        throw new Error(result?.error || 'Failed to claim voucher');
       }
     } catch (error: any) {
       toast({

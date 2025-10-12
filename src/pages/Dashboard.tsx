@@ -88,12 +88,12 @@ function DashboardContent() {
 
   const fetchRecentActivity = async () => {
     const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
+    if (!user?.email) return;
 
     const { data } = await supabase
       .from('survey_responses')
       .select('*')
-      .eq('user_id', user.id)
+      .eq('user_email', user.email)
       .order('completed_at', { ascending: false })
       .limit(5);
 
@@ -102,12 +102,14 @@ function DashboardContent() {
 
   const fetchCoffeeClaimed = async () => {
     const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
+    if (!user?.email) return;
 
-    const { data, count } = await supabase
-      .from('voucher_claims')
-      .select('*', { count: 'exact' })
-      .eq('user_id', user.id);
+    // Query vouchers table directly (voucher_claims table no longer exists)
+    const { count } = await supabase
+      .from('vouchers')
+      .select('*', { count: 'exact', head: true })
+      .eq('assigned_to', user.email)
+      .eq('is_used', true);
 
     if (count !== null) setCoffeeClaimed(count);
   };
