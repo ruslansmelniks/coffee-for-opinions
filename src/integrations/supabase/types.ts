@@ -164,6 +164,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      add_survey_points: {
+        Args: { p_points: number; p_survey_name: string; p_user_email: string }
+        Returns: Json
+      }
       claim_voucher: {
         Args: { p_user_id: string }
         Returns: {
