@@ -54,15 +54,50 @@ function DashboardContent() {
 
   const fetchProfile = async () => {
     const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
+    if (!user?.email) {
+      navigate('/auth');
+      return;
+    }
 
-    const { data } = await supabase
+    console.log('Logged in as:', user.email);
+
+    // Fetch profile by EMAIL instead of id (survey responses create profiles with random UUIDs)
+    const { data: profileData, error: profileError } = await supabase
       .from('profiles')
       .select('*')
-      .eq('id', user.id)
-      .single();
+      .eq('email', user.email)
+      .maybeSingle();
 
-    if (data) setProfile(data);
+    console.log('Profile data:', profileData);
+    console.log('Profile error:', profileError);
+
+    if (profileData) {
+      setProfile(profileData);
+      
+      // If profile exists but has different id than auth.users.id, update it
+      if (profileData.id !== user.id) {
+        console.log('Updating profile id from', profileData.id, 'to', user.id);
+        await supabase
+          .from('profiles')
+          .update({ id: user.id })
+          .eq('email', user.email);
+      }
+    } else {
+      // Profile doesn't exist, create it
+      console.log('Creating new profile for', user.email);
+      const { data: newProfile } = await supabase
+        .from('profiles')
+        .insert({
+          id: user.id,
+          email: user.email,
+          points_balance: 0,
+          total_surveys_completed: 0
+        })
+        .select()
+        .single();
+      
+      if (newProfile) setProfile(newProfile);
+    }
   };
 
   const fetchSurveys = async () => {
