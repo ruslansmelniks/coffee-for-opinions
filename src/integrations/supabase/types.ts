@@ -117,6 +117,10 @@ export type Database = {
         Args: { p_partner?: string; p_user_email: string }
         Returns: Json
       }
+      current_user_email: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
